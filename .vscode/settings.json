@@ -1,0 +1,9 @@
+{
+	"C_Cpp.default.includePath": [
+		"include",
+		"libft"
+	],
+	"files.associations": {
+		"utils.h": "c"
+	}
+}
