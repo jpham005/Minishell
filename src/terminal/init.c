@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:41:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/06 14:29:01 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	update_shlvl(t_envp_list *envp)
 	shlvl++;
 	new = ft_itoa(shlvl);
 	update_envp_list(&envp, "SHLVL", new);
-	safe_free((void **) &new);
+	ft_free((void **) &new);
 }
 
 void	init_shell(t_context *context, const char **envp)

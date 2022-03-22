@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:15:53 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/21 22:16:23 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 12:01:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "libft.h"
 #include "utils.h"
 #include <stdlib.h>
-#include <signal.h>
 
 void	write_error(const char *str)
 {
@@ -30,8 +29,6 @@ static void	print_exit(void)
 
 int	exit_with_status(int status, t_context *context)
 {
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
 	if (status & END_TERM)
 	{
 		print_exit();

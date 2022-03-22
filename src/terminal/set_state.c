@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_state.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:20:16 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/09 12:33:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 12:14:15 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ char	*ft_readline(t_context *context, char *str)
 
 	set_term_readline(context);
 	if (!str)
-		ret = readline(MINISHELL_WITH_COLOR);
+	{
+		if (context->exit_status == 0)
+			ret = readline(MINISHELL_WITH_COLOR);
+		else
+			ret = readline(MINISHELL_WITH_COLOR_ERR);
+	}
 	else
 	{
 		signal(SIGINT, heredoc_handler);

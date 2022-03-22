@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 15:03:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/07 03:17:24 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	is_valid_expanded_str(char *str, size_t i, t_context *context)
 		i++;
 	key = ft_substr(str, key_start, i - key_start);
 	expand_list = find_list_by_key(context->envp, key);
-	safe_free((void **) &key);
+	ft_free((void **) &key);
 	if (!expand_list)
 		return (0);
 	expanded = expand_list->value;

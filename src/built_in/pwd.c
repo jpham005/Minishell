@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 14:47:50 by jaham             #+#    #+#             */
-/*   Updated: 2022/02/17 15:31:44 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	pwd(t_context *context, const char **argv)
 		return (1);
 	dir = ft_getcwd(NULL, 1);
 	printf("%s\n", dir);
-	safe_free((void **) &dir);
+	ft_free((void **) &dir);
 	return (0);
 }

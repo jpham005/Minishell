@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/03/21 22:30:33 by jaham            ###   ########.fr        #
+#    Updated: 2022/03/22 20:00:37 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ ENVP_SRCS := init_destroy.c util.c print.c tool.c
 ENVP_SRCS := $(addprefix $(ENVP_DIR)/, $(ENVP_SRCS))
 UTILS_SRCS := exit_manage.c
 UTILS_SRCS := $(addprefix $(UTILS_DIR)/, $(UTILS_SRCS))
-PARSER_SRCS := 
+PARSER_SRCS := quote_mask.c token_manage.c tokenizer.c
 PARSER_SRCS := $(addprefix $(PARSER_DIR)/, $(PARSER_SRCS))
 TERMINAL_SRCS := check_default_state.c set_state.c signal_handler.c init.c \
 				readline_loop.c check_valid_str.c signal_handler_exec.c
@@ -80,3 +80,6 @@ fclean	:	clean
 
 .PHONY	:	re
 re	:	fclean all
+
+test	:
+	gcc test.c -Iinclude -Ilibft -Llibft -lft

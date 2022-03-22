@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:06:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/07 02:00:55 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 19:29:58 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_getcwd(char *buf, size_t size);
 void	free_c_dptr(char ***ptr);
 void	*ft_malloc(size_t size, size_t n);
 pid_t	ft_fork(void);
-void	safe_free(void **ptr);
+void	ft_free(void **ptr);
 void	perror_exit(const char *str, unsigned int exit_status);
 char	*get_next_line(int fd);
 void	ft_waitpid(pid_t pid, int *status, int op);
@@ -56,5 +56,6 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_isdigit(int c);
 char	*ft_itoa(int n);
 char	*ft_strtrim(char const *s1, char const *set);
+int		ft_isspace(int c);
 
 #endif

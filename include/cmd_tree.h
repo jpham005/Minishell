@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_c_dptr.c                                      :+:      :+:    :+:   */
+/*   cmd_tree.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 15:38:30 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/22 13:44:19 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/22 13:45:57 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#ifndef CMD_TREE_H
+# define CMD_TREE_H
 
-void	free_c_dptr(char ***ptr)
+typedef struct s_cmd_tree	t_cmd_tree;
+
+struct s_cmd_tree
 {
-	size_t	i;
+	
+};
 
-	if (!*ptr)
-		return ;
-	i = 0;
-	while ((*ptr)[i])
-	{
-		ft_free((void **) &((*ptr)[i]));
-		i++;
-	}
-	free(*ptr);
-	*ptr = NULL;
-}
+#endif

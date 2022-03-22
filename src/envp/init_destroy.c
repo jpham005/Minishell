@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_destroy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:20:24 by jaham             #+#    #+#             */
-/*   Updated: 2022/02/17 15:33:19 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	del_one_envp_list(t_envp_list **head, const char *key)
 	{
 		temp = *head;
 		*head = (*head)->next;
-		safe_free((void **) &(temp->key));
-		safe_free((void **) &(temp->value));
-		safe_free((void **) &temp);
+		ft_free((void **) &(temp->key));
+		ft_free((void **) &(temp->value));
+		ft_free((void **) &temp);
 		cp->list_len--;
 	}
 }
@@ -42,7 +42,7 @@ void	update_envp_list(t_envp_list **head, const char *key, const char *value)
 		head = &((*head)->next);
 	if (*head)
 	{
-		safe_free((void **) &((*head)->value));
+		ft_free((void **) &((*head)->value));
 		(*head)->value = ft_strdup(value);
 		return ;
 	}
@@ -62,10 +62,10 @@ int	clear_envp_list(t_envp_list **head)
 	cp = *head;
 	while (cp)
 	{
-		safe_free((void **) &(cp->key));
-		safe_free((void **) &(cp->value));
+		ft_free((void **) &(cp->key));
+		ft_free((void **) &(cp->value));
 		temp = cp->next;
-		safe_free((void **) &cp);
+		ft_free((void **) &cp);
 		cp = temp;
 	}
 	*head = NULL;
