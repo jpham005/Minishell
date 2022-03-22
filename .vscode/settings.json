@@ -4,6 +4,8 @@
 		"libft"
 	],
 	"files.associations": {
-		"utils.h": "c"
+		"utils.h": "c",
+		"stdlib.h": "c",
+		"libft.h": "c"
 	}
 }

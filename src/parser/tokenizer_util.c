@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_c_dptr.c                                      :+:      :+:    :+:   */
+/*   tokenizer_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 15:38:30 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/22 21:38:35 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/22 22:32:10 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "tokenizer.h"
+#include <ctype.h>
 
-void	free_c_dptr(char ***ptr)
+int	is_split_condition(char c, t_quote_mask mask)
 {
-	size_t	i;
+	return (
+		(c == 0)
+		|| (ft_isspace(c) && (check_quote_mask(mask) == 0))
+	);
+}
 
-	if (!*ptr)
-		return ;
-	i = 0;
-	while ((*ptr)[i])
-	{
-		ft_free((void **) &((*ptr)[i]));
-		i++;
-	}
-	free(*ptr);
-	*ptr = NULL;
+void	skip_space(const char *str, size_t *start)
+{
+	if (str[*start] && ft_isspace(str[*start]))
+		(*start)++;
 }

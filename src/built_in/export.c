@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 20:44:39 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/06 03:50:30 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	exec_normal(t_envp_list *envp, const char *str)
 	key = ft_substr(str, 0, ft_strlen(str) - ft_strlen(is_op));
 	value = ft_substr(is_op, 1, ft_strlen(is_op) - 1);
 	update_envp_list(&envp, key, value);
-	safe_free((void **) &key);
-	safe_free((void **) &value);
+	ft_free((void **) &key);
+	ft_free((void **) &value);
 }
 
 static void	print_export_err_message(const char *str)

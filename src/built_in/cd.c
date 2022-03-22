@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:41:42 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/07 02:01:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,13 @@ static int	move_by_oldpwd(t_envp_list *envp)
 	if (chdir(oldpwd->value) == -1)
 	{
 		print_cd_error(oldpwd->value, strerror(errno));
-		safe_free((void **) &curr_dir);
+		ft_free((void **) &curr_dir);
 		return (1);
 	}
 	print_cd_success(oldpwd->value);
 	update_envp_list(&envp, "OLDPWD", curr_dir);
 	update_envp_list(&envp, "PWD", oldpwd->value);
-	safe_free((void **) &curr_dir);
+	ft_free((void **) &curr_dir);
 	return (0);
 }
 
@@ -119,7 +119,7 @@ static int	move_to_home(t_envp_list *envp)
 	}
 	update_envp_list(&envp, "OLDPWD", curr_dir);
 	update_envp_list(&envp, "PWD", home->value);
-	safe_free((void **) &curr_dir);
+	ft_free((void **) &curr_dir);
 	return (0);
 }
 

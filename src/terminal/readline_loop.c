@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/21 22:31:28 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 20:27:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,23 @@ void	handle_syntax_err(t_context *context)
 	ft_putstr_fd(SYNTAX_ERR_MESSAGE, 2);
 	context->exit_status = 258;
 }
-
+#include "tokenizer.h"
+#include <stdio.h>
 void	readline_loop(t_context *context)
 {
 	char	*str;
 
 	str = ft_readline(context, NULL);
+	if (!check_valid_str(str, context))
+	{
+		ft_free((void **) &str);
+		return ; // continue
+	}
+	t_token	*head = tokenize(str);
+	t_token	*cp = head;
+	for (;cp;cp = cp->next)
+	{
+		printf("%s\n", cp->data);
+		printf("%d\n", cp->type);
+	}
 }

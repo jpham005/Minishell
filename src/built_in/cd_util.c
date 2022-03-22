@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_util.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:28:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/01 12:42:51 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	free_both_cd(char **curr_dir, char **path)
 {
-	safe_free((void **) curr_dir);
-	safe_free((void **) path);
+	ft_free((void **) curr_dir);
+	ft_free((void **) path);
 }
 
 void	print_cd_error(char *s1, char *s2)

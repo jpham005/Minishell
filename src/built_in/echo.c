@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:39 by jaham             #+#    #+#             */
-/*   Updated: 2022/02/22 17:04:18 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ int	echo(t_context *context, const char **argv)
 	n_op = !ft_strncmp(argv[1], "-n", 3);
 	str = make_string(argv, n_op);
 	ret = write_string(str, n_op);
-	safe_free((void **) &str);
+	ft_free((void **) &str);
 	return (ret);
 }

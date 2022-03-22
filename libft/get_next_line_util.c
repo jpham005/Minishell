@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_util.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 20:37:43 by jaham             #+#    #+#             */
-/*   Updated: 2022/02/20 14:18:45 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	lstdel(t_buffer **cur, int fd)
 	{
 		target = *cur;
 		*cur = (*cur)->next;
-		safe_free((void **) &target);
+		ft_free((void **) &target);
 	}
 }

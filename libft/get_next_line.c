@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 20:36:26 by jaham             #+#    #+#             */
-/*   Updated: 2022/02/20 14:18:23 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	delall(t_buffer **head, t_string *string, int fd)
 {
 	lstdel(head, fd);
-	safe_free((void **) &(string->str));
+	ft_free((void **) &(string->str));
 	return (0);
 }
 
@@ -99,6 +99,6 @@ char	*get_next_line(int fd)
 	if (!read_line(fd, &string))
 		return (NULL);
 	ret = copy_string(&string);
-	safe_free((void **) &(string.str));
+	ft_free((void **) &(string.str));
 	return (ret);
 }

@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_c_dptr.c                                      :+:      :+:    :+:   */
+/*   quote_mask.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 15:38:30 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/22 17:47:50 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/22 19:24:05 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "tokenizer.h"
 
-void	free_c_dptr(char ***ptr)
+void	check_quote(char c, t_quote_mask *mask)
 {
-	size_t	i;
+	if ((c == '\'') && ((*mask & DQUOTE) == 0))
+		*mask ^= SQUOTE;
+	if ((c == '\"') && ((*mask & SQUOTE) == 0))
+		*mask ^= DQUOTE;
+}
 
-	if (!*ptr)
-		return ;
-	i = 0;
-	while ((*ptr)[i])
-	{
-		ft_free((void **) &((*ptr)[i]));
-		i++;
-	}
-	free(*ptr);
-	*ptr = NULL;
+int	check_quote_mask(t_quote_mask mask)
+{
+	return ((mask & SQUOTE) || (mask & DQUOTE));
 }

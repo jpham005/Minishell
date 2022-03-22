@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:48:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/12 08:50:29 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**convert_envp_to_dptr(const t_envp_list *head)
 	{
 		ret[i] = ft_strjoin(head->key, "=");
 		temp = ft_strjoin(ret[i], head->value);
-		safe_free(((void **) &ret[i]));
+		ft_free(((void **) &ret[i]));
 		ret[i] = temp;
 		head = head->next;
 		i++;
