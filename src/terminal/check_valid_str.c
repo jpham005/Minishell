@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 15:03:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/23 15:01:53 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,6 @@
 #include <stdio.h>
 #include <readline/history.h>
 
-static int	is_valid_str(char *str, t_context *context);
-
-static int	is_valid_expanded_str(char *str, size_t i, t_context *context)
-{
-	char		*key;
-	char		*expanded;
-	size_t		key_start;
-	t_envp_list	*expand_list;
-
-	key_start = ++i;
-	while (str[i])
-		i++;
-	key = ft_substr(str, key_start, i - key_start);
-	expand_list = find_list_by_key(context->envp, key);
-	ft_free((void **) &key);
-	if (!expand_list)
-		return (0);
-	expanded = expand_list->value;
-	return (is_valid_str(expanded, context));
-}
-
 static int	is_valid_str(char *str, t_context *context)
 {
 	size_t	i;
@@ -43,8 +22,6 @@ static int	is_valid_str(char *str, t_context *context)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '$')
-			return (is_valid_expanded_str(str, i, context));
 		if (str[i] != ' ')
 			return (1);
 		i++;

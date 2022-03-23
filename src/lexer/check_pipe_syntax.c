@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer_util.c                                   :+:      :+:    :+:   */
+/*   check_pipe_syntax.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 21:38:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 22:32:10 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/23 21:24:15 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/23 21:34:20 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer.h"
-#include <ctype.h>
+#include "lexer.h"
 
-int	is_split_condition(char c, t_quote_mask mask)
+t_lexer_result	check_pipe_syntax(t_token *token)
 {
-	return (
-		(c == 0)
-		|| (ft_isspace(c) && (check_quote_mask(mask) == 0))
-	);
-}
+	const t_token_type	pipe_syntax_condition[] = {
+		WORD,
+		PARENTHESIS_R
+	};
 
-void	skip_space(const char *str, size_t *start)
-{
-	if (str[*start] && ft_isspace(str[*start]))
-		(*start)++;
+	if (!check_prev_token_match(token, \
+									(t_token_type *) pipe_syntax_condition, 2))
+	{
+		print_syntax_err(token->data);
+		return (LEXER_ERR);
+	}
+	return (LEXER_SUCCESS);
 }
