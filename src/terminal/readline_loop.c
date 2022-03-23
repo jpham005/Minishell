@@ -6,40 +6,77 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 20:27:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/23 22:02:47 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 // #include "exec.h"
+#include "lexer.h"
 #include "libft.h"
 // #include "parser.h"
+#include "tokenizer.h"
 #include "utils.h"
 #include <stdlib.h>
 
-void	handle_syntax_err(t_context *context)
-{
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(SYNTAX_ERR_MESSAGE, 2);
-	context->exit_status = 258;
-}
 #include "tokenizer.h"
 #include <stdio.h>
+void	print_type(size_t type)
+{
+	size_t	i;
+
+	char *type_str[] = {
+		"WORD",
+		"REDIR_IN",
+		"REDOR_HEREDOC",
+		"REDIR_OUT",
+		"REDIR_APPEND",
+		"PIPE",
+		"PARENTHESIS_L",
+		"PARENTHESIS_R",
+		"AND",
+		"OR",
+		"WRONG"
+	};
+	i = 1;
+	int cnt = 0;
+	while (i != type)
+	{
+		i <<= 1;
+		cnt++;
+	}
+	printf("%s\n", type_str[cnt]);
+}
+
 void	readline_loop(t_context *context)
 {
 	char	*str;
+	t_token	*tokenized;
 
-	str = ft_readline(context, NULL);
-	if (!check_valid_str(str, context))
+	while (1)
 	{
+		str = ft_readline(context, NULL);
+		if (!str)
+			exit(exit_with_status(END_TERM, context));
+		if (!check_valid_str(str, context))
+		{
+			ft_free((void **) &str);
+			continue ;
+		}
+		tokenized = tokenize(str);
 		ft_free((void **) &str);
-		return ; // continue
-	}
-	t_token	*head = tokenize(str);
-	t_token	*cp = head;
-	for (;cp;cp = cp->next)
-	{
-		printf("%s\n", cp->data);
-		printf("%d\n", cp->type);
+		if (check_syntax_err(tokenized) == LEXER_ERR)
+		{
+			context->exit_status = SYNTAX_ERR_EXIT_STATUS;
+			clear_token(&tokenized);
+			continue ;
+		}
+		t_token	*cp = tokenized;
+		for (;cp;cp = cp->next)
+		{
+			printf("%s\n", cp->data);
+			print_type(cp->type);
+		}
+		clear_token(&tokenized);
 	}
 }
