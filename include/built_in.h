@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:24:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/21 22:26:51 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/23 17:14:44 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define BUILT_IN_H
 
 # include "terminal.h"
-
-# define SHELL_NAME "minishell: "
 
 # define EXPORT_CMD "export: "
 # define UNSET_CMD "unset: "

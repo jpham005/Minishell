@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:21:23 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 12:15:15 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/23 21:56:16 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 # include "envp.h"
 # include <termios.h>
 
+# define SHELL_NAME "minishell: "
 # define TOO_MANY_ARG_ERR_MESSAGE "Too many arg: "
 # define SIG_QUIT_MESSAGE "Quit: 3\n"
-# define MINISHELL_WITH_COLOR PURPLE_BD"minishell "PINK_BD"#"\
-		DEF_COL" "BLUE_BT
+# define MINISHELL_WITH_COLOR PURPLE_BD"minishell "PINK_BD"#"DEF_COL" "BLUE_BT
 # define MINISHELL_WITH_COLOR_ERR PURPLE_BD"minishell "RED"#"DEF_COL" "BLUE_BT
-# define SYNTAX_ERR_MESSAGE "syntax error\n"
+# define SYNTAX_ERR_EXIT_STATUS 258
 
 typedef struct termios	t_term;
 
@@ -36,7 +36,6 @@ typedef struct s_context
 {
 	int				std_fd[3];
 	int				exit_status;
-	int				parse_result;
 	t_envp_list		*envp;
 	t_term_state	term_state;
 }	t_context;
