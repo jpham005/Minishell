@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 17:11:25 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 17:47:14 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_lexer_result	lexer(t_token *token);
 t_lexer_result	check_near_token_err(t_token *token);
 t_lexer_result	check_match_err(t_token *token);
 
-// check word syntax
+// check special type syntax
 t_lexer_result	check_word_syntax(t_token *token);
 t_lexer_result	check_word_parenthesis_comb(t_token *token);
 t_lexer_result	check_parenthesis_r_syntax(t_token *token);
@@ -68,5 +68,6 @@ void			print_no_match_err(const char *data);
 
 // check match syntax
 t_lexer_result	check_match_syntax(t_token *token);
+t_lexer_result	check_quote_match_err(t_token *token, int op);
 
 #endif

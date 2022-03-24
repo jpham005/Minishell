@@ -6,13 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:26:17 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 17:12:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 17:46:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-static t_lexer_result	check_quote_match_err(t_token *token)
+t_lexer_result	check_quote_match_err(t_token *token, int op)
 {
 	char			*data;
 	t_quote_mask	mask;
@@ -26,9 +26,9 @@ static t_lexer_result	check_quote_match_err(t_token *token)
 		check_quote(*data, &mask);
 		data++;
 	}
-	if (mask & DQUOTE)
+	if ((mask & DQUOTE) && op)
 		print_no_match_err("\"");
-	else if (mask & SQUOTE)
+	else if ((mask & SQUOTE) && op)
 		print_no_match_err("\'");
 	if (mask)
 		return (LEXER_ERR);
@@ -62,7 +62,7 @@ t_lexer_result	check_match_err(t_token *token)
 	cp = token;
 	while (token->next)
 		token = token->next;
-	if (check_quote_match_err(token) == LEXER_ERR)
+	if (check_quote_match_err(token, 1) == LEXER_ERR)
 		return (LEXER_ERR);
 	if (check_parenthesis_match_err(cp) == LEXER_ERR)
 		return (LEXER_ERR);

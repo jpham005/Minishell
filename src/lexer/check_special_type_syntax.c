@@ -6,17 +6,19 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:48:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 17:10:26 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 17:42:40 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "libft.h"
 
 t_lexer_result	check_word_parenthesis_comb(t_token *token)
 {
 	if (
 		check_prev_token_match(token, SPECIAL_ERR_MASK_1)
 		&& (check_prev_token_match(token->prev, SPECIAL_ERR_MASK_2))
+		&& check_quote_match_err(token) == LEXER_SUCCESS
 	)
 	{
 		print_near_token_err(token->data);
@@ -39,7 +41,7 @@ static t_lexer_result	search_parenthesis_l(t_token *token)
 {
 	ssize_t	cnt;
 
-	cnt = -1;
+	cnt = 0;
 	while (token)
 	{
 		if (token->type == PARENTHESIS_L)
@@ -48,11 +50,8 @@ static t_lexer_result	search_parenthesis_l(t_token *token)
 			cnt--;
 		token = token->prev;
 	}
-	if (cnt != 0)
-	{
-		print_near_token_err(")");
+	if (cnt < 0)
 		return (LEXER_ERR);
-	}
 	return (LEXER_SUCCESS);
 }
 
