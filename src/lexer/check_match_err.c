@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:26:17 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 14:53:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 17:12:04 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,29 @@ static t_lexer_result	check_quote_match_err(t_token *token)
 		check_quote(*data, &mask);
 		data++;
 	}
+	if (mask & DQUOTE)
+		print_no_match_err("\"");
+	else if (mask & SQUOTE)
+		print_no_match_err("\'");
 	if (mask)
+		return (LEXER_ERR);
+	return (LEXER_SUCCESS);
+}
+
+static t_lexer_result	check_parenthesis_match_err(t_token *token)
+{
+	ssize_t	cnt;
+
+	cnt = 0;
+	while (token)
+	{
+		if (token->type == PARENTHESIS_L)
+			cnt++;
+		if (token->type == PARENTHESIS_R)
+			cnt--;
+		token = token->next;
+	}
+	if (cnt != 0)
 		return (LEXER_ERR);
 	return (LEXER_SUCCESS);
 }
@@ -46,4 +68,3 @@ t_lexer_result	check_match_err(t_token *token)
 		return (LEXER_ERR);
 	return (LEXER_SUCCESS);
 }
-
