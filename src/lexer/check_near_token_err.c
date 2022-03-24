@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 15:02:40 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 13:30:16 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 16:52:11 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static t_lexer_mask	get_lexer_mask(t_token_type type)
 		mask = LOGICAL_MASK ^ MASK_DFL;
 	else if (type == PARENTHESIS_L)
 		mask = PARENTHESIS_L_MASK ^ MASK_DFL;
-	else if (type == PARENTHESIS_R)
-		mask = PARENTHESIS_R_MASK ^ MASK_DFL;
 	return (mask);
 }
 
@@ -50,6 +48,8 @@ t_lexer_result	check_near_token_err(t_token *token)
 	{
 		if (token->type == WORD)
 			result = check_word_syntax(token);
+		else if (token->type == PARENTHESIS_R)
+			result = check_parenthesis_r_syntax(token);
 		else
 		{
 			result = check_syntax_by_mask(\
