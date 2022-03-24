@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/23 21:46:06 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 20:27:15 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_token			*init_token(const char *data, t_token_type type);
 void			add_token(t_token **head, t_token *new);
 void			del_token(t_token **target);
 void			clear_token(t_token **head);
+t_token			*get_last_token(t_token *head);
 
 // quote manage
 void			check_quote(char c, t_quote_mask *mask);

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 17:47:14 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 20:56:40 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 typedef enum e_lexer_result		t_lexer_result;
 typedef enum e_lexer_mask		t_lexer_mask;
+typedef struct e_lexer_err		t_lexer_err;
+typedef enum e_lexer_err_type	t_lexer_err_type;
 
 enum e_lexer_result
 {
@@ -46,28 +48,49 @@ enum e_lexer_mask
 	MASK_DFL = 0x7FF
 };
 
+enum e_lexer_err_type
+{
+	NO_ERR = 0,
+	NEAR_TOKEN,
+	NO_MATCH
+};
+
+struct e_lexer_err
+{
+	char				*data;
+	t_lexer_err_type	type;
+};
+
 // lexer
 t_lexer_result	lexer(t_token *token);
-t_lexer_result	check_near_token_err(t_token *token);
-t_lexer_result	check_match_err(t_token *token);
+
+// lexer err info manage
+void			init_lexer_err_info(t_lexer_err *err_info);
+void			set_lexer_err_info(t_lexer_err *err_info, \
+										char *data, t_lexer_err_type type);
+void			clear_lexer_err_info(t_lexer_err *err_info);
+void			print_lexer_err(t_lexer_err *err_info);
+
+// check near token err
+void			check_near_token_err(t_token *token, t_lexer_err *err_info);
+
+// check near token err util
+int				check_prev_token_match(t_token *token, t_lexer_mask mask);
+void			check_syntax_first_token(t_token *token, t_lexer_err *err_info);
+void			check_syntax_linked_token(t_token *token, \
+														t_lexer_err *err_info);
+void			check_syntax_last_token(t_token *type, t_lexer_err *err_info);
+void			check_syntax_by_mask(t_token *token, \
+									t_lexer_mask mask, t_lexer_err *err_info);
 
 // check special type syntax
-t_lexer_result	check_word_syntax(t_token *token);
-t_lexer_result	check_word_parenthesis_comb(t_token *token);
-t_lexer_result	check_parenthesis_r_syntax(t_token *token);
-
-// lexer util
-int				check_prev_token_match(t_token *token, t_lexer_mask mask);
-t_lexer_result	check_syntax_first_token(t_token *token);
-t_lexer_result	check_syntax_last_token(t_token_type type);
-t_lexer_result	check_syntax_by_mask(t_token *tkn, t_lexer_mask msk, char *str);
-
-// print syntax err
-void			print_near_token_err(const char *data);
-void			print_no_match_err(const char *data);
+void			check_word_syntax(t_token *token, t_lexer_err *err_info);
+void			check_parenthesis_r_syntax(t_token *token, \
+														t_lexer_err *err_info);
 
 // check match syntax
+void			check_match_err(t_token *token, t_lexer_err *err_info);
 t_lexer_result	check_match_syntax(t_token *token);
-t_lexer_result	check_quote_match_err(t_token *token, int op);
+void			check_quote_match_err(t_token *token, t_lexer_err *err_info);
 
 #endif

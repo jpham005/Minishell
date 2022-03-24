@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/03/24 16:51:07 by jaham            ###   ########.fr        #
+#    Updated: 2022/03/24 20:55:58 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,9 +36,9 @@ ENVP_SRCS			:=	$(addprefix $(ENVP_DIR)/, $(ENVP_SRCS))
 EXEC_SRCS			:=
 EXEC_SRCS			:=	$(addprefix $(EXECUTER_DIR)/, $(EXEC_SRCS))
 LEXER_SRCS			:=	lexer.c check_near_token_err.c \
-						check_near_token_err_util.c \
+						check_near_token_err_util.c check_token_by_place.c \
 						check_special_type_syntax.c check_match_err.c \
-						print_syntax_err.c
+						lexer_err_info_manage.c
 LEXER_SRCS			:=	$(addprefix $(LEXER_DIR)/, $(LEXER_SRCS))
 TOKENIZER_SRCS		:=	quote_mask.c token_manage.c tokenizer.c tokenizer_util.c
 TOKENIZER_SRCS		:=	$(addprefix $(TOKENIZER_DIR)/, $(TOKENIZER_SRCS))

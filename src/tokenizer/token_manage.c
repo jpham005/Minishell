@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:52:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 16:54:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 20:27:03 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,11 @@ void	clear_token(t_token **head)
 		cp = temp;
 	}
 	*head = NULL;
+}
+
+t_token	*get_last_token(t_token *head)
+{
+	while (head->next)
+		head = head->next;
+	return (head);
 }

@@ -6,38 +6,29 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:48:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 17:42:40 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 20:55:28 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "libft.h"
 
-t_lexer_result	check_word_parenthesis_comb(t_token *token)
+static void	check_word_parenthesis_comb(t_token *token, t_lexer_err *err_info)
 {
 	if (
 		check_prev_token_match(token, SPECIAL_ERR_MASK_1)
 		&& (check_prev_token_match(token->prev, SPECIAL_ERR_MASK_2))
-		&& check_quote_match_err(token) == LEXER_SUCCESS
 	)
-	{
-		print_near_token_err(token->data);
-		return (LEXER_ERR);
-	}
-	return (LEXER_SUCCESS);
+		set_lexer_err_info(err_info, token->data, NEAR_TOKEN);
 }
 
-t_lexer_result	check_word_syntax(t_token *token)
+void	check_word_syntax(t_token *token, t_lexer_err *err_info)
 {
-	if (
-		(check_word_parenthesis_comb(token) == LEXER_ERR)
-		|| (check_syntax_by_mask(token, WORD_MASK, token->data) == LEXER_ERR)
-	)
-		return (LEXER_ERR);
-	return (LEXER_SUCCESS);
+	check_quote_match_err(token, err_info);
+	check_word_parenthesis_comb(token, err_info);
+	check_syntax_by_mask(token, WORD_MASK, err_info);
 }
 
-static t_lexer_result	search_parenthesis_l(t_token *token)
+static void	search_parenthesis_l(t_token *token, t_lexer_err *err_info)
 {
 	ssize_t	cnt;
 
@@ -51,18 +42,13 @@ static t_lexer_result	search_parenthesis_l(t_token *token)
 		token = token->prev;
 	}
 	if (cnt < 0)
-		return (LEXER_ERR);
-	return (LEXER_SUCCESS);
+		set_lexer_err_info(err_info, token->data, NEAR_TOKEN);
 }
 
-t_lexer_result	check_parenthesis_r_syntax(t_token *token)
+void	check_parenthesis_r_syntax(t_token *token, t_lexer_err *err_info)
 {
 	const t_lexer_mask	mask = PARENTHESIS_R_MASK ^ MASK_DFL;
 
-	if (
-		(check_syntax_by_mask(token, mask, token->data) == LEXER_ERR)
-		|| (search_parenthesis_l(token) == LEXER_ERR)
-	)
-		return (LEXER_ERR);
-	return (LEXER_SUCCESS);
+	check_syntax_by_mask(token, mask, err_info);
+	search_parenthesis_l(token, err_info);
 }
