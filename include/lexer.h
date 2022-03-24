@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 13:22:35 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 17:11:25 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define NON_EXPECTED_TOKEN_MESSAGE "syntax error near unexpected token `"
 # define MINISHELL_NEAR_TOKEN_ERR_MESSAGE SHELL_NAME NON_EXPECTED_TOKEN_MESSAGE
 
-# define NO_MATCH_TOKEN_MESSAGE "no matching `"
+# define NO_MATCH_TOKEN_MESSAGE "syntax error while looking for matching `"
 # define MINISHELL_NO_MATCH_ERR_MESSAGE SHELL_NAME NO_MATCH_TOKEN_MESSAGE
 
 typedef enum e_lexer_result		t_lexer_result;
@@ -54,6 +54,7 @@ t_lexer_result	check_match_err(t_token *token);
 // check word syntax
 t_lexer_result	check_word_syntax(t_token *token);
 t_lexer_result	check_word_parenthesis_comb(t_token *token);
+t_lexer_result	check_parenthesis_r_syntax(t_token *token);
 
 // lexer util
 int				check_prev_token_match(t_token *token, t_lexer_mask mask);
