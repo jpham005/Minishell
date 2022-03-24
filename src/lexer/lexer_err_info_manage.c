@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:37:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 20:56:12 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 21:07:02 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	set_lexer_err_info(
 	t_lexer_err *err_info, char *data, t_lexer_err_type type
 )
 {
-	if (!(err_info->data))
+	if (err_info->data)
 		return ;
 	err_info->data = ft_strdup(data);
 	err_info->type = type;

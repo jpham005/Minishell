@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:48:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 20:55:28 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 21:10:10 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	search_parenthesis_l(t_token *token, t_lexer_err *err_info)
 		token = token->prev;
 	}
 	if (cnt < 0)
-		set_lexer_err_info(err_info, token->data, NEAR_TOKEN);
+		set_lexer_err_info(err_info, ")", NEAR_TOKEN);
 }
 
 void	check_parenthesis_r_syntax(t_token *token, t_lexer_err *err_info)

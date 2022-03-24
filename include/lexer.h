@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 20:56:40 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/24 21:35:47 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef enum e_lexer_result		t_lexer_result;
 typedef enum e_lexer_mask		t_lexer_mask;
-typedef struct e_lexer_err		t_lexer_err;
+typedef struct s_lexer_err		t_lexer_err;
 typedef enum e_lexer_err_type	t_lexer_err_type;
 
 enum e_lexer_result
@@ -55,7 +55,7 @@ enum e_lexer_err_type
 	NO_MATCH
 };
 
-struct e_lexer_err
+struct s_lexer_err
 {
 	char				*data;
 	t_lexer_err_type	type;
