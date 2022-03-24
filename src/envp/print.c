@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 14:21:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/06 12:53:48 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 03:15:10 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,28 @@
 
 static void	print_envp_export(t_envp_list *head)
 {
-	char	**temp;
-	size_t	i;
+	t_envp_list	*sorted;
+	t_envp_list	*cp;
 
-	temp = convert_envp_to_dptr(head);
-	sort_envp_dptr(temp);
-	i = 0;
-	while (temp[i])
+	sorted = get_sort_envp_list(head);
+	cp = sorted;
+	while (sorted)
 	{
-		printf("declare -x %s\n", temp[i]);
-		i++;
+		if (sorted->value)
+			printf("declare -x %s=\"%s\"\n", sorted->key, sorted->value);
+		else
+			printf("declare -x %s\n", sorted->key);
+		sorted = sorted->next;
 	}
-	free_c_dptr(&temp);
+	clear_envp_list(&cp);
 }
 
 static void	print_envp_env(t_envp_list *head)
 {
 	while (head)
 	{
-		printf("%s=%s\n", head->key, head->value);
+		if (head->value)
+			printf("%s=%s\n", head->key, head->value);
 		head = head->next;
 	}
 }

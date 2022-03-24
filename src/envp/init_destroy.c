@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 21:20:24 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 03:10:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ void	update_envp_list(t_envp_list **head, const char *key, const char *value)
 	if (*head)
 	{
 		ft_free((void **) &((*head)->value));
-		(*head)->value = ft_strdup(value);
+		if (value)
+			(*head)->value = ft_strdup(value);
 		return ;
 	}
 	new = ft_malloc(sizeof(t_envp_list), 1);
 	new->key = ft_strdup(key);
-	new->value = ft_strdup(value);
+	if (value)
+		new->value = ft_strdup(value);
+	else
+		new->value = NULL;
 	new->next = NULL;
 	*head = new;
 	cp->list_len++;

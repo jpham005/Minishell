@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 20:27:15 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 01:47:35 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ enum e_token_type
 enum e_expand_status
 {
 	NOT_EXPANDED = 0,
-	IS_EXPANDED = 1
+	QUOTE_REMOVED
 };
 
 struct s_token

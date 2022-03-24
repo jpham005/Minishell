@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander.c                                         :+:      :+:    :+:   */
+/*   perform_shell_param_expansion.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 21:58:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 01:19:55 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/25 01:50:17 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/25 02:00:38 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 
-void	expander(t_token *token)
+void	perform_shell_param_expansion(t_token *token)
 {
-	expand_shell_param(token);
+	t_relative_tokens	relative_tokens;
+
+	get_relative_tokens(&relative_tokens, token);
+	
 }
-// 1. expand $
-// 2. word split ( remove white space, NULL token if non quoted)
-// 3. expand *

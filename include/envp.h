@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/21 22:26:39 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 02:08:43 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		update_envp_list(t_envp_list **head, const char *k, const char *v);
 void		get_key(t_envp_list *curr, const char *envp);
 void		get_value(t_envp_list *curr, const char *envp);
 char		**convert_envp_to_dptr(const t_envp_list *head);
-void		sort_envp_dptr(char **envp);
+t_envp_list	*get_sort_envp_list(t_envp_list *head);
 t_envp_list	*find_list_by_key(t_envp_list *head, const char *key);
 t_envp_list	*copy_envp_list(t_envp_list *head);
 void		print_envp(t_envp_list *head, int op);

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 17:48:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 03:17:41 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,41 @@ char	**convert_envp_to_dptr(const t_envp_list *head)
 	return (ret);
 }
 
-void	sort_envp_dptr(char **envp)
+static void	swap_envp_list(t_envp_list *list1, t_envp_list *list2)
 {
-	size_t	i;
-	size_t	j;
-	char	*temp;
+	char	*temp_key;
+	char	*temp_value;
 
-	i = 0;
-	while (envp[i + 1])
+	temp_key = list1->key;
+	temp_value = list1->value;
+	list1->key = list2->key;
+	list1->value = list2->value;
+	list2->key = temp_key;
+	list2->value = temp_value;
+}
+
+t_envp_list	*get_sort_envp_list(t_envp_list *head)
+{
+	t_envp_list	*ret;
+	t_envp_list	*temp;
+	t_envp_list	*cp;
+
+	cp = copy_envp_list(head);
+	ret = cp;
+	while (cp->next)
 	{
-		j = i + 1;
-		while (envp[j])
+		temp = cp->next;
+		while (temp)
 		{
-			if (ft_strncmp(envp[i], envp[j], ft_strlen(envp[j]) + 1) > 0)
+			if (ft_strncmp(cp->key, temp->key, ft_strlen(temp->key) + 1) > 0)
 			{
-				temp = envp[i];
-				envp[i] = envp[j];
-				envp[j] = temp;
+				swap_envp_list(cp, temp);
 			}
-			j++;
+			temp = temp->next;
 		}
-		i++;
+		cp = cp->next;
 	}
+	return (ret);
 }
 
 t_envp_list	*find_list_by_key(t_envp_list *head, const char *key)
@@ -79,7 +92,10 @@ t_envp_list	*copy_envp_list(t_envp_list *head)
 	{
 		cp->next = ft_malloc(sizeof(t_envp_list), 1);
 		cp->next->key = ft_strdup(head->key);
-		cp->next->value = ft_strdup(head->value);
+		if (head->value)
+			cp->next->value = ft_strdup(head->value);
+		else
+			cp->next->value = NULL;
 		head = head->next;
 		cp = cp->next;
 		len++;
