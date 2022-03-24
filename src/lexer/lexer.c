@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_logical_syntax.c                             :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 21:40:07 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/23 21:43:31 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/24 12:54:32 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/24 14:32:29 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 
-t_lexer_result	check_logical_syntax(t_token *token)
+t_lexer_result	lexer(t_token *token)
 {
-	const t_token_type	logical_syntax_condition = {
-		WORD,
-		PARENTHESIS_R
-	};
+	t_lexer_result	result;
 
-	if (!check_prev_token_match(token, \
-								(t_token_type *) logical_syntax_condition, 2))
-	{
-		print_syntax_err(token->data);
-		return (LEXER_ERR);
-	}
-	return (LEXER_SUCCESS);
+	result = check_near_token_err(token);
+	if (result == LEXER_SUCCESS)
+		result = check_match_err(token);
+	return (result);
 }
