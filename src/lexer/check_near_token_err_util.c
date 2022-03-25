@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 20:29:28 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 20:53:29 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/26 03:49:14 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 int	check_prev_token_match(t_token *token, t_lexer_mask mask)
 {
 	return (token->prev && (token->prev->type & mask));
+}
+
+int	check_next_token_match(t_token *token, t_lexer_mask mask)
+{
+	return (token->next && (token->next->type & mask));
 }
 
 void	check_syntax_by_mask(

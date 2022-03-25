@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:48:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 22:26:47 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/26 03:56:17 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 static void	check_word_parenthesis_comb(t_token *token, t_lexer_err *err_info)
 {
+	t_lexer_mask	is_word;
+
+	is_word = 0 | WORD;
 	if (
-		check_prev_token_match(token, SPECIAL_ERR_MASK_1)
-		&& (check_prev_token_match(token->prev, SPECIAL_ERR_MASK_2))
-		&& !(token->prev->prev)
+		check_prev_token_match(token, is_word)
+		&& check_next_token_match(token, is_word)
 	)
-		set_lexer_err_info(err_info, token->data, NEAR_TOKEN);
+		set_lexer_err_info(err_info, token->next->data, NEAR_TOKEN);
 }
 
-void	check_word_syntax(t_token *token, t_lexer_err *err_info)
+void	check_parenthesis_l_syntax(t_token *token, t_lexer_err *err_info)
 {
-	check_quote_match_err(token, err_info);
+	t_lexer_mask	mask;
+
 	check_word_parenthesis_comb(token, err_info);
-	check_syntax_by_mask(token, WORD_MASK, err_info);
+	mask = PARENTHESIS_L_MASK ^ MASK_DFL;
+	check_syntax_by_mask(token, mask, err_info);
 }
 
 static void	search_parenthesis_l(t_token *token, t_lexer_err *err_info)
@@ -48,8 +52,9 @@ static void	search_parenthesis_l(t_token *token, t_lexer_err *err_info)
 
 void	check_parenthesis_r_syntax(t_token *token, t_lexer_err *err_info)
 {
-	const t_lexer_mask	mask = PARENTHESIS_R_MASK ^ MASK_DFL;
+	t_lexer_mask	mask;
 
+	mask = PARENTHESIS_R_MASK ^ MASK_DFL;
 	check_syntax_by_mask(token, mask, err_info);
 	search_parenthesis_l(token, err_info);
 }

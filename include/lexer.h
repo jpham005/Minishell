@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 22:32:07 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/26 03:53:59 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ enum e_lexer_result
 enum e_lexer_mask
 {
 	FIRST_TOKEN_MASK = PIPE | AND | OR | PARENTHESIS_R,
-	SPECIAL_ERR_MASK_1 = PARENTHESIS_L | PARENTHESIS_R,
-	SPECIAL_ERR_MASK_2 = WORD,
 	WORD_MASK = PARENTHESIS_R | WRONG,
 	REDIR_MASK = REDIR_IN | REDIR_APPEND | REDIR_OUT | REDIR_APPEND | WRONG,
 	PIPE_MASK = WORD | PARENTHESIS_R | WRONG,
@@ -76,6 +74,7 @@ void			check_near_token_err(t_token *token, t_lexer_err *err_info);
 
 // check near token err util
 int				check_prev_token_match(t_token *token, t_lexer_mask mask);
+int				check_next_token_match(t_token *token, t_lexer_mask);
 void			check_syntax_first_token(t_token *token, t_lexer_err *err_info);
 void			check_syntax_linked_token(t_token *token, \
 														t_lexer_err *err_info);
@@ -84,7 +83,8 @@ void			check_syntax_by_mask(t_token *token, \
 									t_lexer_mask mask, t_lexer_err *err_info);
 
 // check special type syntax
-void			check_word_syntax(t_token *token, t_lexer_err *err_info);
+void			check_parenthesis_l_syntax(t_token *token, \
+														t_lexer_err *err_info);
 void			check_parenthesis_r_syntax(t_token *token, \
 														t_lexer_err *err_info);
 

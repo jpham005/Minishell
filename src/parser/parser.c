@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 08:25:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 22:13:35 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/26 04:00:08 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	test_print(t_cmd_tree *cmd_tree)
 	if (cmd_tree == NULL)
 		return ;
 	t_token *cp = cmd_tree->token;
+	if (!cp)
+		printf("null token@");
 	for (;cp;cp = cp->next)
 	{
 		printf("%s@", cp->data);
@@ -78,4 +80,5 @@ t_cmd_tree	*parser(t_token *token)
 	parse_token_to_tree(&cmd_tree, &tail);
 	printf("parse end\n");
 	test_print(cmd_tree);
+	return (NULL);
 }

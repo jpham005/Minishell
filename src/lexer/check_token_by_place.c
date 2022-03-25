@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:48:13 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 22:28:55 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/26 03:50:53 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static t_lexer_mask	get_lexer_mask(t_token_type type)
 	t_lexer_mask	mask;
 
 	mask = 0;
-	if (is_redirection_token(type))
+	if (type == WORD)
+		mask = WORD_MASK;
+	else if (is_redirection_token(type))
 		mask = REDIR_MASK;
 	else if (type == PIPE)
 		mask = PIPE_MASK ^ MASK_DFL;
@@ -48,9 +50,9 @@ void	check_syntax_linked_token(t_token *token, t_lexer_err *err_info)
 {
 	while (token && (err_info->type == NO_ERR))
 	{
-		if (token->type == WORD)
-			check_word_syntax(token, err_info);
-		else if (token->type == PARENTHESIS_R)
+		if (token->type == PARENTHESIS_L)
+			check_parenthesis_l_syntax(token, err_info);
+		if (token->type == PARENTHESIS_R)
 			check_parenthesis_r_syntax(token, err_info);
 		else
 			check_syntax_by_mask(
