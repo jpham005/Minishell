@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:39 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 22:09:13 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	echo(t_context *context, const char **argv)
 		write(1, "\n", 1);
 		return (0);
 	}
-	n_op = !ft_strncmp(argv[1], "-n", 3);
+	n_op = !ft_strncmp(argv[1], "-n", 3); // REMINDER echo -n -n asdf
 	str = make_string(argv, n_op);
 	ret = write_string(str, n_op);
 	ft_free((void **) &str);

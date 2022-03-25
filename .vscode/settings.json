@@ -15,6 +15,9 @@
 		"termios.h": "c",
 		"envp.h": "c",
 		"__locale": "c",
-		"expander.h": "c"
+		"expander.h": "c",
+		"parser.h": "c",
+		"__config": "c",
+		"types.h": "c"
 	}
 }

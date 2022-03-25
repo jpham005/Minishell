@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 21:35:47 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 22:32:07 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ enum e_lexer_mask
 	REDIR_MASK = REDIR_IN | REDIR_APPEND | REDIR_OUT | REDIR_APPEND | WRONG,
 	PIPE_MASK = WORD | PARENTHESIS_R | WRONG,
 	LOGICAL_MASK = WORD | PARENTHESIS_R,
-	PARENTHESIS_L_MASK = WORD | PIPE | AND | OR | PARENTHESIS_L,
+	PARENTHESIS_L_MASK = PIPE | AND | OR | PARENTHESIS_L,
 	PARENTHESIS_R_MASK = WORD | PARENTHESIS_R,
 	LAST_TOKEN_MASK = WORD | PARENTHESIS_R,
 	MASK_DFL = 0x7FF

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 13:18:19 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 09:55:15 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 // #include "exec.h"
 #include "lexer.h"
 #include "libft.h"
-// #include "parser.h"
+#include "parser.h"
 #include "tokenizer.h"
 #include "utils.h"
 #include <stdlib.h>
@@ -78,6 +78,10 @@ void	readline_loop(t_context *context)
 			printf("%s\n", cp->data);
 			print_type(cp->type);
 		}
-		clear_token(&tokenized);
+		printf("=====================================\n");
+		parser(tokenized);
+		// t_cmd_tree *cmd_tree = parser(tokenized);
+		// for (int i = 0; cmd_tree; i++)
+		// clear_token(&tokenized);
 	}
 }

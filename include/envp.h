@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 02:08:43 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 11:33:53 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENVP_H
 # define ENVP_H
 
-# include <unistd.h>
+# include <sys/types.h>
 
 # define SORT (1 << 0)
 # define UNSORT (1 << 1)

@@ -6,13 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 21:38:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/23 16:34:09 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 11:34:51 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "tokenizer.h"
-#include <ctype.h>
 
 int	is_meta_char(char c)
 {

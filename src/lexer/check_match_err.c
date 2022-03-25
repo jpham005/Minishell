@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:26:17 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 21:30:47 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 11:31:05 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ void	check_quote_match_err(t_token *token, t_lexer_err *err_info)
 
 static void	check_parenthesis_match_err(t_token *token, t_lexer_err *err_info)
 {
-	ssize_t	cnt;
+	ssize_t	parenthesis_cnt;
 
-	cnt = 0;
+	parenthesis_cnt = 0;
 	while (token)
 	{
 		if (token->type == PARENTHESIS_L)
-			cnt++;
+			parenthesis_cnt++;
 		if (token->type == PARENTHESIS_R)
-			cnt--;
+			parenthesis_cnt--;
 		token = token->next;
 	}
-	if (cnt > 0)
+	if (parenthesis_cnt > 0)
 		set_lexer_err_info(err_info, ")", NO_MATCH);
 }
 
 void	check_match_err(t_token *token, t_lexer_err *err_info)
 {
-	check_quote_match_err(get_last_token(token), err_info);
+	check_quote_match_err(get_tail_token(token), err_info);
 	check_parenthesis_match_err(token, err_info);
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:52:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 20:27:03 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 20:46:47 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,32 @@ void	add_token(t_token **head, t_token *new)
 	new->prev = *head;
 }
 
+static void	del_tail_token(t_token **target)
+{
+	t_token	*prev_token;
+
+	prev_token = (*target)->prev;
+	if (prev_token)
+		prev_token->next = NULL;
+	ft_free((void **) &((*target)->data));
+	ft_free((void **) target);
+	*target = prev_token;
+}
+
 void	del_token(t_token **target)
 {
-	t_token	*temp;
+	t_token	*next_token;
 
-	temp = (*target)->next;
-	if (temp)
-		temp->prev = (*target)->prev;
-	free((*target)->data);
+	next_token = (*target)->next;
+	if (!next_token)
+	{
+		del_tail_token(target);
+		return ;
+	}
+	next_token->prev = (*target)->prev;
+	ft_free((void **) &((*target)->data));
 	ft_free((void **) target);
-	*target = temp;
+	*target = next_token;
 }
 
 void	clear_token(t_token **head)
@@ -65,11 +81,4 @@ void	clear_token(t_token **head)
 		cp = temp;
 	}
 	*head = NULL;
-}
-
-t_token	*get_last_token(t_token *head)
-{
-	while (head->next)
-		head = head->next;
-	return (head);
 }

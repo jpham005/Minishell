@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_near_token_err.c                             :+:      :+:    :+:   */
+/*   remove_parenthesis_token.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 15:02:40 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 10:24:32 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/25 09:48:51 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/25 21:17:57 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "parser.h"
 
-void	check_near_token_err(t_token *token, t_lexer_err *err_info)
+static void	perform_remove(t_token **head, t_token **tail)
 {
-	check_syntax_first_token(token, err_info);
-	check_syntax_linked_token(token, err_info);
-	check_syntax_last_token(get_tail_token(token), err_info);
+	del_token(head);
+	del_token(tail);
+}
+
+void	remove_parenthesis_token(t_token **tail)
+{
+	t_token	*head;
+
+	head = get_head_token(*tail);
+	if (
+		head
+		&& (head->type == PARENTHESIS_L)
+		&& ((*tail)->type == PARENTHESIS_R)
+	)
+		perform_remove(&head, tail);
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:48:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 21:10:10 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 22:26:47 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	check_word_parenthesis_comb(t_token *token, t_lexer_err *err_info)
 	if (
 		check_prev_token_match(token, SPECIAL_ERR_MASK_1)
 		&& (check_prev_token_match(token->prev, SPECIAL_ERR_MASK_2))
+		&& !(token->prev->prev)
 	)
 		set_lexer_err_info(err_info, token->data, NEAR_TOKEN);
 }

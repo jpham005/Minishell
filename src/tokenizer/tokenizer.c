@@ -6,13 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:48:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/23 14:44:53 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 11:34:58 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "tokenizer.h"
-#include <ctype.h>
 
 static void	get_token_word(t_token **head, const char *str, size_t *start)
 {

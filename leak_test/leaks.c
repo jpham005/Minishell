@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_tree.h                                         :+:      :+:    :+:   */
+/*   leaks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 13:44:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 13:45:57 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/25 19:06:24 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/25 19:07:07 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CMD_TREE_H
-# define CMD_TREE_H
+#include <stdlib.h>
+#include <unistd.h>
 
-typedef struct s_cmd_tree	t_cmd_tree;
-
-struct s_cmd_tree
+int	main(void)
 {
-	
-};
-
-#endif
+	while (1)
+	{
+		sleep(1);
+		system("leaks minishell");
+	}
+}

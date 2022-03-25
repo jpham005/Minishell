@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 01:47:35 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/25 11:35:08 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 
-# include <ctype.h>
+# include <sys/types.h>
 
 typedef enum e_quote_mask		t_quote_mask;
 typedef enum e_token_type		t_token_type;
@@ -64,7 +64,10 @@ t_token			*init_token(const char *data, t_token_type type);
 void			add_token(t_token **head, t_token *new);
 void			del_token(t_token **target);
 void			clear_token(t_token **head);
-t_token			*get_last_token(t_token *head);
+
+// get token
+t_token			*get_head_token(t_token *curr);
+t_token			*get_tail_token(t_token *head);
 
 // quote manage
 void			check_quote(char c, t_quote_mask *mask);
