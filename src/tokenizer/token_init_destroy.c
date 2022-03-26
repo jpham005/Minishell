@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_manage.c                                     :+:      :+:    :+:   */
+/*   token_init_destroy.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:52:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 20:46:47 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/26 19:47:25 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_token	*init_token(const char *data, t_token_type type)
 	ret = ft_malloc(sizeof(t_token), 1);
 	ret->data = ft_strdup(data);
 	ret->type = type;
-	ret->expand_stat = NOT_EXPANDED;
+	ret->expanded_list = NULL;
 	ret->next = NULL;
 	ret->prev = NULL;
 	return (ret);

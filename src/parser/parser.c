@@ -6,79 +6,59 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 08:25:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 04:00:08 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/26 11:20:39 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-static void parse_token_to_tree(t_cmd_tree **cmd_tree, t_token **tail);
+static void parse_token_to_tree(
+	t_parse_tree **parse_tree, t_token **tail, t_parse_tree *prev_node
+);
 
-static void	go_side_node(t_cmd_tree **cmd_tree, t_move_direction direction)
+static void	go_side_node(t_parse_tree **parse_tree, t_move_direction direction)
 {
-	t_token	*new_tail;
+	t_token			*new_tail;
+	t_parse_tree	*prev_node;
 
+	prev_node = *parse_tree;
 	if (direction == RIGHT)
-		cmd_tree = &((*cmd_tree)->right);
+		parse_tree = &((*parse_tree)->right);
 	if (direction == LEFT)
-		cmd_tree = &((*cmd_tree)->left);
-	new_tail = get_tail_token((*cmd_tree)->token);
-	parse_token_to_tree(cmd_tree, &new_tail);
+		parse_tree = &((*parse_tree)->left);
+	new_tail = get_tail_token((*parse_tree)->token);
+	parse_token_to_tree(parse_tree, &new_tail, prev_node);
 }
 
-static void	parse_token_to_tree(t_cmd_tree **cmd_tree, t_token **tail)
+static void	parse_token_to_tree(
+	t_parse_tree **parse_tree, t_token **tail, t_parse_tree *prev_node
+)
 {
 	t_token	*searched;
 
 	remove_parenthesis_token(tail);
 	if (find_meta(*tail, &searched, LOGICAL_META) == FOUND)
-		insert_tree_node(cmd_tree, searched);
+		insert_tree_node(parse_tree, searched, prev_node);
 	else if (find_meta(*tail, &searched, PIPE_META) == FOUND)
-		insert_tree_node(cmd_tree, searched);
+		insert_tree_node(parse_tree, searched, prev_node);
 	else if (find_meta(*tail, &searched, REDIRECTION_META) == FOUND)
-		insert_tree_node(cmd_tree, searched);
+		insert_tree_node(parse_tree, searched, prev_node);
 	else
 		return ;
-	go_side_node(cmd_tree, RIGHT);
-	go_side_node(cmd_tree, LEFT);
+	go_side_node(parse_tree, RIGHT);
+	go_side_node(parse_tree, LEFT);
 
 }
-void test_print(t_cmd_tree *cmd_tree);
-void	test_side(t_cmd_tree *cmd_tree, t_move_direction dir)
+void	test_print(t_parse_tree *parse_tree);
+t_parse_tree	*parser(t_token *token)
 {
-	if (dir == RIGHT)
-		cmd_tree = cmd_tree->right;
-	if (dir == LEFT)
-		cmd_tree = cmd_tree->left;
-	test_print(cmd_tree);
-}
-
-void	test_print(t_cmd_tree *cmd_tree)
-{
-	if (cmd_tree == NULL)
-		return ;
-	t_token *cp = cmd_tree->token;
-	if (!cp)
-		printf("null token@");
-	for (;cp;cp = cp->next)
-	{
-		printf("%s@", cp->data);
-	}
-	printf("\n");
-	test_side(cmd_tree, RIGHT);
-	test_side(cmd_tree, LEFT);
-}
-
-t_cmd_tree	*parser(t_token *token)
-{
-	t_cmd_tree	*cmd_tree;
+	t_parse_tree	*parse_tree;
 	t_token		*tail;
 
-	cmd_tree = NULL;
+	parse_tree = NULL;
 	tail = get_tail_token(token);
-	parse_token_to_tree(&cmd_tree, &tail);
-	printf("parse end\n");
-	test_print(cmd_tree);
+	parse_token_to_tree(&parse_tree, &tail, NULL);
+	test_print(parse_tree);
 	return (NULL);
 }

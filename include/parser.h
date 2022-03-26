@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:51:43 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 16:29:28 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/26 15:52:50 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 
 # include "tokenizer.h"
 
-typedef struct s_cmd_tree		t_cmd_tree;
+typedef struct e_parse_tree		t_parse_tree;
 typedef enum e_search_result	t_search_result;
 typedef enum e_meta_type		t_meta_type;
 typedef enum e_move_direction	t_move_direction;
 
-struct s_cmd_tree
+struct e_parse_tree
 {
-	t_cmd_tree		*up;
-	t_cmd_tree		*left;
-	t_cmd_tree		*right;
+	t_parse_tree	*up;
+	t_parse_tree	*left;
+	t_parse_tree	*right;
 	t_token			*token;
 	t_token_type	type;
+	char			*original_str;
 };
 
 enum e_search_result
@@ -50,7 +51,7 @@ enum e_move_direction
 };
 
 // get parser tree
-t_cmd_tree		*parser(t_token *token);
+t_parse_tree	*parser(t_token *token);
 
 // remove parenthesis token
 void			remove_parenthesis_token(t_token **tail);
@@ -59,13 +60,14 @@ void			remove_parenthesis_token(t_token **tail);
 t_search_result	find_meta(t_token *tail, t_token **searched, t_meta_type type);
 
 // make tree node
-void			insert_tree_node(t_cmd_tree **cmd_tree, t_token *searched);
+void			insert_tree_node(t_parse_tree **parse_tree, t_token *searched, \
+													t_parse_tree *prev_node);
 
 // get splited token
-void			get_left_token(t_cmd_tree *cmd_tree, t_token *searched);
-void			get_right_token(t_cmd_tree *cmd_tree, t_token *searched);
+void			get_left_node(t_parse_tree *parse_tree, t_token *searched);
+void			get_right_node(t_parse_tree *parse_tree, t_token *searched);
 
 // manage cmd tree
-t_cmd_tree		*init_cmd_tree(void);
+t_parse_tree	*init_parse_tree(void);
 
 #endif

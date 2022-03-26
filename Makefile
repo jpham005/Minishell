@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/03/25 20:05:24 by jaham            ###   ########.fr        #
+#    Updated: 2022/03/26 19:07:47 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,10 @@ LEXER_SRCS			:=	lexer.c check_near_token_err.c \
 						lexer_err_info_manage.c
 LEXER_SRCS			:=	$(addprefix $(LEXER_DIR)/, $(LEXER_SRCS))
 PARSER_SRCS			:=	parser.c remove_parenthesis_token.c find_meta.c \
-						get_new_token.c make_tree_node.c
+						get_new_token.c make_tree_node.c tree_tester.c
 PARSER_SRCS			:=	$(addprefix $(PARSER_DIR)/, $(PARSER_SRCS))
-TOKENIZER_SRCS		:=	quote_mask.c token_manage.c get_token.c tokenizer.c \
-						tokenizer_util.c
+TOKENIZER_SRCS		:=	quote_mask.c token_init_destroy.c token_tool.c \
+						tokenizer.c \ tokenizer_util.c
 TOKENIZER_SRCS		:=	$(addprefix $(TOKENIZER_DIR)/, $(TOKENIZER_SRCS))
 TERMINAL_SRCS		:=	check_default_state.c set_state.c signal_handler.c \
 						init.c readline_loop.c check_valid_str.c \

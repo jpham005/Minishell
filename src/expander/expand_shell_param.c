@@ -5,37 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 01:19:34 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 01:50:31 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/26 16:00:49 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/26 22:20:49 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
+#include "libft.h"
 
-static int	is_shell_param_expansion(char *data)
+static char	*get_new_data(t_token *token, t_context *context)
 {
-	t_quote_mask	mask;
+	char	*ret;
 
-	mask = 0;
-	while (*data)
-	{
-		check_quote(*data, &mask);
-		if ((*data == '$') && !(mask & SQUOTE))
-			return (1);
-		data++;
-	}
-	return (0);
+	try_get_expansion_str(token->data, token, context);
 }
 
-void	expand_shell_param(t_token *token)
+static void	try_shell_param_expansion(t_token *token, t_context *context)
 {
-	t_token	*next_token;
+	char	*new_data;
 
 	while (token)
 	{
-		next_token = token->next;
-		if (is_shell_param_expansion(token->data))
-			perform_shell_param_expansion(token);
-		token = next_token;
+		get_new_data(token, context);
+		token = token->next;
 	}
+}
+
+void	expand_shell_param(t_parse_tree *parse_tree, t_context *context)
+{
+	t_token	*expanded_token;
+
+	expanded_token = copy_token_list(parse_tree->token);
+	try_shell_param_expansion(expanded_token, context);
 }

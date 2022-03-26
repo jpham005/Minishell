@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perform_shell_param_expansion.c                    :+:      :+:    :+:   */
+/*   t_buffer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 01:50:17 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 02:00:38 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/26 22:07:36 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/26 22:13:59 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
+#ifndef T_BUFFER_H
+# define T_BUFFER_H
 
-void	perform_shell_param_expansion(t_token *token)
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
+
+# include <ctype.h>
+
+typedef struct s_buffer	t_buffer;
+
+struct s_buffer
 {
-	t_relative_tokens	relative_tokens;
+	char	*str;
+	size_t	len;
+	size_t	size;
+};
 
-	get_relative_tokens(&relative_tokens, token);
-	
-}
+void	init_t_buffer(t_buffer *buffer);
+void	append_t_buffer(t_buffer *buffer, char c);
+
+#endif
