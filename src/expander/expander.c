@@ -6,18 +6,50 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:55:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 16:01:28 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 19:22:32 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
+#include "libft.h"
 
-void	expander(t_parse_tree *parse_tree)
+static void	go_side_node(
+	t_parse_tree *parse_tree, t_context *context, t_move_direction direction
+)
 {
-	if (!parse_tree)
+	if (direction == RIGHT)
+		expander(parse_tree->right, context);
+	else if (direction == LEFT)
+		expander(parse_tree->left, context);
+}
+
+static void	get_new_token(t_parse_tree *parse_tree, t_context *context)
+{
+	t_buffer	buffer;
+	t_token		*cp;
+
+	cp = parse_tree->token;
+	init_t_buffer(&buffer);
+	while (cp)
+	{
+		buffer.len = 0;
+		expand_shell_param(cp, &buffer, context);
+		substitute_data(cp, &buffer);
+		split_token(parse_tree);
+		buffer.len = 0;
+		expand_asterisk(cp, &buffer);
+		substitute_data(cp, &buffer);
+		cp = cp->next;
+	}
+	ft_free((void **) &(buffer.str));
+}
+
+void	expander(t_parse_tree *parse_tree, t_context *context)
+{
+	if (!parse_tree || !(parse_tree->token) || !(parse_tree->token->data))
 		return ;
-	expand_shell_param(parse_tree);
-	expand_asterisk(parse_tree);
-	go_side_node(parse_tree, RIGHT);
-	go_side_node(parse_tree, LEFT);
+	parse_tree->original_str = ft_strdup(parse_tree->token->data);
+	get_new_token(parse_tree, context);
+	go_side_node(parse_tree, context, RIGHT);
+	go_side_node(parse_tree, context, LEFT);
 }

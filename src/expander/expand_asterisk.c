@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_shell_param.c                               :+:      :+:    :+:   */
+/*   expand_asterisk.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/26 16:00:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 18:28:04 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/27 17:37:19 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/27 19:00:12 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
-#include "libft.h"
 
-static void	perform_shell_expansion(
-	t_token *token, t_buffer *buffer, t_context *context, size_t *i
+static void	perform_asterisk_expansion(
+	t_token *token, t_buffer *buffer, size_t *i
 )
 {
-	if (!ft_strncmp(token->data + (*i), "$?", 2))
-		expand_with_exit_status(token, buffer, context, i);
-	else
-		expand_with_envp(token, buffer, context, i);
+
 }
 
-void	expand_shell_param(t_token *token, t_buffer *buffer, t_context *context)
+void	expand_asterisk(t_token *token, t_buffer *buffer)
 {
 	t_quote_mask	mask;
 	size_t			i;
@@ -33,8 +29,8 @@ void	expand_shell_param(t_token *token, t_buffer *buffer, t_context *context)
 	while (token->data[i])
 	{
 		check_quote(token->data[i], &mask);
-		if (!(mask & SQUOTE) && (token->data[i] == '$'))
-			perform_shell_expansion(token, buffer, context, &i);
+		if (!check_quote_mask(&mask) && (token->data[i] == '*'))
+			perform_asterisk_expansion(token, buffer, &i);
 		else
 			append_t_buffer(buffer, token->data[i++]);
 	}

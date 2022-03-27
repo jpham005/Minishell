@@ -6,21 +6,23 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 13:27:52 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 17:35:01 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 // #include "exec.h"
+#include "expander.h"
 #include "lexer.h"
 #include "libft.h"
 #include "parser.h"
 #include "tokenizer.h"
 #include "utils.h"
 #include <stdlib.h>
-
 #include "tokenizer.h"
 #include <stdio.h>
+void	test_print(t_parse_tree *parse_tree);
+
 void	print_type(size_t type)
 {
 	size_t	i;
@@ -78,8 +80,18 @@ void	readline_loop(t_context *context)
 			printf("%s\n", cp->data);
 			print_type(cp->type);
 		}
-		printf("tokenizer end\n");
-		parser(tokenized);
+		printf("o-----------------o\n");
+		printf("!!!TOKENIZER END!!!\n");
+		printf("o-----------------o\n");
+		t_parse_tree *parse_tree = parser(tokenized);
+		printf("o--------------o\n");
+		printf("!!!PARSER END!!!\n");
+		printf("o--------------o\n");
+		expander(parse_tree, context);
+		test_print(parse_tree);
+		printf("o----------------o\n");
+		printf("!!!EXPANDER END!!!\n");
+		printf("o----------------o\n");
 		// t_parse_tree *parse_tree = parser(tokenized);
 		// for (int i = 0; parse_tree; i++)
 		// clear_token(&tokenized);

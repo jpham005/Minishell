@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:19:03 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 15:59:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 18:02:39 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,32 @@ void	test_print(t_parse_tree *parse_tree)
 		return ;
 	}
 	printf("==============================================\n");
-	printf("me : %lld\n", (long long) parse_tree % 100000);
-	printf("  token type : %s\n", get_type_str(parse_tree->type));
-	printf("  token : ");
+	printf("me : %p\n", parse_tree);
+	printf("  [tokens]\n");
+	int cnt = 0;
 	t_token *cp = parse_tree->token;
+	printf("----------------------------------------------\n");
 	if (!cp)
-		printf("null token@");
+	{
+		printf("  null token\n");
+		printf("----------------------------------------------\n");
+	}
 	for (;cp;cp = cp->next)
 	{
-		printf("%s ", cp->data);
+		printf("  token %d - type : %s\n", cnt, get_type_str(parse_tree->type));
+		printf("  token %d - data : %s\n", cnt, cp->data);
+		t_expanded_list *cpcp = cp->expanded_list;
+		if (!cpcp)
+			printf("  token %d - expanded list : not expanded\n", cnt);
+		for (int j = 0;cpcp;j++, cpcp = cpcp->next)
+			printf("  token %d - expanded_list %d - start : %zu, end : %zu \n", cnt, j, cpcp->start, cpcp->end);
+		cnt++;
+		printf("----------------------------------------------\n");
 	}
 	printf("\n");
-	printf("up : %lld\n", (long long) parse_tree->up % 100000);
-	printf("left : %lld\n", (long long) parse_tree->left % 100000);
-	printf("right : %lld\n", (long long) parse_tree->right % 100000);
+	printf("up : %p\n", parse_tree->up);
+	printf("left : %p\n", parse_tree->left);
+	printf("right : %p\n", parse_tree->right);
 	printf("==============================================\n");
 	test_side(parse_tree, RIGHT);
 	test_side(parse_tree, LEFT);

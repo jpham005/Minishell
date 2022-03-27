@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 08:25:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 11:20:39 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 15:25:04 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static void	go_side_node(t_parse_tree **parse_tree, t_move_direction direction)
 	parse_token_to_tree(parse_tree, &new_tail, prev_node);
 }
 
+static void	insert_single_word_node(t_parse_tree **parse_tree, t_token *token)
+{
+	*parse_tree = init_parse_tree();
+	(*parse_tree)->token = token;
+}
+
 static void	parse_token_to_tree(
 	t_parse_tree **parse_tree, t_token **tail, t_parse_tree *prev_node
 )
@@ -44,12 +50,18 @@ static void	parse_token_to_tree(
 		insert_tree_node(parse_tree, searched, prev_node);
 	else if (find_meta(*tail, &searched, REDIRECTION_META) == FOUND)
 		insert_tree_node(parse_tree, searched, prev_node);
+	else if (!(*parse_tree) && *tail)
+	{
+		insert_single_word_node(parse_tree, get_head_token(*tail));
+		*tail = NULL;
+		return ;
+	}
 	else
 		return ;
 	go_side_node(parse_tree, RIGHT);
 	go_side_node(parse_tree, LEFT);
-
 }
+
 void	test_print(t_parse_tree *parse_tree);
 t_parse_tree	*parser(t_token *token)
 {
@@ -60,5 +72,5 @@ t_parse_tree	*parser(t_token *token)
 	tail = get_tail_token(token);
 	parse_token_to_tree(&parse_tree, &tail, NULL);
 	test_print(parse_tree);
-	return (NULL);
+	return (parse_tree);
 }

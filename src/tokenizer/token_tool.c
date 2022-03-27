@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:28:56 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 20:01:37 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 15:20:14 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ t_token	*copy_single_token(t_token *token)
 	ret->type = token->type;
 	ret->next = NULL;
 	ret->prev = NULL;
+	return (ret);
 }
 
 t_token	*copy_token_list(t_token *head)
 {
 	t_token	*ret;
 
+	ret = NULL;
 	while (head)
 	{
 		add_token(&ret, copy_single_token(head));

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:52:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 19:47:25 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 12:33:48 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,9 @@ void	add_token(t_token **head, t_token *new)
 	new->prev = *head;
 }
 
-static void	del_tail_token(t_token **target)
-{
-	t_token	*prev_token;
-
-	prev_token = (*target)->prev;
-	if (prev_token)
-		prev_token->next = NULL;
-	ft_free((void **) &((*target)->data));
-	ft_free((void **) target);
-	*target = prev_token;
-}
-
 void	del_token(t_token **target)
 {
-	t_token	*next_token;
+	t_token			*next_token;
 
 	next_token = (*target)->next;
 	if (!next_token)
@@ -63,6 +51,7 @@ void	del_token(t_token **target)
 		return ;
 	}
 	next_token->prev = (*target)->prev;
+	del_expanded_list(*target);
 	ft_free((void **) &((*target)->data));
 	ft_free((void **) target);
 	*target = next_token;

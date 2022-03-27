@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_buffer.h                                         :+:      :+:    :+:   */
+/*   filename_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/26 22:07:36 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 12:19:08 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/27 17:40:04 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/27 17:41:23 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_BUFFER_H
-# define T_BUFFER_H
+#include "expander.h"
+#include "libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-# endif
-
-# include <ctype.h>
-
-typedef struct s_buffer	t_buffer;
-
-struct s_buffer
+t_filename	*init_filename(char *filename)
 {
-	char	*str;
-	size_t	len;
-	size_t	size;
-};
+	t_filename	*ret;
 
-void	init_t_buffer(t_buffer *buffer);
-void	append_t_buffer(t_buffer *buffer, char c);
-void	append_t_buffer_string(t_buffer *buffer, char *str);
-char	*get_t_buffer_string(t_buffer *buffer);
+	ret = ft_malloc(sizeof(t_filename), 1);
+	ret->name = ft_strdup(filename);
 
-#endif
+}
