@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:37:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 19:00:12 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 21:01:46 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	expand_asterisk(t_token *token, t_buffer *buffer)
 	t_quote_mask	mask;
 	size_t			i;
 
+	buffer->len = 0;
 	mask = 0;
 	i = 0;
 	while (token->data[i])

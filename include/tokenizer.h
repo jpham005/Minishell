@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 14:18:54 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 22:04:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ struct s_expanded_list
 };
 
 // tokenizer
-t_token			*tokenize(const char *str);
+t_token			*tokenizer(const char *str);
 
 // token init destroy
 t_token			*init_token(const char *data, t_token_type type);
@@ -74,8 +74,6 @@ void			add_expanded_list(t_expanded_list **head, t_expanded_list *new);
 // token tool
 t_token			*get_head_token(t_token *curr);
 t_token			*get_tail_token(t_token *head);
-t_token			*copy_single_token(t_token *head);
-t_token			*copy_token_list(t_token *head);
 
 // quote manage
 void			check_quote(char c, t_quote_mask *mask);

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 17:35:01 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 22:04:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	readline_loop(t_context *context)
 			ft_free((void **) &str);
 			continue ;
 		}
-		tokenized = tokenize(str);
+		tokenized = tokenizer(str);
 		ft_free((void **) &str);
 		if (lexer(tokenized) == LEXER_ERR)
 		{

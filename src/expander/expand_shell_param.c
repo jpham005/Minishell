@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:00:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 18:28:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 21:01:23 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	expand_shell_param(t_token *token, t_buffer *buffer, t_context *context)
 	t_quote_mask	mask;
 	size_t			i;
 
+	buffer->len = 0;
 	mask = 0;
 	i = 0;
 	while (token->data[i])

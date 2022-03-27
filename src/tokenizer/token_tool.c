@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:28:56 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 15:20:14 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/27 22:03:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,4 @@ t_token	*get_tail_token(t_token *head)
 	while (head && head->next)
 		head = head->next;
 	return (head);
-}
-
-t_token	*copy_single_token(t_token *token)
-{
-	t_token	*ret;
-
-	ret = ft_malloc(sizeof(t_token), 1);
-	ret->data = token->data;
-	ret->expanded_list = token->expanded_list;
-	ret->type = token->type;
-	ret->next = NULL;
-	ret->prev = NULL;
-	return (ret);
-}
-
-t_token	*copy_token_list(t_token *head)
-{
-	t_token	*ret;
-
-	ret = NULL;
-	while (head)
-	{
-		add_token(&ret, copy_single_token(head));
-		head = head->next;
-	}
-	return (ret);
 }
