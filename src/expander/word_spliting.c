@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_token.c                                      :+:      :+:    :+:   */
+/*   word_spliting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 22:05:47 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 22:53:00 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 10:51:22 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
 
+
 static void	get_expanded_list(
 	t_token **new_token, t_token *token, size_t start, size_t end
 )
 {
-	
+	t_expanded_list	*cp;
+	t_expanded_list	*temp;
+
+	cp = token->expanded_list;
+	while (cp)
+	{
+		temp = cp->next;
+		if (is_in_range_index(start, end, cp->start) \
+			&& is_in_range_index(start, end, cp->end))
+		{
+			add_expanded_list(&((*new_token)->expanded_list), \
+						init_expanded_list(cp->start - start, cp->end - start));
+			del_expanded_list(&(token->expanded_list), cp->start);
+		}
+		cp = temp;
+	}
 }
 
 static void	perform_split(t_token **new_token, t_token *token, size_t *start)
@@ -30,7 +46,7 @@ static void	perform_split(t_token **new_token, t_token *token, size_t *start)
 	end = *start;
 	while (!is_split_condition(token->data[end], mask))
 	{
-		check_quote(token->data[end], &mask);
+		check_quote_expanded(token, &mask, end);
 		end++;
 	}
 	if (end == (*start))
@@ -42,18 +58,19 @@ static void	perform_split(t_token **new_token, t_token *token, size_t *start)
 	*start = end;
 }
 
-void	split_token(t_parse_tree *parse_tree)
+void	split_token(t_token **token)
 {
 	t_token	*new_token;
 	size_t	start;
 
-	if (!(parse_tree->token->type & WORD))
+	if (!*token || !((*token)->type & WORD))
 		return ;
 	new_token = NULL;
 	start = 0;
-	while (parse_tree->token->data[start])
+	while ((*token)->data[start])
 	{
-		perform_split(&new_token, parse_tree->token, &start);
-		skip_space(parse_tree->token->data, &start);
+		perform_split(&new_token, (*token), &start);
+		skip_space((*token)->data, &start);
 	}
+	substitute_token(token, new_token);
 }

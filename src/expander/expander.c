@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:55:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 22:40:16 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 11:51:06 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,26 @@ static void	go_side_node(
 		expander(parse_tree->left, context);
 }
 
-static void	split_token(t_parse_tree *parse_tree)
-{
-	t_token	*new_token;
-
-	new_token = tokenizer(parse_tree->token->data);
-	clear_token(&(parse_tree->token));
-	parse_tree->token = new_token;
-}
-
 static void	get_new_token(t_parse_tree *parse_tree, t_context *context)
 {
 	t_buffer	buffer;
 	t_token		*cp;
+	t_token		*next;
 
 	cp = parse_tree->token;
 	init_t_buffer(&buffer);
 	while (cp)
 	{
+		next = cp->next;
 		expand_shell_param(cp, &buffer, context);
-		substitute_data(cp, &buffer);
-		split_token(parse_tree);
-		// expand_asterisk(cp, &buffer);
-		// substitute_data(cp, &buffer);
-		cp = cp->next;
+		substitute_data(parse_tree, &cp, &buffer);
+		if (cp)
+		{
+			// split_token(&cp);
+			// expand_asterisk(cp, &buffer);
+			// substitute_data(cp, &buffer);
+		}
+		cp = next;
 	}
 	ft_free((void **) &(buffer.str));
 }

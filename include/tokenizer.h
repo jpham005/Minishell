@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 22:04:42 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 09:53:45 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ t_token			*init_token(const char *data, t_token_type type);
 void			add_token(t_token **head, t_token *new);
 void			del_token(t_token **target);
 void			clear_token(t_token **head);
-void			del_expanded_list(t_token *token);
+void			clear_expanded_list(t_token *token);
+void			del_expanded_list(t_expanded_list **head, size_t start);
 void			del_tail_token(t_token **target);
 t_expanded_list	*init_expanded_list(size_t start, size_t end);
 void			add_expanded_list(t_expanded_list **head, t_expanded_list *new);

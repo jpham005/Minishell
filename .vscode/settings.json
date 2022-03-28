@@ -19,6 +19,7 @@
 		"parser.h": "c",
 		"__config": "c",
 		"types.h": "c",
-		"t_buffer.h": "c"
+		"t_buffer.h": "c",
+		"sstream": "c"
 	}
 }

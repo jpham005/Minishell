@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:52:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 12:33:48 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 09:44:21 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	del_token(t_token **target)
 		return ;
 	}
 	next_token->prev = (*target)->prev;
-	del_expanded_list(*target);
+	clear_expanded_list(*target);
 	ft_free((void **) &((*target)->data));
 	ft_free((void **) target);
 	*target = next_token;

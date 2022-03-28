@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/03/27 17:22:00 by jaham            ###   ########.fr        #
+#    Updated: 2022/03/28 10:37:36 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ ENVP_SRCS			:=	$(addprefix $(ENVP_DIR)/, $(ENVP_SRCS))
 EXEC_SRCS			:=
 EXEC_SRCS			:=	$(addprefix $(EXECUTER_DIR)/, $(EXEC_SRCS))
 EXPANDER_SRCS		:=	expander.c expander_util.c expand_shell_param.c \
-						expand_with_envp.c expand_with_exit_status.c
+						expand_with_envp.c expand_with_exit_status.c \
+						word_spliting.c word_spliting_util.c
 EXPANDER_SRCS		:=	$(addprefix $(EXPANDER_DIR)/, $(EXPANDER_SRCS))
 LEXER_SRCS			:=	lexer.c check_near_token_err.c \
 						check_near_token_err_util.c check_token_by_place.c \

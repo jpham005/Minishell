@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:47:50 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 19:24:05 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 09:53:10 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_quote(char c, t_quote_mask *mask)
 {
 	if ((c == '\'') && ((*mask & DQUOTE) == 0))
 		*mask ^= SQUOTE;
-	if ((c == '\"') && ((*mask & SQUOTE) == 0))
+	else if ((c == '\"') && ((*mask & SQUOTE) == 0))
 		*mask ^= DQUOTE;
 }
 

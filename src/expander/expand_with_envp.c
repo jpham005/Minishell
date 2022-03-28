@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:53:57 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 17:19:13 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 10:15:35 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,5 @@ void	expand_with_envp(
 	curr_list = find_list_by_key(context->envp, key + 1);
 	if (curr_list)
 		append_expanded(buffer, curr_list->value, start, token);
-	else
-		append_t_buffer_string(buffer, key);
 	ft_free((void **) &key);
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 22:04:42 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 10:03:06 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,16 @@ void	readline_loop(t_context *context)
 			printf("%s\n", cp->data);
 			print_type(cp->type);
 		}
-		printf("o-----------------o\n");
+		printf("\no-----------------o\n");
 		printf("!!!TOKENIZER END!!!\n");
 		printf("o-----------------o\n");
 		t_parse_tree *parse_tree = parser(tokenized);
-		printf("o--------------o\n");
+		printf("\no--------------o\n");
 		printf("!!!PARSER END!!!\n");
 		printf("o--------------o\n");
 		expander(parse_tree, context);
 		test_print(parse_tree);
-		printf("o----------------o\n");
+		printf("\no----------------o\n");
 		printf("!!!EXPANDER END!!!\n");
 		printf("o----------------o\n");
 		// t_parse_tree *parse_tree = parser(tokenized);
