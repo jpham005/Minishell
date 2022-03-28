@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   word_spliting_util.c                               :+:      :+:    :+:   */
+/*   word_split_util.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:22:25 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 10:39:14 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 13:43:07 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void	check_quote_expanded(t_token *token, t_quote_mask *mask, size_t index)
 		*mask ^= DQUOTE;
 }
 
-void	substitute_token(t_token **token, t_token *new_token)
+void	substitute_token(t_parse_tree *parse_tree, t_token **token, \
+															t_token *new_token)
 {
 	t_token	*next;
 
@@ -46,9 +47,10 @@ void	substitute_token(t_token **token, t_token *new_token)
 		next->prev = new_token;
 	if (new_token)
 	{
-		new_token->next = next;
+		get_tail_token(new_token)->next = next;
 		*token = new_token;
 	}
 	else
 		*token = next;
+	parse_tree->token = get_head_token(*token);
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 21:59:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 11:46:29 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 13:43:25 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ void	expand_with_exit_status(t_token *token, t_buffer *buffer, \
 
 
 // word spliting
-void	split_token(t_token **token);
+void	word_split(t_parse_tree *parse_tree, t_token **token);
 
 // word spliting util
 void	check_quote_expanded(t_token *token, t_quote_mask *mask, size_t index);
-void	substitute_token(t_token **token, t_token *new_token);
+void	substitute_token(t_parse_tree *parse_tree, t_token **token, \
+														t_token *new_token);
 
 // expand asterisk
 void	expand_asterisk(t_token *token, t_buffer *buffer);

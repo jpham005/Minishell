@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 21:38:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 11:34:51 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 13:52:53 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int	is_split_condition(char c, t_quote_mask mask)
 
 void	skip_space(const char *str, size_t *start)
 {
-	if (str[*start] && ft_isspace(str[*start]))
+	while (str[*start] && ft_isspace(str[*start]))
 		(*start)++;
 }
