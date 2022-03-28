@@ -6,47 +6,52 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:39 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 03:40:08 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 09:10:56 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 #include "libft.h"
 
-static void	write_argv(const char **argv)
+static int	write_argv(const char **argv)
 {
 	while (*argv)
 	{
-		ft_putstr_fd(*argv, STDOUT_FILENO);
+		if (ft_putstr_fd(*argv, STDOUT_FILENO) == -1)
+			return (1);
 		argv++;
-		if (*argv)
-			ft_putstr_fd(" ", STDOUT_FILENO);
+		if (*argv && ft_putstr_fd(" ", STDOUT_FILENO))
+			return (1);
 	}
+	return (0);
 }
 
 static int	perform_echo(const char **argv, int n_op)
 {
-	int	ret;
+	if (write_argv(argv))
+		return (1);
+	if (!n_op && (ft_putstr_fd("\n", STDOUT_FILENO) == -1))
+		return (1);
+	return (0);
+}
 
-	write_argv(argv);
-	if (!n_op)
-		ret = ft_putstr_fd("\n", STDOUT_FILENO);
-	return (ret == -1);
+static int	get_n_op(const char **argv, size_t *i)
+{
+	while (!ft_strncmp(argv[*i], "-n", 3))
+		(*i)++;
+	return (*i != 1);
 }
 
 int	echo(t_context *context, const char **argv)
 {
-	int	ret;
-	int	n_op;
+	int		n_op;
+	size_t	i;
 
 	if (!context)
 		return (1);
 	if (!argv[1])
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	n_op = !ft_strncmp(argv[1], "-n", 3);
-	ret = perform_echo(argv, n_op);
-	return (ret);
+		return (ft_putstr_fd("\n", STDOUT_FILENO));
+	i = 1;
+	n_op = get_n_op(argv, &i);
+	return (perform_echo(argv + i, n_op));
 }
