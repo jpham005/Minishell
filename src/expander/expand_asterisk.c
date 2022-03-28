@@ -6,33 +6,43 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:37:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 21:01:46 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 22:41:06 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
-
-static void	perform_asterisk_expansion(
-	t_token *token, t_buffer *buffer, size_t *i
-)
+#include <stdio.h>
+static void	try_asterisk_expansion(t_token *token)
 {
+	t_filename	*fixed_data;
+	t_filename	*curr_files;
 
+	fixed_data = NULL;
+	get_fixed_data(&fixed_data, token);
+	printf("\n===================================\n");
+	if (!fixed_data)
+		printf("null\n");
+	for (;fixed_data;fixed_data = fixed_data->next)
+		printf("%s\n", fixed_data->name);
+	// if (!find_asterisk(&fixed_data))
+	// {
+	// 	clear_filename(&fixed_data);
+	// 	return ;
+	// }
+	// get_curr_files(&curr_files);
+	// perform_asterisk_expansion(token, &fixed_data, &curr_files);
+	// clear_filename(&fixed_data);
+	// clear_filename(&curr_files);
 }
 
-void	expand_asterisk(t_token *token, t_buffer *buffer)
+void	expand_asterisk(t_token *token)
 {
 	t_quote_mask	mask;
-	size_t			i;
 
-	buffer->len = 0;
 	mask = 0;
-	i = 0;
-	while (token->data[i])
+	while (token)
 	{
-		check_quote(token->data[i], &mask);
-		if (!check_quote_mask(&mask) && (token->data[i] == '*'))
-			perform_asterisk_expansion(token, buffer, &i);
-		else
-			append_t_buffer(buffer, token->data[i++]);
+		try_asterisk_expansion(token);
+		token = token->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:19:03 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 10:02:30 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 14:59:06 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	test_print(t_parse_tree *parse_tree)
 		printf("----------------------------------------------\n");
 	}
 	printf("\n");
-	printf("up : %p\n", parse_tree->up);
-	printf("left : %p\n", parse_tree->left);
+	printf("up    : %p\n", parse_tree->up);
+	printf("left  : %p\n", parse_tree->left);
 	printf("right : %p\n", parse_tree->right);
 	printf("\n==============================================\n");
 	test_side(parse_tree, RIGHT);

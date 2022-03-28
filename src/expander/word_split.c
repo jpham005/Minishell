@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 22:05:47 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 13:59:34 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 16:02:20 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ static void	get_expanded_list(
 )
 {
 	t_expanded_list	*cp;
-	t_expanded_list	*temp;
 
 	cp = token->expanded_list;
 	while (cp)
 	{
-		temp = cp->next;
-		if (is_in_range_index(cp->start, cp->end, start))
+		if (is_in_range_index(cp->start, cp->end, start) \
+			|| is_in_range_index(cp->start, cp->end, end) \
+			|| is_in_range_index(start, end, cp->start))
 		{
 			add_expanded_list(&((*new_token)->expanded_list), \
-						init_expanded_list(cp->start - start, cp->end - start));
-			del_expanded_list(&(token->expanded_list), cp->start);
+			init_expanded_list(ft_max(cp->start, start) - start, \
+			ft_min(cp->end, end) - start));
 		}
-		cp = temp;
+		cp = cp->next;
 	}
 }
 
@@ -53,7 +53,7 @@ static void	perform_split(t_token **new_token, t_token *token, size_t *start)
 	data = ft_substr(token->data, *start, end - (*start));
 	add_token(new_token, init_token(data, WORD));
 	ft_free((void **) &data);
-	get_expanded_list(new_token, token, *start, end);
+	get_expanded_list(new_token, token, *start, end - 1);
 	*start = end;
 }
 
@@ -68,8 +68,9 @@ void	word_split(t_parse_tree *parse_tree, t_token **token)
 	start = 0;
 	while ((*token)->data[start])
 	{
-		perform_split(&new_token, (*token), &start);
+		perform_split(&new_token, *token, &start);
 		skip_space((*token)->data, &start);
 	}
+	clear_expanded_list(*token);
 	substitute_token(parse_tree, token, new_token);
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:06:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 19:29:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 14:46:50 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ int		ft_isdigit(int c);
 char	*ft_itoa(int n);
 char	*ft_strtrim(char const *s1, char const *set);
 int		ft_isspace(int c);
+size_t	ft_min(size_t n1, size_t n2);
+size_t	ft_max(size_t n1, size_t n2);
 
 #endif

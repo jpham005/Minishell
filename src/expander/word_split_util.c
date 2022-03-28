@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:22:25 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 13:43:07 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 15:51:22 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,26 @@ void	substitute_token(t_parse_tree *parse_tree, t_token **token, \
 															t_token *new_token)
 {
 	t_token	*next;
+	t_token	*prev;
 
 	next = (*token)->next;
+	prev = (*token)->prev;
 	del_token(token);
 	if (next)
-		next->prev = new_token;
+	{
+		next->prev = get_tail_token(new_token);
+		*token = next;
+	}
+	if (prev)
+	{
+		prev->next = get_head_token(new_token);
+		*token = prev;
+	}
 	if (new_token)
 	{
 		get_tail_token(new_token)->next = next;
+		new_token->prev = prev;
 		*token = new_token;
 	}
-	else
-		*token = next;
 	parse_tree->token = get_head_token(*token);
 }

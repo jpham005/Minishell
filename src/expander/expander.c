@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:55:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 13:43:47 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/28 16:06:15 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ static void	get_new_token(t_parse_tree *parse_tree, t_context *context)
 		expand_shell_param(cp, &buffer, context);
 		substitute_data(parse_tree, &cp, &buffer);
 		if (cp)
-		{
 			word_split(parse_tree, &cp);
-			// expand_asterisk(cp, &buffer);
-			// substitute_data(cp, &buffer);
-		}
 		cp = next;
 	}
 	ft_free((void **) &(buffer.str));
@@ -53,6 +49,7 @@ void	expander(t_parse_tree *parse_tree, t_context *context)
 		return ;
 	parse_tree->original_str = ft_strdup(parse_tree->token->data);
 	get_new_token(parse_tree, context);
+	expand_asterisk(parse_tree->token);
 	go_side_node(parse_tree, context, RIGHT);
 	go_side_node(parse_tree, context, LEFT);
 }
