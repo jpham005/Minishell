@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 13:30:38 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 17:39:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ enum e_token_type
 	PARENTHESIS_R = 1 << 7,
 	AND = 1 << 8,
 	OR = 1 << 9,
-	WRONG = 1 << 10
+	WRONG = 1 << 10,
+	UNQUOTED = 1 << 11
 };
 
 struct s_token

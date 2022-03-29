@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 11:19:03 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 17:14:02 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 17:49:48 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static char	*get_type_str(t_token_type type)
 		"PARENTHESIS_R",
 		"AND",
 		"OR",
-		"WRONG"
+		"WRONG",
+		"UNQUOTED"
 	};
 
 	i = 1;
@@ -73,6 +74,10 @@ void	test_print(t_parse_tree *parse_tree)
 	for (;cp;cp = cp->next)
 	{
 		printf("  token %d - type : %s\n", cnt, get_type_str(parse_tree->type));
+		if (parse_tree->type & UNQUOTED)
+			printf("                 : QUOTE REMOVED\n");
+		else
+			printf("                 : NO REMOVE\n");
 		printf("  token %d - data : %s\n", cnt, cp->data);
 		t_expanded_list *cpcp = cp->expanded_list;
 		if (!cpcp)

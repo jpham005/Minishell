@@ -36,6 +36,7 @@
 		"ratio": "c",
 		"tuple": "c",
 		"utility": "c",
-		"stddef.h": "c"
+		"stddef.h": "c",
+		"redirection.h": "c"
 	}
 }

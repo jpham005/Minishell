@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:03:43 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 11:38:02 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 18:05:03 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
 
-static void	del_token_from_tree(t_parse_tree *parse_tree, t_token *token)
+void	del_token_from_tree(t_parse_tree *parse_tree, t_token *token)
 {
 	t_token	*prev;
 	t_token	*next;

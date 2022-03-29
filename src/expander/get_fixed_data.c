@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:06:37 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 11:53:53 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 17:45:31 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ static int	is_valid_quote(
 	return (1);
 }
 
-static char	*get_fixed_string(t_token *token, t_buffer *buffer, size_t *i)
+static char	*get_fixed_string(
+	t_parse_tree *parse_tree, t_token *token, t_buffer *buffer, size_t *i
+)
 {
 	t_quote_mask	mask;
 
@@ -47,6 +49,8 @@ static char	*get_fixed_string(t_token *token, t_buffer *buffer, size_t *i)
 		&& !is_valid_asterisk(token->data[*i], token->expanded_list, *i, &mask))
 	{
 		check_quote_expanded(token, &mask, *i);
+		if (check_quote_mask(mask))
+			parse_tree->type |= UNQUOTED;
 		if (!is_valid_quote(token->data[*i], token->expanded_list, *i, &mask))
 			append_t_buffer(buffer, token->data[*i]);
 		(*i)++;
@@ -65,7 +69,9 @@ static char	*get_asterisk_string(t_token *token, t_buffer *buffer, size_t *i)
 	return (get_t_buffer_string(buffer));
 }
 
-void	get_fixed_data(t_filename **head, t_token *token)
+void	get_fixed_data(
+	t_parse_tree *parse_tree, t_filename **head, t_token *token
+)
 {
 	t_buffer	buffer;
 	char		*appending;
@@ -75,7 +81,7 @@ void	get_fixed_data(t_filename **head, t_token *token)
 	i = 0;
 	while (token->data[i])
 	{
-		appending = get_fixed_string(token, &buffer, &i);
+		appending = get_fixed_string(parse_tree, token, &buffer, &i);
 		if (buffer.len != 0)
 			add_filename(head, appending, FIXED_STR);
 		ft_free((void **) &appending);
