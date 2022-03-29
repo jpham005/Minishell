@@ -20,6 +20,22 @@
 		"__config": "c",
 		"types.h": "c",
 		"t_buffer.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"__functional_base": "c",
+		"__functional_base_03": "c",
+		"__hash_table": "c",
+		"__tuple": "c",
+		"algorithm": "c",
+		"array": "c",
+		"chrono": "c",
+		"type_traits": "c",
+		"functional": "c",
+		"iterator": "c",
+		"limits": "c",
+		"memory": "c",
+		"ratio": "c",
+		"tuple": "c",
+		"utility": "c",
+		"stddef.h": "c"
 	}
 }

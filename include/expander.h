@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 21:59:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 20:28:10 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 15:14:49 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,21 @@
 # include "t_buffer.h"
 # include "terminal.h"
 
-typedef struct s_filename t_filename;
+typedef enum e_nametype		t_nametype;
+typedef struct s_filename	t_filename;
+
+enum e_nametype
+{
+	FIXED_STR = 0,
+	ASTERISK
+};
 
 struct s_filename
 {
 	char		*name;
+	char		*checked;
 	t_filename	*next;
+	t_nametype	type;
 };
 
 // expander
@@ -53,14 +62,22 @@ void		substitute_token(t_parse_tree *parse_tree, t_token **token, \
 														t_token *new_token);
 
 // expand asterisk
-void		expand_asterisk(t_token *token);
+void		expand_asterisk(t_parse_tree *parse_tree, t_token *token);
 
-// expand asterisk util
+// get fixed data
 void		get_fixed_data(t_filename **head, t_token *token);
 
+// get curr files
+void		get_curr_files(t_filename **curr_files);
+
+// peform asterisk expansion
+void	perform_asterisk_expansion(t_token *token, t_filename *fixed_data, \
+													t_filename **curr_files);
+
 // filename list
-t_filename	*init_filename(char *filename);
-void		add_filename(t_filename **head, char *str);
+t_filename	*init_filename(char *filename, t_nametype type);
+void		add_filename(t_filename **head, char *str, t_nametype type);
+void		del_one_filename(t_filename **head, t_filename *target);
 void		clear_filename(t_filename **head);
 
 #endif

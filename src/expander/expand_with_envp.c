@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:53:57 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 10:15:35 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 11:38:28 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*get_key_from_string(char *str, size_t *i)
 	key = ft_malloc(sizeof(char), j - (*i) + 2);
 	ft_memcpy(key + 1, str + (*i), j - (*i));
 	key[0] = '$';
-	key[j + 1] = '\0';
+	key[j - (*i) + 1] = '\0';
 	*i = j;
 	return (key);
 }
@@ -43,7 +43,7 @@ void	expand_with_envp(
 	size_t		start;
 	t_envp_list	*curr_list;
 
-	start = *i;
+	start = buffer->len;
 	key = get_key_from_string(token->data, i);
 	curr_list = find_list_by_key(context->envp, key + 1);
 	if (curr_list)
