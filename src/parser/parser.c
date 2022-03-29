@@ -6,16 +6,15 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 08:25:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 13:29:18 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 20:16:48 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include <stdlib.h>
 
-static void parse_token_to_tree(
-	t_parse_tree **parse_tree, t_token **tail, t_parse_tree *prev_node
-);
+static void	parse_token_to_tree(t_parse_tree **parse_tree, t_token **tail, \
+													t_parse_tree *prev_node);
 
 static void	go_side_node(t_parse_tree **parse_tree, t_move_direction direction)
 {
@@ -65,7 +64,7 @@ static void	parse_token_to_tree(
 t_parse_tree	*parser(t_token *token)
 {
 	t_parse_tree	*parse_tree;
-	t_token		*tail;
+	t_token			*tail;
 
 	parse_tree = NULL;
 	tail = get_tail_token(token);

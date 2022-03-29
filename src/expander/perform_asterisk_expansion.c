@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 13:39:40 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 18:03:28 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 20:14:28 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	compare_last(char *checked, char *name)
 	return (0);
 }
 
-static void check_last_data(t_filename *fixed_data, t_filename **curr_files)
+static void	check_last_data(t_filename *fixed_data, t_filename **curr_files)
 {
 	t_filename	*cp;
 	t_filename	*next;

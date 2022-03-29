@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 16:26:24 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 20:10:38 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 // #include "exec.h"
+#include "cmd_tree.h"
 #include "expander.h"
 #include "lexer.h"
 #include "libft.h"
@@ -88,9 +89,12 @@ void	readline_loop(t_context *context)
 		// printf("!!!PARSER END!!!\n");
 		// printf("o--------------o\n");
 		expander(parse_tree, context);
-		test_print(parse_tree);
+		// test_print(parse_tree);
 		// printf("\no----------------o\n");
 		// printf("!!!EXPANDER END!!!\n");
 		// printf("o----------------o\n");
+		t_cmd_tree	*cmd_tree = redirection(parse_tree);
+		test_print_cmd_tree(cmd_tree);
+		// executer(cmd_tree);
 	}
 }

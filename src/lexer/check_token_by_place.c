@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:48:13 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 03:50:53 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 20:17:24 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	check_syntax_linked_token(t_token *token, t_lexer_err *err_info)
 		else
 			check_syntax_by_mask(
 				token, get_lexer_mask(token->type), err_info
-			);
+				);
 		token = token->next;
 	}
 }

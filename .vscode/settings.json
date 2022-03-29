@@ -37,6 +37,7 @@
 		"tuple": "c",
 		"utility": "c",
 		"stddef.h": "c",
-		"redirection.h": "c"
+		"redirection.h": "c",
+		"cmd_tree.h": "c"
 	}
 }

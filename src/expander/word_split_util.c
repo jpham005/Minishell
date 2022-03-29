@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:22:25 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 15:51:22 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 20:14:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	check_quote_expanded(t_token *token, t_quote_mask *mask, size_t index)
 	char	checking;
 
 	checking = token->data[index];
-	if ((checking == '\'') && (!(*mask &DQUOTE)) \
+	if ((checking == '\'') && (!(*mask & DQUOTE)) \
 						&& !is_in_expanded_list(token->expanded_list, index))
 		*mask ^= SQUOTE;
-	if ((checking == '\"') && (!(*mask &SQUOTE)) \
+	if ((checking == '\"') && (!(*mask & SQUOTE)) \
 						&& !is_in_expanded_list(token->expanded_list, index))
 		*mask ^= DQUOTE;
 }

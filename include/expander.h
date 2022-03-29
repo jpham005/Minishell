@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 21:59:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 18:05:17 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 20:18:03 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		get_fixed_data(t_parse_tree *parse_tree, t_filename **head, \
 void		get_curr_files(t_filename **curr_files);
 
 // peform asterisk expansion
-void	perform_asterisk_expansion(t_filename *fixed_data, \
+void		perform_asterisk_expansion(t_filename *fixed_data, \
 													t_filename **curr_files);
 
 // filename list

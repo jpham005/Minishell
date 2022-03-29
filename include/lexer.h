@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 13:30:30 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 20:17:53 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void			check_near_token_err(t_token *token, t_lexer_err *err_info);
 
 // check near token err util
 int				check_prev_token_match(t_token *token, t_lexer_mask mask);
-int				check_next_token_match(t_token *token, t_lexer_mask);
+int				check_next_token_match(t_token *token, t_lexer_mask mask);
 void			check_syntax_first_token(t_token *token, t_lexer_err *err_info);
 void			check_syntax_linked_token(t_token *token, \
 														t_lexer_err *err_info);
