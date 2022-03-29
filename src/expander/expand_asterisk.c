@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:37:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 15:27:43 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 16:47:16 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,16 @@ static t_token	*try_asterisk_expansion(t_token *token)
 
 	fixed_data = NULL;
 	get_fixed_data(&fixed_data, token);
+	if (!find_asterisk(fixed_data))
+	{
+		clear_filename(&fixed_data);
+		return (NULL);
+	}
 	curr_files = NULL;
 	get_curr_files(&curr_files);
-	if (find_asterisk(fixed_data))
-		perform_asterisk_expansion(token, fixed_data, &curr_files);
+	perform_asterisk_expansion(fixed_data, &curr_files);
 	clear_filename(&fixed_data);
+	ret = NULL;
 	if (curr_files)
 		ret = convert_filename_to_token(curr_files);
 	clear_filename(&curr_files);
@@ -59,14 +64,16 @@ static t_token	*try_asterisk_expansion(t_token *token)
 void	expand_asterisk(t_parse_tree *parse_tree, t_token *token)
 {
 	t_quote_mask	mask;
+	t_token			*next;
 	t_token			*new_token;
 
 	mask = 0;
 	while (token)
 	{
+		next = token->next;
 		new_token = try_asterisk_expansion(token);
 		if (new_token)
 			substitute_token(parse_tree, &token, new_token);
-		token = token->next;
+		token = next;
 	}
 }

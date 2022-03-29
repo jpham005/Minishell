@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 13:39:40 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 14:52:18 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 16:46:58 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ static int	compare_last(char *checked, char *name)
 	const size_t	compare_len = ft_min(checked_len, name_len);
 	size_t			i;
 
-	checked += checked_len;
-	name += name_len;
 	i = 0;
 	while (i < compare_len)
 	{
@@ -93,7 +91,7 @@ static void check_last_data(t_filename *fixed_data, t_filename **curr_files)
 }
 
 void	perform_asterisk_expansion(
-	t_token *token, t_filename *fixed_data, t_filename **curr_files
+	t_filename *fixed_data, t_filename **curr_files
 )
 {
 	check_first_data(fixed_data, curr_files);

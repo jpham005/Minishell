@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 10:03:06 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 10:32:37 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/29 17:12:04 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	get_curr_files(t_filename **curr_files)
 	curr_file = readdir(dir_stream);
 	while (curr_file)
 	{
-		add_filename(curr_files, curr_file->d_name, FIXED_STR);
+		if (curr_file->d_name[0] != '.')
+			add_filename(curr_files, curr_file->d_name, FIXED_STR);
 		curr_file = readdir(dir_stream);
 	}
 	closedir(dir_stream);
