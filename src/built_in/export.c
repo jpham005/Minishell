@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 20:44:39 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 02:04:41 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/31 14:34:20 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ static void	exec_normal(t_envp_list *envp, const char *str)
 
 static void	print_export_err_message(const char *str)
 {
-	ft_putstr_fd(SHELL_NAME EXPORT_CMD, 2);
-	ft_putstr_fd("`", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd("': ", 2);
-	ft_putstr_fd(EXPORT_ARG_ERR_MESSAGE, 2);
+	ft_putstr_fd(SHELL_NAME EXPORT_CMD, STDERR_FILENO);
+	ft_putstr_fd("`", STDERR_FILENO);
+	ft_putstr_fd(str, STDERR_FILENO);
+	ft_putstr_fd("': ", STDERR_FILENO);
+	ft_putstr_fd(EXPORT_ARG_ERR_MESSAGE, STDERR_FILENO);
 }
 
 int	export(t_context *context, const char **argv)

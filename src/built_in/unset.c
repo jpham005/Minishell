@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 12:34:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/01 12:47:12 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/31 14:34:04 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ int	unset(t_context *context, const char **argv)
 	{
 		if (!check_valid(argv[i]))
 		{
-			ft_putstr_fd(SHELL_NAME UNSET_CMD, 2);
-			ft_putstr_fd("`", 2);
-			ft_putstr_fd(argv[i], 2);
-			ft_putstr_fd("': ", 2);
-			ft_putstr_fd(UNSET_ARG_ERR_MESSAGE, 2);
+			ft_putstr_fd(SHELL_NAME UNSET_CMD, STDERR_FILENO);
+			ft_putstr_fd("`", STDERR_FILENO);
+			ft_putstr_fd(argv[i], STDERR_FILENO);
+			ft_putstr_fd("': ", STDERR_FILENO);
+			ft_putstr_fd(UNSET_ARG_ERR_MESSAGE, STDERR_FILENO);
 			ret_flag |= 1;
 		}
 		else
