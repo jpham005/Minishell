@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirection.h                                      :+:      :+:    :+:   */
+/*   get_redir_in.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 17:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/31 18:05:30 by jaham            ###   ########.fr       */
+/*   Created: 2022/03/31 15:07:19 by jaham             #+#    #+#             */
+/*   Updated: 2022/03/31 22:47:30 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REDIRECTION_H
-# define REDIRECTION_H
+#include "redirection.h"
+#include "libft.h"
+#include <fcntl.h>
 
-# include "parser.h"
-
-# define IS_REDIR REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND
-
-#endif
+void	get_redir_in(t_parse_tree *parse_tree)
+{
+	if (parse_tree->type & REDIR_IN)
+	{
+		if (check_valid_redir_target(parse_tree->token))
+			set_redir_err();
+	}
+}

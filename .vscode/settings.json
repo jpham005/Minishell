@@ -38,6 +38,6 @@
 		"utility": "c",
 		"stddef.h": "c",
 		"redirection.h": "c",
-		"cmd_tree.h": "c"
+		"wait.h": "c"
 	}
 }

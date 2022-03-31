@@ -6,53 +6,47 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 22:25:30 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/31 17:20:36 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "redirection.h"
-#include <stddef.h>
+#include "libft.h"
 
-static void	make_cmd_tree(t_cmd_tree **cmd_tree, \
-								t_parse_tree *parse_tree, t_redir *redir);
-
-static void	go_side_node(t_cmd_tree **cmd_tree, \
-				t_parse_tree *parse_tree, t_move_direction dir, t_redir *redir)
+static t_redir	*init_redir(void)
 {
-	if (dir == RIGHT)
-	{
-		cmd_tree = &((*cmd_tree)->right);
-		parse_tree = parse_tree->right;
-	}
-	if (dir == LEFT)
-	{
-		cmd_tree = &((*cmd_tree)->left);
-		parse_tree = parse_tree->left;
-	}
-	make_cmd_tree(cmd_tree, parse_tree, redir);
+	t_redir	*ret;
+
+	ret = ft_malloc(sizeof(t_redir), 1);
+	ret->in = STDIN_FILENO;
+	ret->out = STDOUT_FILENO;
+	ret->err = NULL;
+	ret->target = NULL;
 }
 
-static void	make_cmd_tree(t_cmd_tree **cmd_tree, \
-									t_parse_tree *parse_tree, t_redir *redir)
+static void	inherit_fd(t_redir *curr_redir, t_redir *old_redir)
 {
-	t_tree_type	new_type;
-	char		**new_cmd;
-	t_redir		*new_redir;
+	if (!old_redir)
+		return ;
+	curr_redir->in = old_redir->in;
+	curr_redir->out = old_redir->out;
+}
 
+static void	perform_redirection(t_parse_tree *parse_tree, t_redir *old_redir)
+{
+	t_redir	*curr_redir;
+
+	parse_tree->redir = init_redir();
+	inherit_fd(curr_redir, old_redir);
+	get_redir_in(parse_tree);
+	get_redir_out(parse_tree);
+}
+
+void	redirection(t_parse_tree *parse_tree, t_redir *redir)
+{
 	if (!parse_tree)
 		return ;
-	new_type = get_tree_type(parse_tree->type);
-	if (new_type == TREE_WRONG)
-	new_cmd = get_tree_cmd(parse_tree);
-	new_redir = get_tree_redir(parse_tree, redir);
-	init_cmd_tree(new_type, new_cmd, new_redir);
-	go_side_node(cmd_tree, parse_tree, RIGHT, new_redir);
-	go_side_node(cmd_tree, parse_tree, LEFT, new_redir);
-}
-
-t_cmd_tree	*redirection(t_parse_tree *parse_tree)
-{
-	t_cmd_tree	*cmd_tree;
-
-	make_cmd_tree(&cmd_tree, parse_tree, NULL);
+	perform_redirection(parse_tree, redir);
+	go_side_node(parse_tree, LEFT);
+	go_side_node(parse_tree, RIGHT);
 }
