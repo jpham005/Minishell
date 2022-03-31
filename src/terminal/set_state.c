@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:20:16 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 12:14:15 by jaham            ###   ########.fr       */
+/*   Updated: 2022/03/31 11:15:34 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <readline/readline.h>
+
+static t_context	*s_context;
+
+void	sig_int_handler_readline(int sig)
+{
+	if (sig == SIGINT)
+	{
+		ft_putstr_fd("\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 1);
+		rl_redisplay();
+		s_context->exit_status = 1;
+	}
+}
 
 static void	set_term_readline(t_context *context)
 {
@@ -35,6 +49,7 @@ char	*ft_readline(t_context *context, char *str)
 {
 	char	*ret;
 
+	s_context = context;
 	set_term_readline(context);
 	if (!str)
 	{
