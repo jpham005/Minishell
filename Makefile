@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/03/31 22:46:34 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/01 21:49:26 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ ENVP_DIR			:=	$(SRCS_DIR)/envp
 EXECUTER_DIR		:=	$(SRCS_DIR)/executer
 EXPANDER_DIR		:=	$(SRCS_DIR)/expander
 LEXER_DIR			:=	$(SRCS_DIR)/lexer
+REDIRECTION_DIR		:=	$(SRCS_DIR)/redirection
 PARSER_DIR			:=	$(SRCS_DIR)/parser
 TERMINAL_DIR		:=	$(SRCS_DIR)/terminal
 TOKENIZER_DIR		:=	$(SRCS_DIR)/tokenizer
@@ -48,6 +49,9 @@ LEXER_SRCS			:=	lexer.c check_near_token_err.c \
 						check_special_type_syntax.c check_match_err.c \
 						lexer_err_info_manage.c
 LEXER_SRCS			:=	$(addprefix $(LEXER_DIR)/, $(LEXER_SRCS))
+REDIRECTION_SRCS	:=	redirection.c redirection_util.c heredoc.c \
+						heredoc_util.c get_redir_in.c redirection_test.c
+REDIRECTION_SRCS	:=	$(addprefix $(REDIRECTION_DIR)/, $(REDIRECTION_SRCS))
 PARSER_SRCS			:=	parser.c remove_parenthesis_token.c find_meta.c \
 						get_new_token.c init_destroy_tree.c tree_tester.c
 PARSER_SRCS			:=	$(addprefix $(PARSER_DIR)/, $(PARSER_SRCS))
@@ -71,9 +75,9 @@ CC					:=	cc
 CFLAGS				:=	-g
 NAME				:=	minishell
 SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS) $(EXEC_SRCS) \
-						$(EXPANDER_SRCS) $(LEXER_SRCS) $(PARSER_SRCS) \
-						$(TERMINAL_SRCS) $(TOKENIZER_SRCS) $(UTILS_SRCS) \
-						$(MAIN_SRCS)
+						$(EXPANDER_SRCS) $(LEXER_SRCS) $(REDIRECTION_SRCS) \
+						$(PARSER_SRCS) $(TERMINAL_SRCS) $(TOKENIZER_SRCS) \
+						$(UTILS_SRCS) $(MAIN_SRCS)
 OBJS				:=	$(SRCS:.c=.o)
 RM					:=	rm
 RMFLAGS				:=	-f

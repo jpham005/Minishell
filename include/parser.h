@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:51:43 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/31 21:32:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/01 22:56:51 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ struct s_redir
 	int		in;
 	int		out;
 	char	*err;
-	char	*target;
+	char	*err_target;
 };
 
 enum e_search_result

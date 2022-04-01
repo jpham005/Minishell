@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:06:37 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 17:45:31 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/01 13:39:06 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static char	*get_fixed_string(
 			append_t_buffer(buffer, token->data[*i]);
 		(*i)++;
 	}
+	if (parse_tree->type & UNQUOTED)
+		append_t_buffer(buffer, 0);
 	return (get_t_buffer_string(buffer));
 }
 

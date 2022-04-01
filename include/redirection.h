@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/31 18:05:30 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/01 21:40:34 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,45 @@
 # define REDIRECTION_H
 
 # include "parser.h"
+# include "t_buffer.h"
+# include "terminal.h"
 
-# define IS_REDIR REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND
+# define REDIR_TYPE (REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND)
+# define TOKEN_ERR_MESSAGE "ambiguous redirect\n"
+
+// typedef enum e_redir_result	t_redir_result;
+typedef struct s_heredoc	t_heredoc;
+typedef enum e_is_quoted	t_is_quoted;
+
+enum e_is_quoted
+{
+	NOT_QUOTED = 0,
+	QUOTED
+};
+
+struct s_heredoc
+{
+	char			*limit;
+	t_is_quoted		quoted;
+};
+
+
+// redirection
+void	redirection(t_parse_tree *parse_tree, t_redir *redir, \
+														t_context *context);
+
+// redirection util
+int		check_valid_redir_target(t_parse_tree *parse_tree);
+void	set_redir_err(t_parse_tree *parse_tree, char *err_target, char *err);
+
+// get redir in
+void	get_redir_in(t_parse_tree *parse_tree, t_context *context);
+
+// heredoc
+void	handle_redir_heredoc(t_parse_tree *parse_tree, t_context *context);
+
+// heredoc util
+void	set_heredoc_info(char *str, t_heredoc *heredoc, t_buffer *buffer);
+int		is_heredoc_end(char *input, char *limit);
 
 #endif

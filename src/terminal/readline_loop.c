@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/31 21:40:24 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/01 22:48:12 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "expander.h"
 #include "lexer.h"
 #include "libft.h"
+#include "redirection.h"
 #include "parser.h"
 #include "tokenizer.h"
 #include "utils.h"
@@ -22,7 +23,7 @@
 #include "tokenizer.h"
 #include <stdio.h>
 void	test_print(t_parse_tree *parse_tree);
-
+void	test_redir(t_parse_tree *parse_tree);
 void	print_type(size_t type)
 {
 	size_t	i;
@@ -92,7 +93,8 @@ void	readline_loop(t_context *context)
 		// printf("\no----------------o\n");
 		// printf("!!!EXPANDER END!!!\n");
 		// printf("o----------------o\n");
-		// redirection(parse_tree);
+		// redirection(parse_tree, NULL, context);
+		// test_redir(parse_tree);
 		// executer(cmd_tree);
 		destroy_parse_tree(&parse_tree);
 	}

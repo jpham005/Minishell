@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:37:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 19:42:19 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/01 22:30:45 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ static t_token	*convert_fixed_to_token(t_filename *fixed_data)
 	return (ret);
 }
 
+static int	is_asterisk_expansion(t_filename *fixed_data)
+{
+	while (fixed_data)
+	{
+		if (fixed_data->type == ASTERISK)
+			return (1);
+		fixed_data = fixed_data->next;
+	}
+	return (0);
+}
+
 static t_token	*try_asterisk_expansion(
 	t_parse_tree *parse_tree, t_token *token
 )
@@ -57,9 +68,11 @@ static t_token	*try_asterisk_expansion(
 	if (!fixed_data)
 		return (NULL);
 	curr_files = NULL;
-	get_curr_files(&curr_files);
-	perform_asterisk_expansion(fixed_data, &curr_files);
-	ret = NULL;
+	if (is_asterisk_expansion(fixed_data))
+	{
+		get_curr_files(&curr_files);
+		perform_asterisk_expansion(fixed_data, &curr_files);
+	}
 	if (curr_files)
 		ret = convert_filename_to_token(curr_files);
 	else

@@ -5,13 +5,17 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"type": "lldb",
+			"name": "(lldb) Launch with External Console",
+			"type": "cppdbg",
 			"request": "launch",
-			"name": "Debug",
 			"program": "${workspaceFolder}/minishell",
 			"args": [],
+			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
-			"preLaunchTask": "make all",
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "lldb",
+			"preLaunchTask": "make all"
 		}
 	]
 }
