@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:06:37 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/01 13:39:06 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/02 17:53:58 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	is_valid_asterisk(
 	return ((c == '*') && !check_quote_mask(*mask));
 }
 
-static int	is_valid_quote(
+int	is_valid_quote(
 	char c, t_expanded_list *expanded_list, size_t i, t_quote_mask *mask
 )
 {

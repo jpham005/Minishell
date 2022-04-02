@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:20:16 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/31 14:48:01 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/02 22:09:04 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,22 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 
-static t_context	*s_context;
-
-void	sig_int_handler_readline(int sig)
+t_context	*make_context_static(t_context *context)
 {
-	if (sig == SIGINT)
-	{
-		ft_putstr_fd("\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 1);
-		rl_redisplay();
-		s_context->exit_status = 1;
-	}
+	static t_context	*ret;
+
+	if (context)
+		ret = context;
+	return (ret);
+}
+
+int	make_sigint_static(int n)
+{
+	static int	ret;
+
+	if (n >= 0)
+		ret = n;
+	return (ret);
 }
 
 static void	set_term_readline(t_context *context)
@@ -47,9 +51,10 @@ static void	set_term_default(t_context *context)
 
 char	*ft_readline(t_context *context, char *str)
 {
-	char	*ret;
+	char		*ret;
 
-	s_context = context;
+	rl_catch_signals = 0;
+	make_context_static(context);
 	set_term_readline(context);
 	if (!str)
 	{
@@ -60,6 +65,7 @@ char	*ft_readline(t_context *context, char *str)
 	}
 	else
 	{
+		make_sigint_static(0);
 		signal(SIGINT, heredoc_handler);
 		ret = readline(str);
 	}

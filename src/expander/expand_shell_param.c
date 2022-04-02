@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:00:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/01 13:21:24 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/02 20:40:37 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	perform_shell_expansion(
 		expand_with_envp(token, buffer, context, i);
 }
 
-void	expand_shell_param(t_token *token, t_buffer *buffer, t_context *context)
+void	expand_shell_param(t_token *token, t_buffer *buffer, \
+										t_context *context, int is_heredoc)
 {
 	t_quote_mask	mask;
 	size_t			i;
@@ -34,7 +35,7 @@ void	expand_shell_param(t_token *token, t_buffer *buffer, t_context *context)
 	while (token->data[i])
 	{
 		check_quote(token->data[i], &mask);
-		if (!(mask & SQUOTE) && (token->data[i] == '$'))
+		if ((!(mask & SQUOTE) || is_heredoc) && (token->data[i] == '$'))
 			perform_shell_expansion(token, buffer, context, &i);
 		else
 			append_t_buffer(buffer, token->data[i++]);

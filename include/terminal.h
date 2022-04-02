@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:21:23 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 13:30:37 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/02 22:06:02 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,21 @@ typedef struct s_context
 	t_term_state	term_state;
 }	t_context;
 
-void	reset_terminal(t_context *context);
-void	sig_int_handler_readline(int sig);
-void	sig_int_handler_default(int sig);
-void	set_sig_handler_child(void);
-void	set_sig_handler_parent(char **cmd);
-void	heredoc_handler(int sig);
-void	sig_quit_handler(int sig);
-int		check_arg(int argc, const char **argv);
-int		check_tty(int stdin, int stdout, int stderr);
-void	init_shell(t_context *context, const char **envp);
-char	*ft_readline(t_context *context, char *str);
-void	readline_loop(t_context *context);
-int		check_valid_str(const char *str, t_context *context);
-void	handle_syntax_err(t_context *context);
+void		reset_terminal(t_context *context);
+void		sig_int_handler_readline(int sig);
+void		sig_int_handler_default(int sig);
+void		set_sig_handler_child(void);
+void		set_sig_handler_parent(char **cmd);
+void		heredoc_handler(int sig);
+void		sig_quit_handler(int sig);
+int			check_arg(int argc, const char **argv);
+int			check_tty(int stdin, int stdout, int stderr);
+void		init_shell(t_context *context, const char **envp);
+char		*ft_readline(t_context *context, char *str);
+void		readline_loop(t_context *context);
+int			check_valid_str(const char *str, t_context *context);
+void		handle_syntax_err(t_context *context);
+t_context	*make_context_static(t_context *context);
+int			make_sigint_static(int n);
 
 #endif

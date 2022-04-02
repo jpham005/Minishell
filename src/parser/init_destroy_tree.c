@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:41:08 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/31 22:44:12 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/02 16:56:14 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ void	insert_tree_node(
 	*parse_tree = new_node;
 }
 
+static void	clear_redir(t_parse_tree *parse_tree)
+{
+	if (!parse_tree->redir)
+		return ;
+	ft_free((void **) &(parse_tree->redir->err));
+	ft_free((void **) &(parse_tree->redir->err_target));
+	ft_free((void **) &(parse_tree->redir));
+}
+
 void	destroy_parse_tree(t_parse_tree **parse_tree)
 {
 	t_parse_tree	*left;
@@ -50,6 +59,7 @@ void	destroy_parse_tree(t_parse_tree **parse_tree)
 	left = (*parse_tree)->left;
 	right = (*parse_tree)->right;
 	clear_token(&((*parse_tree)->token));
+	clear_redir(*parse_tree);
 	ft_free((void **) &((*parse_tree)->original_str));
 	ft_free((void **) parse_tree);
 	destroy_parse_tree(&left);

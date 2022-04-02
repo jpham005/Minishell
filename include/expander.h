@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 21:59:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 20:18:03 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/02 20:37:00 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		del_token_from_tree(t_parse_tree *parse_tree, t_token *token);
 
 // expand shell param
 void		expand_shell_param(t_token *token, t_buffer *buffer, \
-															t_context *context);
+											t_context *context, int is_heredoc);
 void		expand_with_envp(t_token *token, t_buffer *buffer, \
 												t_context *context, size_t *i);
 void		expand_with_exit_status(t_token *token, t_buffer *buffer, \
@@ -69,6 +69,8 @@ void		expand_asterisk(t_parse_tree *parse_tree, t_token *token);
 // get fixed data
 void		get_fixed_data(t_parse_tree *parse_tree, t_filename **head, \
 																t_token *token);
+int			is_valid_quote(char c, t_expanded_list *expanded_list, size_t i, \
+															t_quote_mask *mask);
 
 // get curr files
 void		get_curr_files(t_filename **curr_files);

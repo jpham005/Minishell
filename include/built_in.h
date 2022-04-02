@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:24:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 13:30:23 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/02 20:22:17 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	print_cd_error(char *s1, char *s2);
 void	print_cd_success(char *s1);
 void	free_both_cd(char **curr_dir, char **path);
 int		echo(t_context *context, const char **argv);
+int		is_overflow(const char *str);
 
 #endif

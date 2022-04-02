@@ -1,5 +1,6 @@
 {
 	"C_Cpp.default.includePath": [
+		"/Users/jaham/.brew/opt/readline/include",
 		"include",
 		"libft"
 	],
@@ -42,6 +43,7 @@
 		"string": "c",
 		"string_view": "c",
 		"vector": "c",
-		"ios": "c"
+		"ios": "c",
+		"built_in.h": "c"
 	}
 }

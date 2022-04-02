@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:55:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/31 21:43:06 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/02 20:37:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	get_new_token(t_parse_tree *parse_tree, t_context *context)
 	while (cp)
 	{
 		next = cp->next;
-		expand_shell_param(cp, &buffer, context);
+		expand_shell_param(cp, &buffer, context, 0);
 		substitute_data(parse_tree, &cp, &buffer);
 		if (cp)
 			word_split(parse_tree, &cp);

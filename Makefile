@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/01 21:49:26 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/02 22:09:32 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ READLINE_DIR		:=	$(shell brew --prefix readline)
 READLINE_INCLUDE	:=	$(READLINE_DIR)/include
 READLINE_LIB		:=	$(READLINE_DIR)/lib
 
-BUILT_IN_SRCS		:=	export.c unset.c env.c pwd.c exit.c cd.c cd_util.c \
-						echo.c
+BUILT_IN_SRCS		:=	export.c unset.c env.c pwd.c exit.c exit_util.c \
+						cd.c cd_util.c echo.c
 BUILT_IN_SRCS		:=	$(addprefix $(BUILT_IN_DIR)/, $(BUILT_IN_SRCS))
 ENVP_SRCS			:=	init_destroy.c util.c print.c tool.c
 ENVP_SRCS			:=	$(addprefix $(ENVP_DIR)/, $(ENVP_SRCS))
@@ -50,7 +50,8 @@ LEXER_SRCS			:=	lexer.c check_near_token_err.c \
 						lexer_err_info_manage.c
 LEXER_SRCS			:=	$(addprefix $(LEXER_DIR)/, $(LEXER_SRCS))
 REDIRECTION_SRCS	:=	redirection.c redirection_util.c heredoc.c \
-						heredoc_util.c get_redir_in.c redirection_test.c
+						heredoc_util.c get_redir_in.c redirection_test.c \
+						heredoc_return.c
 REDIRECTION_SRCS	:=	$(addprefix $(REDIRECTION_DIR)/, $(REDIRECTION_SRCS))
 PARSER_SRCS			:=	parser.c remove_parenthesis_token.c find_meta.c \
 						get_new_token.c init_destroy_tree.c tree_tester.c

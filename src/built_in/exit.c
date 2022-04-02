@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 16:25:58 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/31 14:37:45 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/02 20:23:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_valid(const char **argv)
 {
 	if (!argv[1])
 		return (EXIT_NO_ARG);
-	if (!ft_isnumstr(argv[1]))
+	if (!ft_isnumstr(argv[1]) || is_overflow(argv[1]))
 		return (EXIT_NON_NUMERIC);
 	if (argv[2])
 		return (EXIT_TOO_MANY_ARG);
