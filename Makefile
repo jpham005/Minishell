@@ -6,14 +6,14 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/03 17:39:44 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/03 22:22:42 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS_DIR			:=	src
 BUILT_IN_DIR		:=	$(SRCS_DIR)/built_in
 ENVP_DIR			:=	$(SRCS_DIR)/envp
-EXECUTER_DIR		:=	$(SRCS_DIR)/executer
+EXECUTOR_DIR		:=	$(SRCS_DIR)/executor
 EXPANDER_DIR		:=	$(SRCS_DIR)/expander
 LEXER_DIR			:=	$(SRCS_DIR)/lexer
 REDIRECTION_DIR		:=	$(SRCS_DIR)/redirection
@@ -36,8 +36,9 @@ BUILT_IN_SRCS		:=	export.c unset.c env.c pwd.c exit.c exit_util.c \
 BUILT_IN_SRCS		:=	$(addprefix $(BUILT_IN_DIR)/, $(BUILT_IN_SRCS))
 ENVP_SRCS			:=	init_destroy.c util.c print.c tool.c
 ENVP_SRCS			:=	$(addprefix $(ENVP_DIR)/, $(ENVP_SRCS))
-EXEC_SRCS			:=
-EXEC_SRCS			:=	$(addprefix $(EXECUTER_DIR)/, $(EXEC_SRCS))
+EXECUTOR_SRCS		:=	executor.c executor_util.c execute_single_cmd.c \
+						execute_built_in.c
+EXECUTOR_SRCS		:=	$(addprefix $(EXECUTOR_DIR)/, $(EXECUTOR_SRCS))
 EXPANDER_SRCS		:=	expander.c expander_util.c expand_shell_param.c \
 						expand_with_envp.c expand_with_exit_status.c \
 						word_split.c word_split_util.c expand_asterisk.c \
@@ -73,9 +74,9 @@ LIBFT_DIR			:=	libft
 LIBFT				:=	$(LIBFT_DIR)/libft.a
 
 CC					:=	cc
-CFLAGS				:=	-g -fsanitize=address
+CFLAGS				:=	-g #-fsanitize=address
 NAME				:=	minishell
-SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS) $(EXEC_SRCS) \
+SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS) $(EXECUTOR_SRCS) \
 						$(EXPANDER_SRCS) $(LEXER_SRCS) $(REDIRECTION_SRCS) \
 						$(PARSER_SRCS) $(TERMINAL_SRCS) $(TOKENIZER_SRCS) \
 						$(UTILS_SRCS) $(MAIN_SRCS)

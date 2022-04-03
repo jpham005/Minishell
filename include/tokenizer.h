@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 17:39:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 22:31:21 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void			add_expanded_list(t_expanded_list **head, t_expanded_list *new);
 // token tool
 t_token			*get_head_token(t_token *curr);
 t_token			*get_tail_token(t_token *head);
+size_t			get_token_list_len(t_token *head);
+char			**convert_token_to_dptr(t_token *head);
 
 // quote manage
 void			check_quote(char c, t_quote_mask *mask);

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:28:56 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 22:03:54 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 22:31:05 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,34 @@ t_token	*get_tail_token(t_token *head)
 	while (head && head->next)
 		head = head->next;
 	return (head);
+}
+
+size_t	get_token_list_len(t_token *head)
+{
+	size_t	ret;
+
+	ret = 0;
+	while (head)
+	{
+		ret++;
+		head = head->next;
+	}
+	return (ret);
+}
+
+char	**convert_token_to_dptr(t_token *head)
+{
+	char	**ret;
+	size_t	i;
+
+	ret = ft_malloc(sizeof(char *), get_token_list_len(head) + 1);
+	i = 0;
+	while (head)
+	{
+		ret[i] = ft_strdup(head->data);
+		head = head->next;
+		i++;
+	}
+	ret[i] = NULL;
+	return (ret);
 }

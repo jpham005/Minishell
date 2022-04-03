@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:24:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 20:22:17 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 22:16:16 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,6 @@
 # define CD_CMD "cd: "
 # define HOME_NOT_SET_ERR_MESSAGE "HOME not set\n"
 # define OLDPWD_NOT_SET_ERR_MESSAGE "OLDPWD not set\n"
-
-typedef enum e_sh_built_in
-{
-	SH_NOT_BUILT_IN = 0,
-	SH_CD,
-	SH_ECHO,
-	SH_ENV,
-	SH_EXIT,
-	SH_EXPORT,
-	SH_PWD,
-	SH_UNSET
-}	t_sh_built_in;
 
 int		built_in_exit(t_context *context, const char **argv);
 int		export(t_context *context, const char **argv);

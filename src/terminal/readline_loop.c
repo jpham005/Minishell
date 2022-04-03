@@ -6,12 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 20:41:09 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 22:46:05 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
-// #include "exec.h"
+#include "executor.h"
 #include "expander.h"
 #include "lexer.h"
 #include "libft.h"
@@ -95,9 +95,9 @@ void	readline_loop(t_context *context)
 		//printf("!!!EXPANDER END!!!\n");
 		//printf("o----------------o\n");
 		if (redirection(parse_tree, NULL, context) == REDIR_SUCCESS)
-			executer(parse_tree);
+			executor(parse_tree, context);
 		//test_redir(parse_tree);
 		destroy_parse_tree(&parse_tree);
-		printf("exit status : %d\n", context->exit_status);
+		// printf("exit status : %d\n", context->exit_status);
 	}
 }
