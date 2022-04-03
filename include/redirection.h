@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 21:12:13 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 15:00:20 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define REDIR_TYPE (REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND)
 # define TOKEN_ERR_MESSAGE "ambiguous redirect\n"
+# define HEREDOC_WRITE_ERR_MESSAGE "write err while heredoc\n"
 
 typedef enum e_redir_result	t_redir_result;
 typedef struct s_heredoc	t_heredoc;
@@ -27,7 +28,7 @@ typedef enum e_is_quoted	t_is_quoted;
 enum e_redir_result
 {
 	REDIR_SUCCESS = 0,
-	REDIR_ERROR
+	REDIR_ERR
 };
 
 enum e_is_quoted
@@ -67,8 +68,6 @@ int				write_heredoc_string(char *input, int fd);
 
 // heredoc return
 int				close_return_pipe(int here_pipe[2]);
-int				return_heredoc_err(t_parse_tree *parse_tree, \
-														t_heredoc *heredoc);
 int				end_heredoc(char **input, int here_pipe[2]);
 
 #endif

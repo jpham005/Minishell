@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:21:23 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 22:06:02 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 14:50:53 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ void		readline_loop(t_context *context);
 int			check_valid_str(const char *str, t_context *context);
 void		handle_syntax_err(t_context *context);
 t_context	*make_context_static(t_context *context);
-int			make_sigint_static(int n);
 
 #endif

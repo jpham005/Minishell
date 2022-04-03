@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:20:16 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 22:09:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 15:00:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,6 @@ t_context	*make_context_static(t_context *context)
 
 	if (context)
 		ret = context;
-	return (ret);
-}
-
-int	make_sigint_static(int n)
-{
-	static int	ret;
-
-	if (n >= 0)
-		ret = n;
 	return (ret);
 }
 
@@ -65,7 +56,6 @@ char	*ft_readline(t_context *context, char *str)
 	}
 	else
 	{
-		make_sigint_static(0);
 		signal(SIGINT, heredoc_handler);
 		ret = readline(str);
 	}

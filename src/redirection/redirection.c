@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 20:58:54 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 15:00:20 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static t_redir_result	perform_redirection(
 
 	parse_tree->redir = init_redir();
 	inherit_fd(curr_redir, old_redir);
-	if (get_redir_in(parse_tree, context) == REDIR_ERROR)
-		return (REDIR_ERROR);
+	if (get_redir_in(parse_tree, context) == REDIR_ERR)
+		return (REDIR_ERR);
 	// get_redir_out(parse_tree);
 	return (REDIR_SUCCESS);
 }
@@ -67,14 +67,14 @@ t_redir_result	redirection(
 {
 	if (!parse_tree)
 		return (REDIR_SUCCESS);
-	if (perform_redirection(parse_tree, redir, context) == REDIR_ERROR)
-		return (REDIR_ERROR);
-	if (go_side_node(parse_tree, LEFT, context) == REDIR_ERROR)
-		return (REDIR_ERROR);
+	if (perform_redirection(parse_tree, redir, context) == REDIR_ERR)
+		return (REDIR_ERR);
+	if (go_side_node(parse_tree, LEFT, context) == REDIR_ERR)
+		return (REDIR_ERR);
 	if (!(parse_tree->type & REDIR_TYPE))
 	{
-		if (go_side_node(parse_tree, RIGHT, context) == REDIR_ERROR)
-			return (REDIR_ERROR);
+		if (go_side_node(parse_tree, RIGHT, context) == REDIR_ERR)
+			return (REDIR_ERR);
 	}
 	return (REDIR_SUCCESS);
 }

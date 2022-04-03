@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 21:22:17 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 17:36:46 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 15:18:45 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	test_redir(t_parse_tree *parse_tree)
 	if (!parse_tree)
 		return ;
 	printf("me : %p\n", parse_tree);
+	if (parse_tree->token->data);
+		printf("token data : %s\n", parse_tree->token->data);
 	if (!parse_tree->redir)
 	{
 		printf("NULL REDIR\n");
@@ -47,7 +49,7 @@ void	test_redir(t_parse_tree *parse_tree)
 	else{
 	ssize_t readsize = read(parse_tree->redir->in, buf, 1000);
 	write(1, buf, readsize);
-	write(1, "\n", 1);
+	write(1, "@end\n", 5);
 	}
 	go_next_redir(parse_tree, 1);
 	go_next_redir(parse_tree, 2);

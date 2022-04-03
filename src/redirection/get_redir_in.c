@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:07:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 21:00:02 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 15:00:20 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_redir_result	get_redir_in(t_parse_tree *parse_tree, t_context *context)
 		handle_redir_in(parse_tree);
 	else if (parse_tree->type & REDIR_HEREDOC)
 	{
-		if (handle_redir_heredoc(parse_tree, context) == REDIR_ERROR)
-			return (REDIR_ERROR);
+		if (handle_redir_heredoc(parse_tree, context) == REDIR_ERR)
+			return (REDIR_ERR);
 	}
 	return (REDIR_SUCCESS);
 }

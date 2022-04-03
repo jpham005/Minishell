@@ -1,6 +1,9 @@
 {
 	"C_Cpp.default.includePath": [
 		"/Users/jaham/.brew/opt/readline/include",
+		// for cluster imac
+		"/opt/homebrew/opt/readline/include",
+		// for jaham m1
 		"include",
 		"libft"
 	],
@@ -44,6 +47,9 @@
 		"string_view": "c",
 		"vector": "c",
 		"ios": "c",
-		"built_in.h": "c"
+		"built_in.h": "c",
+		"readline.h": "c",
+		"signal.h": "c",
+		"stdio.h": "c"
 	}
 }

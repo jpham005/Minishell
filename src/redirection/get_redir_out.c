@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc_return.c                                   :+:      :+:    :+:   */
+/*   get_redir_out.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 21:07:24 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 14:14:36 by jaham            ###   ########.fr       */
+/*   Created: 2022/04/03 15:25:13 by jaham             #+#    #+#             */
+/*   Updated: 2022/04/03 15:29:18 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "redirection.h"
-#include <errno.h>
-#include <string.h>
-#include <unistd.h>
+#include <fcntl.h>
 
-int	close_return_pipe(int here_pipe[2])
+static void	handle_redir_out(t_parse_tree *parse_tree)
 {
-	close(here_pipe[1]);
-	return (here_pipe[0]);
+	if (!check_valid_redir_target(parse_tree))
+		
 }
 
-int	end_heredoc(char **input, int here_pipe[2])
+static void	hadle_redir_append(t_parse_tree *parse_tree)
 {
-	if (!*input)
-		set_cursur_heredoc();
-	ft_free((void **) input);
-	return (close_return_pipe(here_pipe));
+
+}
+
+void	get_redir_out(t_parse_tree *parse_tree)
+{
+	if (parse_tree->type == REDIR_OUT)
+		handle_redir_out(parse_tree);
+	else if (parse_tree->type == REDIR_APPEND)
+		handle_redir_append(parse_tree);
 }

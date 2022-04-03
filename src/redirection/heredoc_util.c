@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:39:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 22:12:52 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 15:01:21 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 
 int	is_heredoc_end(char *input, char *limit)
 {
-	return (!input || !ft_strncmp(input, limit, ft_strlen(limit) + 1) || \
-														make_sigint_static(-1));
+	return (!input || !ft_strncmp(input, limit, ft_strlen(limit) + 1));
 }
 
 void	set_heredoc_info(char *str, t_heredoc *heredoc, t_buffer *buffer)

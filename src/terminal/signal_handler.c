@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 21:08:08 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 22:36:07 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 15:10:30 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ void	heredoc_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		rl_complete();
 		ft_putstr_fd("\n", 2);
-		make_sigint_static(1);
-		rl_done = 0;
+		exit(2);
 	}
 }
 
