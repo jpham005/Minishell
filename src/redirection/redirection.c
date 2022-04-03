@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 15:00:20 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 17:38:39 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static t_redir_result	perform_redirection(
 	inherit_fd(curr_redir, old_redir);
 	if (get_redir_in(parse_tree, context) == REDIR_ERR)
 		return (REDIR_ERR);
-	// get_redir_out(parse_tree);
+	get_redir_out(parse_tree);
 	return (REDIR_SUCCESS);
 }
 
@@ -52,12 +52,17 @@ static t_redir_result	go_side_node(
 	t_parse_tree *parse_tree, t_move_direction dir, t_context *context
 )
 {
+	t_redir	*old_redir;
+
+	old_redir = NULL;
+	if (parse_tree->redir)
+		old_redir = parse_tree->redir;
 	if (dir == LEFT)
 		parse_tree = parse_tree->left;
 	else
 		parse_tree = parse_tree->right;
 	if (parse_tree)
-		return (redirection(parse_tree, parse_tree->redir, context));
+		return (redirection(parse_tree, old_redir, context));
 	return (REDIR_SUCCESS);
 }
 

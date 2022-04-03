@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 15:17:23 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 16:49:22 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ void	readline_loop(t_context *context)
 		// printf("o--------------o\n");
 		expander(parse_tree, context);
 		 test_print(parse_tree);
-		// printf("\no----------------o\n");
-		// printf("!!!EXPANDER END!!!\n");
-		// printf("o----------------o\n");
+		printf("\no----------------o\n");
+		printf("!!!EXPANDER END!!!\n");
+		printf("o----------------o\n");
 		redirection(parse_tree, NULL, context);
 		test_redir(parse_tree);
 		// executer(cmd_tree);

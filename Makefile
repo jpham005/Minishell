@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/02 22:09:32 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/03 17:39:44 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ LEXER_SRCS			:=	lexer.c check_near_token_err.c \
 LEXER_SRCS			:=	$(addprefix $(LEXER_DIR)/, $(LEXER_SRCS))
 REDIRECTION_SRCS	:=	redirection.c redirection_util.c heredoc.c \
 						heredoc_util.c get_redir_in.c redirection_test.c \
-						heredoc_return.c
+						heredoc_return.c get_redir_out.c
 REDIRECTION_SRCS	:=	$(addprefix $(REDIRECTION_DIR)/, $(REDIRECTION_SRCS))
 PARSER_SRCS			:=	parser.c remove_parenthesis_token.c find_meta.c \
 						get_new_token.c init_destroy_tree.c tree_tester.c
@@ -73,7 +73,7 @@ LIBFT_DIR			:=	libft
 LIBFT				:=	$(LIBFT_DIR)/libft.a
 
 CC					:=	cc
-CFLAGS				:=	-g
+CFLAGS				:=	-g -fsanitize=address
 NAME				:=	minishell
 SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS) $(EXEC_SRCS) \
 						$(EXPANDER_SRCS) $(LEXER_SRCS) $(REDIRECTION_SRCS) \

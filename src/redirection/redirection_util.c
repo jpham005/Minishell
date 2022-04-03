@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:02:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 10:35:09 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 17:33:25 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 int	check_valid_redir_target(t_parse_tree *parse_tree)
 {
 	return (parse_tree->right \
-	&& (!parse_tree->right->token \
-		|| parse_tree->right->token->next || !parse_tree->right->token->data));
+			&& !(!parse_tree->right->token \
+				|| parse_tree->right->token->next \
+				|| !parse_tree->right->token->data));
 }
 
 void	set_redir_err(t_parse_tree *parse_tree, char *target, char *err)

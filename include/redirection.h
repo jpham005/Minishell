@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 15:00:20 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 16:44:55 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,8 @@ int				write_heredoc_string(char *input, int fd);
 // heredoc return
 int				close_return_pipe(int here_pipe[2]);
 int				end_heredoc(char **input, int here_pipe[2]);
+
+// get redir out
+void			get_redir_out(t_parse_tree *parse_tree);
 
 #endif
