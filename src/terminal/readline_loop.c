@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 16:49:22 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 20:41:09 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void	print_type(size_t type)
 t_parse_tree	*testarr[3];
 void	readline_loop(t_context *context)
 {
-	char	*str;
-	t_token	*tokenized;
+	char			*str;
+	t_token			*tokenized;
+	t_parse_tree	*parse_tree;
 
 	while (1)
 	{
@@ -83,19 +84,19 @@ void	readline_loop(t_context *context)
 		// printf("\no-----------------o\n");
 		// printf("!!!TOKENIZER END!!!\n");
 		// printf("o-----------------o\n");
-		t_parse_tree *parse_tree = parser(tokenized);
+		parse_tree = parser(tokenized);
 		// test_print(parse_tree);
 		// printf("\no--------------o\n");
 		// printf("!!!PARSER END!!!\n");
 		// printf("o--------------o\n");
 		expander(parse_tree, context);
-		 test_print(parse_tree);
-		printf("\no----------------o\n");
-		printf("!!!EXPANDER END!!!\n");
-		printf("o----------------o\n");
-		redirection(parse_tree, NULL, context);
-		test_redir(parse_tree);
-		// executer(cmd_tree);
+		// test_print(parse_tree);
+		//printf("\no----------------o\n");
+		//printf("!!!EXPANDER END!!!\n");
+		//printf("o----------------o\n");
+		if (redirection(parse_tree, NULL, context) == REDIR_SUCCESS)
+			executer(parse_tree);
+		//test_redir(parse_tree);
 		destroy_parse_tree(&parse_tree);
 		printf("exit status : %d\n", context->exit_status);
 	}

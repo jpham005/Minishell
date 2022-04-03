@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 17:38:39 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/03 20:34:48 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,20 @@ static t_redir	*init_redir(void)
 	return (ret);
 }
 
-static void	inherit_fd(t_redir *curr_redir, t_redir *old_redir)
+static void	inherit_fd(t_parse_tree *parse_tree, t_redir *old_redir)
 {
 	if (!old_redir)
 		return ;
-	curr_redir->in = old_redir->in;
-	curr_redir->out = old_redir->out;
+	parse_tree->redir->in = old_redir->in;
+	parse_tree->redir->out = old_redir->out;
 }
 
 static t_redir_result	perform_redirection(
 	t_parse_tree *parse_tree, t_redir *old_redir, t_context *context
 )
 {
-	t_redir	*curr_redir;
-
 	parse_tree->redir = init_redir();
-	inherit_fd(curr_redir, old_redir);
+	inherit_fd(parse_tree, old_redir);
 	if (get_redir_in(parse_tree, context) == REDIR_ERR)
 		return (REDIR_ERR);
 	get_redir_out(parse_tree);
