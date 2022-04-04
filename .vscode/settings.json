@@ -52,6 +52,9 @@
 		"signal.h": "c",
 		"stdio.h": "c",
 		"executer.h": "c",
-		"executor.h": "c"
+		"executor.h": "c",
+		"stat.h": "c",
+		"string.h": "c",
+		"errno.h": "c"
 	}
 }

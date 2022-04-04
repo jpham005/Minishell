@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:21:23 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 14:50:53 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 12:53:06 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void		reset_terminal(t_context *context);
 void		sig_int_handler_readline(int sig);
 void		sig_int_handler_default(int sig);
 void		set_sig_handler_child(void);
-void		set_sig_handler_parent(char **cmd);
+void		set_sig_handler_parent(char *cmd);
+void		set_sig_handler_default(void);
 void		heredoc_handler(int sig);
 void		sig_quit_handler(int sig);
 int			check_arg(int argc, const char **argv);

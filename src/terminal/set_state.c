@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:20:16 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 15:00:54 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 12:54:02 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ static void	set_term_readline(t_context *context)
 
 static void	set_term_default(t_context *context)
 {
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, SIG_IGN);
+	set_sig_handler_default();
 	tcsetattr(context->std_fd[1], TCSANOW, &(context->term_state.default_term));
 }
 

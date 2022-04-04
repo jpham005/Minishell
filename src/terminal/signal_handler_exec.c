@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler_exec.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:01:21 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/07 18:00:03 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 12:53:34 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "terminal.h"
 #include <signal.h>
 
-void	set_sig_handler_parent(char **cmd)
+void	set_sig_handler_parent(char *cmd)
 {
-	if (cmd && !ft_strncmp(cmd[0] + ft_strlen(cmd[0]) - 10, "/minishell", 11))
+	if (cmd && !ft_strncmp(cmd + ft_strlen(cmd) - 10, "/minishell", 11))
 	{
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_IGN);
@@ -32,4 +32,10 @@ void	set_sig_handler_child(void)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
+}
+
+void	set_sig_handler_default(void)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }

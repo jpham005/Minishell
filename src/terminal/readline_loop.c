@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 22:46:05 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 21:38:58 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	readline_loop(t_context *context)
 	char			*str;
 	t_token			*tokenized;
 	t_parse_tree	*parse_tree;
+	t_pid_list		*pid_list;
 
 	while (1)
 	{
@@ -94,9 +95,15 @@ void	readline_loop(t_context *context)
 		//printf("\no----------------o\n");
 		//printf("!!!EXPANDER END!!!\n");
 		//printf("o----------------o\n");
+		// test_redir(parse_tree);
+		pid_list = NULL;
 		if (redirection(parse_tree, NULL, context) == REDIR_SUCCESS)
-			executor(parse_tree, context);
-		//test_redir(parse_tree);
+			executor(parse_tree, context, &pid_list);
+		if (pid_list)
+		{
+			context->exit_status = get_exit_status(wait_pid_list(pid_list));
+			clear_pid_list(&pid_list);
+		}
 		destroy_parse_tree(&parse_tree);
 		// printf("exit status : %d\n", context->exit_status);
 	}

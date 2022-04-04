@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_waitpid.c                                       :+:      :+:    :+:   */
+/*   set_redir.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/20 14:14:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 11:08:08 by jaham            ###   ########.fr       */
+/*   Created: 2022/04/04 14:07:06 by jaham             #+#    #+#             */
+/*   Updated: 2022/04/04 22:51:32 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "executor.h"
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/wait.h>
 
-int	ft_waitpid(pid_t pid, int *status, int op)
+int	set_in_out(int in, int out)
 {
-	if (waitpid(pid, status, op) == -1)
-	{
-		perror("waidpid");
+	if (!ft_dup2(in, STDIN_FILENO))
 		return (0);
-	}
+	ft_close(in);
+	if (!ft_dup2(out, STDOUT_FILENO))
+		return (0);
+	ft_close(out);
+	return (1);
+}
+
+int	restore_in_out(t_context *context)
+{
+	if (!ft_dup2(context->std_fd[0], STDIN_FILENO))
+		return (0);
+	if (!ft_dup2(context->std_fd[1], STDOUT_FILENO))
+		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:51:43 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/01 22:56:51 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 22:50:31 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ enum e_meta_type
 enum e_move_direction
 {
 	RIGHT = 0,
-	LEFT
+	LEFT,
+	UP
 };
 
 // get parser tree

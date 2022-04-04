@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:28:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/31 14:33:43 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 15:36:39 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	print_cd_error(char *s1, char *s2)
 
 void	print_cd_success(char *s1)
 {
-	ft_putstr_fd(s1, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	if (!isatty(STDOUT_FILENO))
+		return ;
+	ft_putstr_fd(s1, STDOUT_FILENO);
+	ft_putstr_fd("\n", STDOUT_FILENO);
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:39 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 22:45:55 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 15:34:19 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static int	write_argv(const char **argv)
 {
 	while (*argv)
 	{
-		if (ft_putstr_fd(*argv, STDERR_FILENO) == -1)
+		if (ft_putstr_fd(*argv, STDOUT_FILENO) == -1)
 			return (1);
 		argv++;
-		if (*argv && ft_putstr_fd(" ", STDERR_FILENO))
+		if (*argv && ft_putstr_fd(" ", STDOUT_FILENO) == -1)
 			return (1);
 	}
 	return (0);
@@ -30,7 +30,7 @@ static int	perform_echo(const char **argv, int n_op)
 {
 	if (write_argv(argv))
 		return (1);
-	if (!n_op && (ft_putstr_fd("\n", STDERR_FILENO) == -1))
+	if (!n_op && (ft_putstr_fd("\n", STDOUT_FILENO) == -1))
 		return (1);
 	return (0);
 }
@@ -50,7 +50,7 @@ int	echo(t_context *context, const char **argv)
 	if (!context)
 		return (1);
 	if (!argv[1])
-		return (ft_putstr_fd("\n", STDERR_FILENO));
+		return (ft_putstr_fd("\n", STDOUT_FILENO) == -1);
 	i = 1;
 	n_op = get_n_op(argv, &i);
 	return (perform_echo(argv + i, n_op));

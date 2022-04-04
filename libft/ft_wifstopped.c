@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_waitpid.c                                       :+:      :+:    :+:   */
+/*   ft_wifstopped.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/20 14:14:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 11:08:08 by jaham            ###   ########.fr       */
+/*   Created: 2022/04/04 11:01:42 by jaham             #+#    #+#             */
+/*   Updated: 2022/04/04 11:04:11 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/wait.h>
 
-int	ft_waitpid(pid_t pid, int *status, int op)
+int	ft_wifstopped(int status)
 {
-	if (waitpid(pid, status, op) == -1)
-	{
-		perror("waidpid");
-		return (0);
-	}
-	return (1);
+	return (((status & 0177) == 0177) && ((status >> 8) != 0x13));
 }

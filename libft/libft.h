@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:06:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 14:46:50 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 14:19:17 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ pid_t	ft_fork(void);
 void	ft_free(void **ptr);
 void	perror_exit(const char *str, unsigned int exit_status);
 char	*get_next_line(int fd);
-void	ft_waitpid(pid_t pid, int *status, int op);
+int		ft_waitpid(pid_t pid, int *status, int op);
 int		ft_wifexited(int status);
 int		ft_wexitstatus(int status);
 int		ft_wifsignaled(int status);
 int		ft_wtermsig(int status);
-void	exit_by_errno(int errno, char *cmd);
+int		ft_wifstopped(int status);
 int		ft_pipe(int pipefd[2]);
 int		ft_dup2(int fd1, int fd2);
 int		ft_strcmp(const char *s1, const char *s2);

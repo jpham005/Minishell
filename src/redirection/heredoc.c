@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:03:30 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 15:21:55 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 21:29:28 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static t_redir_result	perform_heredoc(t_parse_tree *parse_tree, \
 	int		heredoc_stat;
 	pid_t	pid;
 
-	ft_pipe(here_pipe);
+	if (!ft_pipe(here_pipe))
+		return (REDIR_ERR);
 	pid = ft_fork();
 	if (!pid)
 		heredoc_child(heredoc, context, buffer, here_pipe);

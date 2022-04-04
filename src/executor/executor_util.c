@@ -6,17 +6,16 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:42:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 22:21:51 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/04 14:07:02 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "libft.h"
-#include <stddef.h>
 
-static const char	**get_built_in_types(void)
+static const char * const	*get_built_in_types(void)
 {
-	const static char	*built_in_types[] = {
+	static const char * const	built_in_types[] = {
 		"cd",
 		"echo",
 		"env",
@@ -39,4 +38,27 @@ t_cmd_type	get_cmd_type(const char *cmd)
 	while (built_in[i] && ft_strncmp(cmd, built_in[i], ft_strlen(cmd) + 1))
 		++i;
 	return (i);
+}
+
+int	get_exit_status(int stat)
+{
+	if (ft_wifexited(stat))
+		return (ft_wexitstatus(stat));
+	if (ft_wifsignaled(stat))
+		return (ft_wtermsig(stat) + 128);
+	if (ft_wifstopped(stat))
+		return (17 + 128);
+	return (19 + 128);
+}
+
+int	check_redir_err(t_redir *redir)
+{
+	if (!redir->err)
+		return (0);
+	ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
+	ft_putstr_fd(redir->err_target, STDERR_FILENO);
+	ft_putstr_fd(":", STDERR_FILENO);
+	ft_putstr_fd(redir->err, STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
+	return (1);
 }
