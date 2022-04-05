@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:38:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 21:27:17 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/05 17:21:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,39 +64,42 @@ struct s_pid_list
 # define CMD_NOT_FOUND_MESSAGE "command not found\n"
 
 // executor
-void		executor(t_parse_tree *parse_tree, t_context *context, \
+void			executor(t_parse_tree *parse_tree, t_context *context, \
 														t_pid_list **pid_list);
 
 // executor util
-t_cmd_type	get_cmd_type(const char *data);
-int			get_exit_status(int stat);
-int			check_redir_err(t_redir *redir);
+t_cmd_type		get_cmd_type(const char *data);
+int				get_exit_status(int stat);
+int				check_redir_err(t_redir *redir);
 
-// execute single cmd
-void		execute_single_cmd(t_parse_tree *parse_tree, t_context *context);
-
-// execute pipeline
-void		execute_pipeline(t_parse_tree *parse_tree, t_context *context);
+// execute cmd
+void			execute_cmd(t_parse_tree *parse_tree, t_context *context);
+void			execute_pipeline(t_parse_tree *parse_tree, t_context *context);
 
 // execute bulit_in
-int			exec_built_in(t_cmd_type type, t_parse_tree *parse_tree, \
-															t_context *context);
-int			try_exec_built_in(t_parse_tree *parse_tree, t_context *context);
+int				try_exec_built_in(t_parse_tree *parse_tree, t_context *context);
 
 // execute child
-void		execute_child(t_parse_tree *parse_tree, t_context *context);
+void			execute_child(t_parse_tree *parse_tree, t_context *context);
 
 // set redir
-int			set_in_out(int in, int out);
-int			restore_in_out(t_context *context);
+int				set_in_out(int in, int out);
+int				restore_in_out(t_context *context);
 
 // pid list
-void		add_pid_list(t_pid_list **head, pid_t pid);
-void		clear_pid_list(t_pid_list **head);
-int			wait_pid_list(t_pid_list *head);
+void			add_pid_list(t_pid_list **head, pid_t pid);
+void			clear_pid_list(t_pid_list **head);
+int				wait_pid_list(t_pid_list *head);
 
 // execute next node
-void		execute_next_node(t_parse_tree *parse_tree, t_context *context, \
-								t_pid_list **pid_list, t_move_direction dir);
+void			execute_next_node(t_parse_tree *parse_tree, \
+								t_context *context, t_pid_list **pid_list);
+t_parse_tree	*get_next_node(t_parse_tree *parse_tree, t_move_direction dir);
+
+// handle pipe
+void			handle_pipe(t_parse_tree *parse_tree, t_context *context, \
+														t_pid_list **pid_list);
+void			set_pipe_fd(t_parse_tree *parse_tree, int in, int out, \
+														t_move_direction dir);
 
 #endif

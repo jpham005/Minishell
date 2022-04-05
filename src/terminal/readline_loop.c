@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 21:38:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/05 22:21:58 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 #include <stdlib.h>
 #include "tokenizer.h"
 #include <stdio.h>
+#include <fcntl.h>
 void	test_print(t_parse_tree *parse_tree);
 void	test_redir(t_parse_tree *parse_tree);
 void	print_type(size_t type)
@@ -58,6 +59,8 @@ void	readline_loop(t_context *context)
 	t_parse_tree	*parse_tree;
 	t_pid_list		*pid_list;
 
+		for (int i = 5; i < 8200; i++)
+			close(i);
 	while (1)
 	{
 		str = ft_readline(context, NULL);
@@ -92,17 +95,24 @@ void	readline_loop(t_context *context)
 		// printf("o--------------o\n");
 		expander(parse_tree, context);
 		// test_print(parse_tree);
-		//printf("\no----------------o\n");
-		//printf("!!!EXPANDER END!!!\n");
-		//printf("o----------------o\n");
-		// test_redir(parse_tree);
+		// printf("\no----------------o\n");
+		// printf("!!!EXPANDER END!!!\n");
+		// printf("o----------------o\n");
 		pid_list = NULL;
 		if (redirection(parse_tree, NULL, context) == REDIR_SUCCESS)
+		{
+			// test_redir(parse_tree);
 			executor(parse_tree, context, &pid_list);
+		}
 		if (pid_list)
 		{
 			context->exit_status = get_exit_status(wait_pid_list(pid_list));
 			clear_pid_list(&pid_list);
+		}
+		for (int i = 5; i < 8200; i++)
+		{
+			if (fcntl(i, F_GETFD) == 0)
+				printf("fd opend : %d\n", i);
 		}
 		destroy_parse_tree(&parse_tree);
 		// printf("exit status : %d\n", context->exit_status);

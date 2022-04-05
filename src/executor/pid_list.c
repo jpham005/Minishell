@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:05:01 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 21:34:31 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/05 17:39:07 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,16 @@ void	add_pid_list(t_pid_list **head, pid_t pid)
 void	clear_pid_list(t_pid_list **head)
 {
 	t_pid_list	*temp;
+	t_pid_list	*cp;
 
-	while (*head)
+	cp = *head;
+	while (cp)
 	{
-		temp = (*head)->next;
-		ft_free((void **) head);
-		head = &temp;
+		temp = cp->next;
+		ft_free((void **) &cp);
+		cp = temp;
 	}
+	*head = NULL;
 }
 
 int	wait_pid_list(t_pid_list *head)

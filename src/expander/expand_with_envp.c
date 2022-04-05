@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:53:57 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 10:33:26 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/05 16:02:14 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*get_key_from_string(char *str, size_t *i)
 	char	*key;
 
 	(*i)++;
-	if (str[*i] == '\0')
+	if (str[*i] == '\0' || !is_char_for_env(str[*i]))
 		return (NULL);
 	j = *i;
 	while (is_char_for_env(str[j]))
