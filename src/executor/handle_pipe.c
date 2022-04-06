@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 09:15:50 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 13:55:09 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 19:41:21 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,34 @@ void	set_pipe_fd(
 )
 {
 	t_parse_tree	*next;
-printf("set pipe fd %d %d %d %d\n", in, out, fcntl(in, F_GETFD), fcntl(out, F_GETFD));
+
 	next = get_next_node(parse_tree, dir);
+// if (next && next->token)
+// 	ft_putstr_fd(next->token->data, 2);
+// ft_putstr_fd("\n", 2);
+// printf("next token : %s\n", next->token->data);
+// ft_putstr_fd("set pipie ", 2);
+// ft_putnbr_fd(in, 2);
+// ft_putstr_fd(" ", 2);
+// ft_putnbr_fd(out, 2);
+// ft_putstr_fd("\n", 2);
+// printf("set pipe fd %d %d %d %d\n", in, out, fcntl(in, F_GETFD), fcntl(out, F_GETFD));
 	if (next->redir->in == STDIN_FILENO)
 	{
-		ft_dup2(in, STDIN_FILENO);
-		ft_close(in);
+		next->redir->in = in;
+		// ft_putstr_fd("closing ", 2);
+		// ft_putnbr_fd(in, 2);
+		// ft_putstr_fd("\n", 2);
 	}
 	if (next->redir->out == STDOUT_FILENO)
 	{
-		ft_dup2(out, STDOUT_FILENO);
-		ft_close(out);
+		next->redir->out = out;
+		// ft_putstr_fd("closing ", 2);
+		// ft_putnbr_fd(out, 2);
+		// ft_putstr_fd("\n", 2);
 	}
-printf("end set pipe fd %d %d %d %d\n", in, out, fcntl(in, F_GETFD), fcntl(out, F_GETFD));
+// ft_putstr_fd("end set pipe\n", 2);
+// printf("end set pipe fd %d %d %d %d\n", in, out, fcntl(in, F_GETFD), fcntl(out, F_GETFD));
 }
 
 static void	close_all_redir(t_parse_tree *parse_tree)
@@ -48,7 +63,6 @@ static void	close_all_redir(t_parse_tree *parse_tree)
 	close_all_redir(parse_tree->right);
 }
 
-#include <stdio.h>
 static void	handle_pipe_left(t_parse_tree *parse_tree, t_context *context, \
 										t_pid_list **pid_list, int pipeline[2])
 {
@@ -71,6 +85,8 @@ static void	handle_pipe_left(t_parse_tree *parse_tree, t_context *context, \
 	}
 	add_pid_list(pid_list, pid);
 	ft_close(pipeline[1]);
+	// ft_close(parse_tree->redir->in);
+	// ft_close(parse_tree->redir->out);
 	close_all_redir(parse_tree->left);
 	restore_in_out(context);
 	return ;
@@ -113,6 +129,11 @@ void	handle_pipe(
 
 	if (!ft_pipe(pipeline))
 		ft_exit(1);
+// ft_putstr_fd("pipiing ", 2);
+// ft_putnbr_fd(pipeline[0], 2);
+// ft_putstr_fd(" ", 2);
+// ft_putnbr_fd(pipeline[1], 2);
+// ft_putstr_fd("\n", 2);
 // printf("piping %d %d\n", pipeline[0], pipeline[1]);
 	handle_pipe_left(parse_tree, context, pid_list, pipeline);
 	handle_pipe_right(parse_tree, context, pid_list, pipeline);

@@ -6,19 +6,32 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:25:34 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 20:15:31 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 20:35:52 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
 
-static void	get_left_token_redirection(t_token *left_end, t_token *searched)
+static void	get_left_token_redirection(
+	t_parse_tree *parse_tree, t_token *searched
+)
 {
+	t_token	*left_end;
+
+	left_end = get_tail_token(parse_tree->token);
 	if (searched->next->next)
 	{
-		left_end->next = searched->next->next;
-		left_end->next->prev = left_end;
+		if (left_end)
+		{
+			left_end->next = searched->next->next;
+			left_end->next->prev = left_end;
+		}
+		else
+		{
+			parse_tree->token = searched->next->next;
+			parse_tree->token->prev = NULL;
+		}
 		searched->next->next = NULL;
 	}
 }
@@ -44,8 +57,7 @@ void	get_left_node(t_parse_tree *parse_tree, t_token *searched)
 	set_left_end(parse_tree->left->token, searched);
 	searched->prev = NULL;
 	if (searched->type & REDIRECTION_META)
-		get_left_token_redirection(\
-							get_tail_token(parse_tree->left->token), searched);
+		get_left_token_redirection(parse_tree->left, searched);
 }
 
 static void	set_right_end(t_token *right_end)

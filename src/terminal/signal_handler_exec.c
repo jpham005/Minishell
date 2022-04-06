@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 17:01:21 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 12:53:34 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 18:53:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 
 void	set_sig_handler_parent(char *cmd)
 {
-	if (cmd && !ft_strncmp(cmd + ft_strlen(cmd) - 10, "/minishell", 11))
+	const size_t	cmd_len = ft_strlen(cmd);
+
+	if (cmd \
+		&& (cmd_len >= 10) \
+		&& !ft_strncmp(cmd + ft_strlen(cmd) - 10, "/minishell", 11))
 	{
 		signal(SIGINT, SIG_IGN);
 		signal(SIGQUIT, SIG_IGN);

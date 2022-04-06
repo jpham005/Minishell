@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 20:56:58 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 13:47:18 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 19:47:07 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	switch_fd(t_context *context, int backup_fd[2], t_redir *redir)
 {
 	backup_fd[0] = context->std_fd[0];
 	backup_fd[1] = context->std_fd[1];
-	context->std_fd[0] = redir->in;
-	context->std_fd[1] = redir->out;
+	ft_dup2(context->std_fd[0], backup_fd[0]);
+	ft_dup2(context->std_fd[1], backup_fd[1]);
 }
 #include <stdio.h>
 static void	handle_logical(
@@ -44,7 +44,11 @@ static void	handle_logical(
 	int	backup_fd[2];
 
 	switch_fd(context, backup_fd, parse_tree->redir);
-	set_in_out(parse_tree->redir->in, parse_tree->redir->out);
+	if (parse_tree->redir->in == STDIN_FILENO)
+		parse_tree->redir->in = backup_fd[0];
+	if (parse_tree->redir->out == STDOUT_FILENO)
+		parse_tree->redir->out = backup_fd[1];
+	// set_in_out(parse_tree->redir->in, parse_tree->redir->out);
 	executor(parse_tree->left, context, pid_list);
 	if ((parse_tree->type == AND) && !context->exit_status)
 		executor(parse_tree->right, context, pid_list);
@@ -52,8 +56,6 @@ static void	handle_logical(
 		executor(parse_tree->right, context, pid_list);
 	ft_close(parse_tree->right->redir->in);
 	ft_close(parse_tree->right->redir->out);
-	context->std_fd[0] = backup_fd[0];
-	context->std_fd[1] = backup_fd[1];
 }
 
 void	execute_next_node(
