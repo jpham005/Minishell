@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:16:33 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 13:30:41 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 09:49:46 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@
 # define ARG_ERR_MESSAGE "Arg Error\n"
 # define DEFAULT_FD_ERR_MESSAGE "Default fd Error\n"
 
-# define ASCII_ART_PATH "/goinfre/jaham/Minishell/imgs/"
+typedef enum e_exit_condition	t_exit_condition;
 
-# define END_TERM (1 << 0)
-# define ARG_ERR (1 << 1)
-# define DEFAULT_FD_ERR (1 << 2)
-# define PRINT_INTRO_ERR (1 << 3)
+enum e_exit_condition
+{
+	END_TERM = 1 << 0,
+	ARG_ERR = 1 << 1,
+	DEFAULT_FD_ERR = 1 << 2,
+	PRINT_INTRO_ERR = 1 << 3
+};
 
 void	write_error(const char *str);
-int		exit_with_status(int status, t_context *context);
+void	exit_with_condition(t_exit_condition condition, t_context *context);
 int		print_intro(void);
 
 #endif

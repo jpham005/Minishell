@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 20:03:30 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 21:29:28 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 10:37:51 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ static void	heredoc_child(
 	{
 		input = ft_readline(context, "> ");
 		if (is_heredoc_end(input, heredoc->limit))
-			exit(end_heredoc(&input, here_pipe));
+			ft_exit(end_heredoc(&input, here_pipe));
 		if (heredoc->quoted == NOT_QUOTED)
 			perform_heredoc_expansion(&input, buffer, context);
 		if (!write_heredoc_string(input, here_pipe[1]))
 		{
 			ft_free((void **) &input);
-			exit(1);
+			ft_exit(1);
 		}
 		ft_free((void **) &input);
 	}
@@ -57,7 +57,6 @@ static void	heredoc_child(
 static t_redir_result	perform_heredoc(t_parse_tree *parse_tree, \
 					t_context *context, t_heredoc *heredoc, t_buffer *buffer)
 {
-	char	*input;
 	int		here_pipe[2];
 	int		heredoc_stat;
 	pid_t	pid;
@@ -71,9 +70,15 @@ static t_redir_result	perform_heredoc(t_parse_tree *parse_tree, \
 	ft_waitpid(pid, &heredoc_stat, 0);
 	heredoc_stat = ft_wexitstatus(heredoc_stat);
 	if (heredoc_stat == 1)
+	{
+		ft_close(here_pipe[0]);
 		set_redir_err(parse_tree, heredoc->limit, HEREDOC_WRITE_ERR_MESSAGE);
+	}
 	else if (heredoc_stat == 2)
+	{
+		ft_close(here_pipe[0]);
 		return (REDIR_ERR);
+	}
 	else
 		parse_tree->redir->in = heredoc_stat;
 	return (REDIR_SUCCESS);
@@ -86,6 +91,7 @@ t_redir_result	handle_redir_heredoc(t_parse_tree *parse_tree, \
 	t_buffer		buffer;
 	t_heredoc		heredoc;
 
+	ft_close(parse_tree->redir->in);
 	ret = REDIR_SUCCESS;
 	init_t_buffer(&buffer);
 	set_heredoc_info(parse_tree->right->original_str, &heredoc, &buffer);

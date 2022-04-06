@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 17:57:53 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 11:31:09 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 09:45:39 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	exit_with_msg(char *s1, char *s2, int status)
 	ft_putstr_fd(s2, STDERR_FILENO);
 	if (!ft_strchr(s2, '\n'))
 		ft_putstr_fd("\n", STDERR_FILENO);
-	exit(status);
+	ft_exit(status);
 }

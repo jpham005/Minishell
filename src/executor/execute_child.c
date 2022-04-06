@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 22:15:17 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 09:47:14 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	execute_child(t_parse_tree *parse_tree, t_context *context)
 
 	set_sig_handler_child();
 	if (!parse_tree->token)
-		exit(0);
+		ft_exit(0);
 	path_list = find_list_by_key(context->envp, "PATH");
 	if (ft_strchr(parse_tree->token->data, '/') || !path_list)
 		execute_with_user_path(parse_tree, context);

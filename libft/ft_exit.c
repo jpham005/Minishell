@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 22:14:54 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 10:44:32 by jaham            ###   ########.fr       */
+/*   Created: 2022/04/06 09:43:50 by jaham             #+#    #+#             */
+/*   Updated: 2022/04/06 09:45:07 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "utils.h"
+#include <stdlib.h>
 
-int	main(int argc, char **argv, char **envp)
+void	ft_exit(int status)
 {
-	t_context	context;
-
-	if (!check_arg(argc, (const char **) argv))
-		exit_with_condition(ARG_ERR, &context);
-	init_shell(&context, (const char **) envp);
-	// if (!print_intro())
-	// 	exit_with_condition(PRINT_INTRO_ERR, &context);
-	readline_loop(&context);
-	return (context.exit_status);
+	ft_putstr_fd("\001\033[m\002", STDERR_FILENO);
+	exit(status);
 }

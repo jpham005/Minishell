@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 09:15:50 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/05 20:56:43 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 09:47:41 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	handle_pipe_left(t_parse_tree *parse_tree, t_context *context, \
 		ft_close(pipeline[0]);
 		// printf("left going %d %d\n", parse_tree->left->redir->in, parse_tree->left->redir->out);
 		executor(parse_tree->left, context, pid_list);
-		exit(context->exit_status);
+		ft_exit(context->exit_status);
 	}
 	add_pid_list(pid_list, pid);
 	ft_close(pipeline[1]);
@@ -92,7 +92,7 @@ static void	handle_pipe_right(t_parse_tree *parse_tree, t_context *context, \
 		// printf("going right addr %p\n", parse_tree->right);
 		// printf("going right %d %d\n", parse_tree->right->redir->in, parse_tree->right->redir->out);
 		executor(parse_tree->right, context, pid_list);
-		exit(context->exit_status);
+		ft_exit(context->exit_status);
 	}
 	add_pid_list(pid_list, pid);
 	ft_close(pipeline[0]);
@@ -110,7 +110,7 @@ void	handle_pipe(
 	int	pipeline[2];
 
 	if (!ft_pipe(pipeline))
-		exit(1);
+		ft_exit(1);
 // printf("piping %d %d\n", pipeline[0], pipeline[1]);
 	handle_pipe_left(parse_tree, context, pid_list, pipeline);
 	handle_pipe_right(parse_tree, context, pid_list, pipeline);

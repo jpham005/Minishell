@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 21:08:08 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 15:10:30 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 10:33:57 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@
 void	sig_int_handler_default(int sig)
 {
 	if (sig == SIGINT)
-		ft_putstr_fd("\n", 2);
+		ft_putstr_fd("\n", STDERR_FILENO);
 }
 
 void	sig_quit_handler(int sig)
 {
 	if (sig == SIGQUIT)
-		ft_putstr_fd(SIG_QUIT_MESSAGE, 2);
+		ft_putstr_fd(SIG_QUIT_MESSAGE, STDERR_FILENO);
 }
 
 void	heredoc_handler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_putstr_fd("\n", 2);
-		exit(2);
+		ft_putstr_fd("\n", STDERR_FILENO);
+		ft_exit(2);
 	}
 }
 
@@ -44,7 +44,7 @@ void	sig_int_handler_readline(int sig)
 
 	if (sig == SIGINT)
 	{
-		ft_putstr_fd("\n", 1);
+		ft_putstr_fd("\n", STDERR_FILENO);
 		rl_on_new_line();
 		rl_replace_line("", 1);
 		rl_redisplay();

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:06:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 14:19:17 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 09:45:12 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ char	*ft_strtrim(char const *s1, char const *set);
 int		ft_isspace(int c);
 size_t	ft_min(size_t n1, size_t n2);
 size_t	ft_max(size_t n1, size_t n2);
+void	ft_exit(int status);
 
 #endif

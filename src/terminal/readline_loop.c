@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/05 22:21:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 10:09:21 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	readline_loop(t_context *context)
 	t_parse_tree	*parse_tree;
 	t_pid_list		*pid_list;
 
-		for (int i = 5; i < 8200; i++)
+		for (int i = 6; i < 8200; i++)
 			close(i);
 	while (1)
 	{
 		str = ft_readline(context, NULL);
 		if (!str)
-			exit(exit_with_status(END_TERM, context));
+			exit_with_condition(END_TERM, context);
 		if (!check_valid_str(str, context))
 		{
 			ft_free((void **) &str);
@@ -109,7 +109,7 @@ void	readline_loop(t_context *context)
 			context->exit_status = get_exit_status(wait_pid_list(pid_list));
 			clear_pid_list(&pid_list);
 		}
-		for (int i = 5; i < 8200; i++)
+		for (int i = 6; i < 8200; i++)
 		{
 			if (fcntl(i, F_GETFD) == 0)
 				printf("fd opend : %d\n", i);

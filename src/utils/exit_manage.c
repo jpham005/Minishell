@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:15:53 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 10:56:48 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 09:52:26 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,28 @@
 
 void	write_error(const char *str)
 {
-	ft_putstr_fd(str, 2);
+	ft_putstr_fd(str, STDERR_FILENO);
 }
 
 static void	print_exit(void)
 {
-	ft_putstr_fd("\033[1A", 1);
-	ft_putstr_fd("\033[12C", 1);
-	ft_putstr_fd("exit\n", 1);
+	ft_putstr_fd("\033[1A", STDERR_FILENO);
+	ft_putstr_fd("\033[12C", STDERR_FILENO);
+	ft_putstr_fd("exit\n", STDERR_FILENO);
 }
 
-int	exit_with_status(int status, t_context *context)
+void	exit_with_condition(t_exit_condition condition, t_context *context)
 {
-	if (status & END_TERM)
+	if (condition & END_TERM)
 	{
 		print_exit();
-		write(1, DEF_COL, 6);
-		return (context->exit_status);
+		ft_exit(context->exit_status);
 	}
-	if (status & ARG_ERR)
+	if (condition & ARG_ERR)
 		write_error(ARG_ERR_MESSAGE);
-	else if (status & DEFAULT_FD_ERR)
+	else if (condition & DEFAULT_FD_ERR)
 		write_error(DEFAULT_FD_ERR_MESSAGE);
-	else if (status & PRINT_INTRO_ERR)
+	else if (condition & PRINT_INTRO_ERR)
 		write_error(PRT_INTRO_ERR_MESSAGE);
-	write(1, DEF_COL, 6);
-	exit(1);
+	ft_exit(1);
 }

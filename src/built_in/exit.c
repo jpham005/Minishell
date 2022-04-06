@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 16:25:58 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 20:23:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 09:47:02 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	check_valid(const char **argv)
 static void	exit_with_message(int status)
 {
 	print_exit();
-	exit(status);
+	ft_exit(status);
 }
 
 static void	print_non_numeric_err_message(const char *str)
@@ -57,7 +57,7 @@ int	built_in_exit(t_context *context, const char **argv)
 	if (state & EXIT_NON_NUMERIC)
 	{
 		print_non_numeric_err_message(argv[1]);
-		exit(255);
+		ft_exit(255);
 	}
 	if (state & EXIT_TOO_MANY_ARG)
 	{

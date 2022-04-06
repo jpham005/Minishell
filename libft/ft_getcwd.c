@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getcwd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 19:18:02 by jaham             #+#    #+#             */
-/*   Updated: 2022/02/17 15:24:29 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 09:45:50 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_getcwd(char *buf, size_t size)
 	if (!ret)
 	{
 		perror("getcwd");
-		exit(1);
+		ft_exit(1);
 	}
 	return (ret);
 }
