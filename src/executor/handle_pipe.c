@@ -6,20 +6,21 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 09:15:50 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 09:47:41 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 13:55:09 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "libft.h"
 #include <stdlib.h>
-
+#include <stdio.h>
+#include <fcntl.h>
 void	set_pipe_fd(
 	t_parse_tree *parse_tree, int in, int out, t_move_direction dir
 )
 {
 	t_parse_tree	*next;
-
+printf("set pipe fd %d %d %d %d\n", in, out, fcntl(in, F_GETFD), fcntl(out, F_GETFD));
 	next = get_next_node(parse_tree, dir);
 	if (next->redir->in == STDIN_FILENO)
 	{
@@ -31,6 +32,7 @@ void	set_pipe_fd(
 		ft_dup2(out, STDOUT_FILENO);
 		ft_close(out);
 	}
+printf("end set pipe fd %d %d %d %d\n", in, out, fcntl(in, F_GETFD), fcntl(out, F_GETFD));
 }
 
 static void	close_all_redir(t_parse_tree *parse_tree)

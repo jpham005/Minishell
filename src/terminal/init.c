@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:41:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 11:35:31 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	init_shell(t_context *context, const char **envp)
 {
 	t_term		term;
 
-	context->std_fd[0] = ft_dup(0);
-	context->std_fd[1] = ft_dup(1);
-	context->std_fd[2] = ft_dup(2);
-	if (tcgetattr(1, &term))
+	context->std_fd[0] = ft_dup(STDIN_FILENO);
+	context->std_fd[1] = ft_dup(STDOUT_FILENO);
+	context->std_fd[2] = ft_dup(STDERR_FILENO);
+	if (tcgetattr(STDERR_FILENO, &term))
 		perror_exit("tcgetattr", 1);
 	context->exit_status = 0;
 	context->term_state.default_term = term;

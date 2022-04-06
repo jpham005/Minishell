@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:20:16 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 12:54:02 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/06 11:15:10 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,26 @@ static void	set_term_readline(t_context *context)
 {
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sig_int_handler_readline);
-	tcsetattr(context->std_fd[1], TCSANOW, &(context->term_state.rl_term));
+	tcsetattr(context->std_fd[2], TCSANOW, &(context->term_state.rl_term));
 }
 
 static void	set_term_default(t_context *context)
 {
 	set_sig_handler_default();
-	tcsetattr(context->std_fd[1], TCSANOW, &(context->term_state.default_term));
+	tcsetattr(context->std_fd[2], TCSANOW, &(context->term_state.default_term));
+}
+
+static void	set_readline_variable(void)
+{
+	rl_catch_signals = 0;
+	rl_outstream = stderr;
 }
 
 char	*ft_readline(t_context *context, char *str)
 {
 	char		*ret;
 
-	rl_catch_signals = 0;
+	set_readline_variable();
 	make_context_static(context);
 	set_term_readline(context);
 	if (!str)
