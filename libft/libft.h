@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:06:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 19:04:44 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/07 15:48:41 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ size_t	ft_min(size_t n1, size_t n2);
 size_t	ft_max(size_t n1, size_t n2);
 void	ft_exit(int status);
 void	ft_putnbr_fd(int n, int fd);
+int		ft_iseq(const char *s1, const char *s2);
 
 #endif

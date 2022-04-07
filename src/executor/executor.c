@@ -6,12 +6,11 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:37:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 19:53:15 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/07 10:18:22 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
-#include "libft.h"
 #include <stdio.h>
 void	executor(
 	t_parse_tree *parse_tree, t_context *context, t_pid_list **pid_list
