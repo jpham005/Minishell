@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 15:25:13 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 09:25:30 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 22:07:43 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	handle_redir_out(t_parse_tree *p_tree, t_token_type type)
 		open_op |= O_TRUNC;
 	else
 		open_op |= O_APPEND;
-	ft_close(p_tree->redir->out);
 	p_tree->redir->out = open(p_tree->right->token->data, open_op, 0666);
 	if (p_tree->redir->out == -1)
 		set_redir_err(p_tree, p_tree->right->token->data, strerror(errno));
@@ -38,6 +37,8 @@ static void	handle_redir_out(t_parse_tree *p_tree, t_token_type type)
 
 void	get_redir_out(t_parse_tree *parse_tree)
 {
+	if (is_multiple_redir(parse_tree, REDIR_OUTS))
+		ft_close(parse_tree->redir->out);
 	if (parse_tree->type & (REDIR_OUT | REDIR_APPEND))
 		handle_redir_out(parse_tree, parse_tree->type);
 }

@@ -6,12 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 18:24:39 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 19:48:44 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
-#include "executor.h"
+// #include "executor.h"
 #include "expander.h"
 #include "lexer.h"
 #include "libft.h"
@@ -57,7 +57,7 @@ void	readline_loop(t_context *context)
 	char			*str;
 	t_token			*tokenized;
 	t_parse_tree	*parse_tree;
-	t_pid_list		*pid_list;
+	// t_pid_list		*pid_list;
 
 	while (1)
 	{
@@ -69,7 +69,9 @@ void	readline_loop(t_context *context)
 			ft_free((void **) &str);
 			continue ;
 		}
-		tokenized = tokenizer(str);
+		tokenized = tokenizer(str, context);
+		if (!tokenized)
+			continue ;
 		ft_free((void **) &str);
 		if (lexer(tokenized) == LEXER_ERR)
 		{
@@ -82,7 +84,16 @@ void	readline_loop(t_context *context)
 		// {
 		// 	printf("%s\n", cp->data);
 		// 	print_type(cp->type);
+		// 	if (cp->redir->in != 0)
+		// 	{
+		// 		printf("----heredoc----\n");
+		// 		char buf[1000];
+		// 		ssize_t size = read(cp->redir->in, buf, 1000);
+		// 		write(1, buf, size);
+		// 		printf("----heredoc end----\n");
+		// 	}
 		// }
+		// clear_token(&tokenized);
 		// printf("\no-----------------o\n");
 		// printf("!!!TOKENIZER END!!!\n");
 		// printf("o-----------------o\n");
@@ -92,27 +103,21 @@ void	readline_loop(t_context *context)
 		// printf("!!!PARSER END!!!\n");
 		// printf("o--------------o\n");
 		expander(parse_tree, context);
-		// test_print(parse_tree);
-		// printf("\no----------------o\n");
-		// printf("!!!EXPANDER END!!!\n");
-		// printf("o----------------o\n");
-		pid_list = NULL;
+		test_print(parse_tree);
+		printf("\no----------------o\n");
+		printf("!!!EXPANDER END!!!\n");
+		printf("o----------------o\n");
+		// pid_list = NULL;
 		if (redirection(parse_tree, NULL, context) == REDIR_SUCCESS)
 		{
-			// test_redir(parse_tree);
-			executor(parse_tree, context, &pid_list);
+			test_redir(parse_tree);
+			// executor(parse_tree, context, &pid_list);
 		}
-		if (pid_list)
-		{
-			context->exit_status = get_exit_status(wait_pid_list(pid_list));
-			clear_pid_list(&pid_list);
-		}
-		// for (int i = 6; i < 8200; i++)
+		// if (pid_list)
 		// {
-		// 	if (fcntl(i, F_GETFD) == 0)
-		// 		printf("fd opend : %d\n", i);
+		// 	context->exit_status = get_exit_status(wait_pid_list(pid_list));
+		// 	clear_pid_list(&pid_list);
 		// }
 		destroy_parse_tree(&parse_tree);
-		// printf("exit status : %d\n", context->exit_status);
 	}
 }

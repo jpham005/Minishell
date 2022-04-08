@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc_return.c                                   :+:      :+:    :+:   */
+/*   cmd_tree.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/02 21:07:24 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 14:14:36 by jaham            ###   ########.fr       */
+/*   Created: 2022/04/07 16:23:23 by jaham             #+#    #+#             */
+/*   Updated: 2022/04/07 16:25:35 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "redirection.h"
-#include <errno.h>
-#include <string.h>
-#include <unistd.h>
+#ifndef CMD_TREE_H
+# define CMD_TREE_H
 
-int	close_return_pipe(int here_pipe[2])
-{
-	close(here_pipe[1]);
-	return (here_pipe[0]);
-}
+# include "parser.h"
 
-int	end_heredoc(char **input, int here_pipe[2])
+typedef struct s_cmd_tree	t_cmd_tree;
+
+struct s_cmd_tree
 {
-	if (!*input)
-		set_cursur_heredoc();
-	ft_free((void **) input);
-	return (close_return_pipe(here_pipe));
-}
+	
+	t_cmd_tree	*left;
+	t_cmd_tree	*right;
+};
+
+#endif

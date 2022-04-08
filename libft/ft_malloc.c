@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonpar <hyeonpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/05 15:30:06 by jaham             #+#    #+#             */
-/*   Updated: 2022/02/24 22:25:55 by hyeonpar         ###   ########.fr       */
+/*   Updated: 2022/04/08 19:46:21 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,8 +22,8 @@ void	*ft_malloc(size_t size, size_t n)
 	ret = malloc(size * n);
 	if (!ret)
 	{
-		perror("malloc");
-		exit(1);
+		ft_perror("malloc", errno);
+		ft_exit(1);
 	}
 	return (ret);
 }

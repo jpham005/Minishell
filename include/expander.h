@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 21:59:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 20:37:00 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 10:32:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define EXPANDER_H
 
 # include "parser.h"
-# include "t_buffer.h"
-# include "terminal.h"
 
 typedef enum e_nametype		t_nametype;
 typedef struct s_filename	t_filename;

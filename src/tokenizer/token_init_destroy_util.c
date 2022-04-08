@@ -6,11 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 12:32:46 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 09:46:42 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 16:37:00 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "redirection.h"
 #include "tokenizer.h"
 
 void	del_expanded_list(t_expanded_list **head, size_t start)
@@ -48,6 +49,7 @@ void	del_tail_token(t_token **target)
 		prev_token->next = NULL;
 	clear_expanded_list(*target);
 	ft_free((void **) &((*target)->data));
+	destroy_redir(&((*target)->redir));
 	ft_free((void **) target);
 	*target = prev_token;
 }

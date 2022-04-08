@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 21:38:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 13:52:53 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 17:18:00 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ void	skip_space(const char *str, size_t *start)
 {
 	while (str[*start] && ft_isspace(str[*start]))
 		(*start)++;
+}
+
+void	clear_fd(t_token *token)
+{
+	while (token)
+	{
+		if (token->type == REDIR_HEREDOC)
+			ft_close(token->redir->in);
+		token = token->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:51:43 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/05 17:04:19 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 10:21:18 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "tokenizer.h"
 
 typedef struct s_parse_tree		t_parse_tree;
-typedef struct s_redir			t_redir;
 typedef enum e_search_result	t_search_result;
 typedef enum e_meta_type		t_meta_type;
 typedef enum e_move_direction	t_move_direction;
@@ -30,14 +29,6 @@ struct s_parse_tree
 	t_token_type	type;
 	t_redir			*redir;
 	char			*original_str;
-};
-
-struct s_redir
-{
-	int		in;
-	int		out;
-	char	*err;
-	char	*err_target;
 };
 
 enum e_search_result

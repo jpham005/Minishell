@@ -6,11 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 02:47:14 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 19:40:39 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 19:45:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <errno.h>
 #include <stdio.h>
 #include <fcntl.h>
 int	ft_dup2(int fd1, int fd2)
@@ -20,7 +21,7 @@ int	ft_dup2(int fd1, int fd2)
 		return (1);
 	if (dup2(fd1, fd2) == -1)
 	{
-		perror("dup2");
+		ft_perror("dup2", errno);
 		printf("duping %d %d\n", fd1, fcntl(fd1, F_GETFD));
 		return (0);
 	}

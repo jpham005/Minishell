@@ -6,11 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:22:25 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 20:14:42 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 17:12:32 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
+#include "libft.h"
 
 static int	is_in_expanded_list(t_expanded_list *expanded_list, size_t index)
 {
@@ -36,6 +37,16 @@ void	check_quote_expanded(t_token *token, t_quote_mask *mask, size_t index)
 		*mask ^= DQUOTE;
 }
 
+static void	copy_redir_info(t_token *token, t_token *new_token)
+{
+	new_token->redir->in = token->redir->in;
+	new_token->redir->out = token->redir->out;
+	if (token->redir->err)
+		new_token->redir->err = ft_strdup(token->redir->err);
+	if (token->redir->err_target)
+		new_token->redir->err_target = ft_strdup(token->redir->err_target);
+}
+
 void	substitute_token(t_parse_tree *parse_tree, t_token **token, \
 															t_token *new_token)
 {
@@ -44,6 +55,7 @@ void	substitute_token(t_parse_tree *parse_tree, t_token **token, \
 
 	next = (*token)->next;
 	prev = (*token)->prev;
+	copy_redir_info(*token, new_token);
 	del_token(token);
 	if (next)
 	{

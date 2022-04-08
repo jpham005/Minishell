@@ -6,19 +6,20 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:52:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/28 09:44:21 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 16:36:23 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "redirection.h"
 #include "tokenizer.h"
-#include <stdlib.h>
 
 t_token	*init_token(const char *data, t_token_type type)
 {
 	t_token	*ret;
 
 	ret = ft_malloc(sizeof(t_token), 1);
+	ret->redir = init_redir();
 	ret->data = ft_strdup(data);
 	ret->type = type;
 	ret->expanded_list = NULL;
@@ -53,6 +54,7 @@ void	del_token(t_token **target)
 	next_token->prev = (*target)->prev;
 	clear_expanded_list(*target);
 	ft_free((void **) &((*target)->data));
+	destroy_redir(&((*target)->redir));
 	ft_free((void **) target);
 	*target = next_token;
 }

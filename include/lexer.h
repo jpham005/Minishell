@@ -6,14 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 20:17:53 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 10:32:12 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include "terminal.h"
 # include "tokenizer.h"
 
 # define NON_EXPECTED_TOKEN_MESSAGE "syntax error near unexpected token `"

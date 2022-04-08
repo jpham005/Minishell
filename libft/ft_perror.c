@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dup.c                                           :+:      :+:    :+:   */
+/*   ft_perror.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/26 20:44:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 19:45:22 by jaham            ###   ########.fr       */
+/*   Created: 2022/04/08 19:42:26 by jaham             #+#    #+#             */
+/*   Updated: 2022/04/08 19:44:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <errno.h>
-#include <stdio.h>
+#include <string.h>
 
-int	ft_dup(int fd)
+void	ft_perror(const char *data, int errno)
 {
-	int	ret;
-
-	ret = dup(fd);
-	if (ret < 0)
+	if (data)
 	{
-		ft_perror("dup", errno);
-		return (-1);
+		ft_putstr_fd(data, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
 	}
-	return (ret);
+	ft_putstr_fd(strerror(errno), STDERR_FILENO);
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:38:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/05 17:21:42 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 10:32:49 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define EXECUTOR_H
 
 # include "parser.h"
-# include "terminal.h"
 # include <sys/stat.h>
 
 typedef enum e_exit_status	t_exit_status;
@@ -22,6 +21,7 @@ typedef enum e_cmd_type		t_cmd_type;
 typedef enum e_cmd_stat		t_cmd_stat;
 typedef struct stat			t_stat;
 typedef struct s_pid_list	t_pid_list;
+typedef struct s_cmd_tree	t_cmd_tree;
 
 enum e_exit_status
 {
@@ -56,6 +56,12 @@ struct s_pid_list
 {
 	pid_t		pid;
 	t_pid_list	*next;
+};
+
+struct s_cmd_tree
+{
+	t_token_type	type;
+	size_t			len;
 };
 
 # define NOT_FOUND_MESSAGE "No such file or directory\n"

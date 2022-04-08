@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:41:08 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 16:56:14 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 16:35:47 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ t_parse_tree	*init_parse_tree(void)
 	return (ret);
 }
 
+static void	set_new_node_info(
+	t_parse_tree *new_node, t_parse_tree *prev_node, t_token *searched
+)
+{
+	new_node->up = prev_node;
+	new_node->token = searched;
+	new_node->type = searched->type;
+}
+
 void	insert_tree_node(
 	t_parse_tree **parse_tree, t_token *searched, t_parse_tree *prev_node
 )
@@ -30,9 +39,7 @@ void	insert_tree_node(
 	t_parse_tree	*new_node;
 
 	new_node = init_parse_tree();
-	new_node->up = prev_node;
-	new_node->token = searched;
-	new_node->type = searched->type;
+	set_new_node_info(new_node, prev_node, searched);
 	get_left_node(new_node, searched);
 	get_right_node(new_node, searched);
 	if (*parse_tree)

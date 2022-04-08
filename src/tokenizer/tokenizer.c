@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:48:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 13:10:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 17:16:52 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,25 @@ static void	get_token_word(t_token **head, const char *str, size_t *start)
 
 static t_token_type	get_meta_type(char *data)
 {
-	if (!ft_strncmp(data, "<", 2))
+	if (ft_iseq(data, "<"))
 		return (REDIR_IN);
-	if (!ft_strncmp(data, ">", 2))
+	if (ft_iseq(data, ">"))
 		return (REDIR_OUT);
-	if (!ft_strncmp(data, ">>", 3))
+	if (ft_iseq(data, ">>"))
 		return (REDIR_APPEND);
-	if (!ft_strncmp(data, "<<", 3))
+	if (ft_iseq(data, "<<"))
 		return (REDIR_HEREDOC);
-	if (!ft_strncmp(data, "|", 2))
+	if (ft_iseq(data, "|"))
 		return (PIPE);
-	if (!ft_strncmp(data, "||", 3))
+	if (ft_iseq(data, "||"))
 		return (OR);
-	if (!ft_strncmp(data, "&", 2))
+	if (ft_iseq(data, "&"))
 		return (WRONG);
-	if (!ft_strncmp(data, "&&", 3))
+	if (ft_iseq(data, "&&"))
 		return (AND);
-	if (!ft_strncmp(data, "(", 2))
+	if (ft_iseq(data, "("))
 		return (PARENTHESIS_L);
-	if (!ft_strncmp(data, ")", 2))
+	if (ft_iseq(data, ")"))
 		return (PARENTHESIS_R);
 	return (WRONG);
 }
@@ -75,7 +75,7 @@ static void	get_token_meta(t_token **head, const char *str, size_t *start)
 	*start = end;
 }
 
-t_token	*tokenizer(const char *str)
+t_token	*tokenizer(const char *str, t_context *context)
 {
 	t_token			*head;
 	size_t			start;
@@ -86,8 +86,15 @@ t_token	*tokenizer(const char *str)
 	while (str[start])
 	{
 		get_token_word(&head, str, &start);
-		get_token_meta(&head, str, &start);
+		if (is_heredoc(head) \
+			&& (handle_heredoc(get_tail_token(head), context) == REDIR_ERR))
+		{
+			clear_fd(head);
+			clear_token(&head);
+			break ;
+		}
 		skip_space(str, &start);
+		get_token_meta(&head, str, &start);
 	}
 	return (head);
 }

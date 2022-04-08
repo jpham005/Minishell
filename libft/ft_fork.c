@@ -6,11 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 19:45:12 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 09:45:43 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 19:45:55 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,7 +22,7 @@ pid_t	ft_fork(void)
 	pid = fork();
 	if (pid == -1)
 	{
-		perror("fork");
+		ft_perror("fork", errno);
 		ft_exit(1);
 	}
 	return (pid);

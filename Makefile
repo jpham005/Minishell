@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/07 16:02:39 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/08 16:35:06 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,9 @@ TOKENIZER_DIR		:=	$(SRCS_DIR)/tokenizer
 UTILS_DIR			:=	$(SRCS_DIR)/utils
 
 INCLUDE				:=	include
-INCLUDE_FILES		:=	built_in.h color.h envp.h expander.h lexer.h parser.h \
-						terminal.h tokenizer.h t_buffer.h utils.h
+INCLUDE_FILES		:=	built_in.h color.h cmd_tree.h envp.h executor.h \
+						expander.h lexer.h parser.h terminal.h tokenizer.h \
+						t_buffer.h t_redir.h utils.h
 INCLUDE_FILES		:=	$(addprefix $(INCLUDE)/, $(INCLUDE_FILES))
 
 READLINE_DIR		:=	$(shell brew --prefix readline)
@@ -36,9 +37,7 @@ BUILT_IN_SRCS		:=	export.c unset.c env.c pwd.c exit.c exit_util.c \
 BUILT_IN_SRCS		:=	$(addprefix $(BUILT_IN_DIR)/, $(BUILT_IN_SRCS))
 ENVP_SRCS			:=	init_destroy.c util.c print.c tool.c
 ENVP_SRCS			:=	$(addprefix $(ENVP_DIR)/, $(ENVP_SRCS))
-EXECUTOR_SRCS		:=	executor.c executor_util.c execute_cmd.c \
-						execute_built_in.c execute_child.c set_redir.c \
-						execute_next_node.c pid_list.c handle_pipe.c
+EXECUTOR_SRCS		:=	executor.c executor_util.c execute_cmd.c execute_built_in.c execute_child.c set_redir.c pid_list.c
 EXECUTOR_SRCS		:=	$(addprefix $(EXECUTOR_DIR)/, $(EXECUTOR_SRCS))
 EXPANDER_SRCS		:=	expander.c expander_util.c expand_shell_param.c \
 						expand_with_envp.c expand_with_exit_status.c \
@@ -51,15 +50,15 @@ LEXER_SRCS			:=	lexer.c check_near_token_err.c \
 						check_special_type_syntax.c check_match_err.c \
 						lexer_err_info_manage.c
 LEXER_SRCS			:=	$(addprefix $(LEXER_DIR)/, $(LEXER_SRCS))
-REDIRECTION_SRCS	:=	redirection.c redirection_util.c heredoc.c \
-						heredoc_util.c get_redir_in.c redirection_test.c \
-						heredoc_return.c get_redir_out.c
+REDIRECTION_SRCS	:=	redirection.c redirection_util.c get_redir_in.c \
+						redirection_test.c get_redir_out.c
 REDIRECTION_SRCS	:=	$(addprefix $(REDIRECTION_DIR)/, $(REDIRECTION_SRCS))
 PARSER_SRCS			:=	parser.c remove_parenthesis_token.c find_meta.c \
 						get_new_token.c init_destroy_tree.c tree_tester.c
 PARSER_SRCS			:=	$(addprefix $(PARSER_DIR)/, $(PARSER_SRCS))
 TOKENIZER_SRCS		:=	quote_mask.c token_init_destroy.c token_tool.c \
-						tokenizer.c  tokenizer_util.c token_init_destroy_util.c
+						tokenizer.c tokenizer_util.c token_init_destroy_util.c \
+						heredoc.c heredoc_util.c heredoc_end.c
 TOKENIZER_SRCS		:=	$(addprefix $(TOKENIZER_DIR)/, $(TOKENIZER_SRCS))
 TERMINAL_SRCS		:=	check_default_state.c set_state.c signal_handler.c \
 						init.c readline_loop.c check_valid_str.c \
@@ -77,8 +76,8 @@ LIBFT				:=	$(LIBFT_DIR)/libft.a
 CC					:=	cc
 CFLAGS				:=	-g# -fsanitize=address
 NAME				:=	minishell
-SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS) $(EXECUTOR_SRCS) \
-						$(EXPANDER_SRCS) $(LEXER_SRCS) $(REDIRECTION_SRCS) \
+SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS)  \
+						$(EXPANDER_SRCS) $(LEXER_SRCS)  $(REDIRECTION_SRCS) \
 						$(PARSER_SRCS) $(TERMINAL_SRCS) $(TOKENIZER_SRCS) \
 						$(UTILS_SRCS) $(MAIN_SRCS)
 OBJS				:=	$(SRCS:.c=.o)

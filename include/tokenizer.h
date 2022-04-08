@@ -6,14 +6,18 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 22:31:21 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 17:18:17 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 
-# include <sys/types.h>
+# include "t_buffer.h"
+# include "t_redir.h"
+# include "terminal.h"
+
+# define HEREDOC_WRITE_ERR_MESSAGE "write err while heredoc\n"
 
 typedef enum e_quote_mask		t_quote_mask;
 typedef enum e_token_type		t_token_type;
@@ -50,6 +54,7 @@ struct s_token
 	t_expanded_list	*expanded_list;
 	t_token			*next;
 	t_token			*prev;
+	t_redir			*redir;
 };
 
 struct s_expanded_list
@@ -60,7 +65,7 @@ struct s_expanded_list
 };
 
 // tokenizer
-t_token			*tokenizer(const char *str);
+t_token			*tokenizer(const char *str, t_context *context);
 
 // token init destroy
 t_token			*init_token(const char *data, t_token_type type);
@@ -88,5 +93,20 @@ int				is_meta_char(char c);
 int				is_double_meta_char(const char *str, size_t start);
 int				is_split_condition(char c, t_quote_mask mask);
 void			skip_space(const char *str, size_t *start);
+void			clear_fd(t_token *token);
+
+// heredoc
+t_redir_result	handle_heredoc(t_token *token, t_context *context);
+
+// heredoc util
+void			set_heredoc_info(char *str, t_heredoc *heredoc, \
+															t_buffer *buffer);
+int				is_heredoc_end(char *input, char *limit);
+void			set_cursur_heredoc(void);
+void			write_heredoc_string(char *input, int fd);
+int				is_heredoc(t_token *token);
+
+// heredoc end
+int				end_heredoc(char **input, int here_pipe[2]);
 
 #endif

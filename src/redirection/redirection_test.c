@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 21:22:17 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 17:18:43 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 21:31:29 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	test_redir(t_parse_tree *parse_tree)
 		return ;
 	printf("\n==================================================================\n");
 	printf("me : %p\n", parse_tree);
-	if (parse_tree->token->data)
+	if (!parse_tree->token)
+		printf("null token\n");
+	else if (parse_tree->token->data)
 		printf("token data : %s\n", parse_tree->token->data);
 
 	printf("\n---------------------------------------------------------------------\n");
@@ -53,10 +55,10 @@ void	test_redir(t_parse_tree *parse_tree)
 	else{
 		printf("redir in  : %d\n", parse_tree->redir->in);
 		printf("redir out : %d\n", parse_tree->redir->out);
-	printf("-------------\n");
-	ssize_t readsize = read(parse_tree->redir->in, buf, 1000);
-	write(1, buf, readsize);
-	write(1, "@end\n", 5);
+	// printf("-------------\n");
+	// ssize_t readsize = read(parse_tree->redir->in, buf, 1000);
+	// write(1, buf, readsize);
+	// write(1, "@end\n", 5);
 	}
 	go_next_redir(parse_tree, 1);
 	go_next_redir(parse_tree, 2);

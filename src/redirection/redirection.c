@@ -6,25 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 20:34:48 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 22:10:38 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "redirection.h"
-#include "terminal.h"
-
-static t_redir	*init_redir(void)
-{
-	t_redir	*ret;
-
-	ret = ft_malloc(sizeof(t_redir), 1);
-	ret->in = STDIN_FILENO;
-	ret->out = STDOUT_FILENO;
-	ret->err = NULL;
-	ret->err_target = NULL;
-	return (ret);
-}
 
 static void	inherit_fd(t_parse_tree *parse_tree, t_redir *old_redir)
 {
@@ -40,9 +27,10 @@ static t_redir_result	perform_redirection(
 {
 	parse_tree->redir = init_redir();
 	inherit_fd(parse_tree, old_redir);
-	if (get_redir_in(parse_tree, context) == REDIR_ERR)
-		return (REDIR_ERR);
-	get_redir_out(parse_tree);
+	if (parse_tree->type & REDIR_INS)
+		get_redir_in(parse_tree);
+	if (parse_tree->type & REDIR_OUTS)
+		get_redir_out(parse_tree);
 	return (REDIR_SUCCESS);
 }
 

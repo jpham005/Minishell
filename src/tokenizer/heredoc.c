@@ -5,15 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/01 20:03:30 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 10:37:51 by jaham            ###   ########.fr       */
+/*   Created: 2022/04/08 10:20:06 by jaham             #+#    #+#             */
+/*   Updated: 2022/04/08 16:47:22 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
 #include "libft.h"
-#include "redirection.h"
-#include <stdlib.h>
+#include "expander.h"
+#include "tokenizer.h"
 
 static void	perform_heredoc_expansion(
 	char **input, t_buffer *buffer, t_context *context
@@ -45,17 +44,34 @@ static void	heredoc_child(
 			ft_exit(end_heredoc(&input, here_pipe));
 		if (heredoc->quoted == NOT_QUOTED)
 			perform_heredoc_expansion(&input, buffer, context);
-		if (!write_heredoc_string(input, here_pipe[1]))
-		{
-			ft_free((void **) &input);
-			ft_exit(1);
-		}
+		write_heredoc_string(input, here_pipe[1]);
 		ft_free((void **) &input);
 	}
 }
 
-static t_redir_result	perform_heredoc(t_parse_tree *parse_tree, \
-					t_context *context, t_heredoc *heredoc, t_buffer *buffer)
+static t_redir_result	return_with_status(
+	int heredoc_stat, int here_pipe[2], t_token *token, t_heredoc *heredoc
+)
+{
+	if (heredoc_stat == 1)
+	{
+		ft_close(here_pipe[0]);
+		token->prev->redir->err_target = ft_strdup(heredoc->limit);
+		token->prev->redir->err = ft_strdup(HEREDOC_WRITE_ERR_MESSAGE);
+	}
+	else if (heredoc_stat == 2)
+	{
+		ft_close(here_pipe[0]);
+		return (REDIR_ERR);
+	}
+	else
+		token->prev->redir->in = here_pipe[0];
+	return (REDIR_SUCCESS);
+}
+
+static t_redir_result	perform_heredoc(
+	t_token *token, t_context *context, t_heredoc *heredoc, t_buffer *buffer
+)
 {
 	int		here_pipe[2];
 	int		heredoc_stat;
@@ -69,38 +85,25 @@ static t_redir_result	perform_heredoc(t_parse_tree *parse_tree, \
 	ft_close(here_pipe[1]);
 	ft_waitpid(pid, &heredoc_stat, 0);
 	heredoc_stat = ft_wexitstatus(heredoc_stat);
-	if (heredoc_stat == 1)
-	{
-		ft_close(here_pipe[0]);
-		set_redir_err(parse_tree, heredoc->limit, HEREDOC_WRITE_ERR_MESSAGE);
-	}
-	else if (heredoc_stat == 2)
-	{
-		ft_close(here_pipe[0]);
-		return (REDIR_ERR);
-	}
-	else
-		parse_tree->redir->in = heredoc_stat;
-	return (REDIR_SUCCESS);
+	return (return_with_status(heredoc_stat, here_pipe, token, heredoc));
 }
 
-t_redir_result	handle_redir_heredoc(t_parse_tree *parse_tree, \
-														t_context *context)
+t_redir_result	handle_heredoc(t_token *token, t_context *context)
 {
 	t_redir_result	ret;
 	t_buffer		buffer;
 	t_heredoc		heredoc;
 
-	ft_close(parse_tree->redir->in);
 	ret = REDIR_SUCCESS;
 	init_t_buffer(&buffer);
-	set_heredoc_info(parse_tree->right->original_str, &heredoc, &buffer);
-	if (perform_heredoc(parse_tree, context, &heredoc, &buffer) == REDIR_ERR)
+	set_heredoc_info(token->data, &heredoc, &buffer);
+	if (perform_heredoc(token, context, &heredoc, &buffer) == REDIR_ERR)
 	{
 		context->exit_status = 1;
 		ret = REDIR_ERR;
 	}
 	ft_free((void **) &(buffer.str));
 	ft_free((void **) &(heredoc.limit));
+	ft_putstr_fd(BLUE_BT, STDERR_FILENO);
 	return (ret);
 }

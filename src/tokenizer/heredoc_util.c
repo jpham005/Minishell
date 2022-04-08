@@ -5,18 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/01 20:39:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 15:01:21 by jaham            ###   ########.fr       */
+/*   Created: 2022/04/08 10:36:14 by jaham             #+#    #+#             */
+/*   Updated: 2022/04/08 13:55:34 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
-#include "redirection.h"
+#include "tokenizer.h"
 
 int	is_heredoc_end(char *input, char *limit)
 {
-	return (!input || !ft_strncmp(input, limit, ft_strlen(limit) + 1));
+	return (!input || ft_iseq(input, limit));
 }
 
 void	set_heredoc_info(char *str, t_heredoc *heredoc, t_buffer *buffer)
@@ -46,7 +46,19 @@ void	set_cursur_heredoc(void)
 	ft_putstr_fd("\033[2C", 1);
 }
 
-int	write_heredoc_string(char *input, int fd)
+void	write_heredoc_string(char *input, int fd)
 {
-	return ((ft_putstr_fd(input, fd) != -1) && (ft_putstr_fd("\n", fd) != -1));
+	if ((ft_putstr_fd(input, fd) == -1) || (ft_putstr_fd("\n", fd) == -1))
+		ft_exit(1);
+}
+
+int	is_heredoc(t_token *token)
+{
+	t_token	*target;
+
+	if (!token)
+		return (0);
+	target = get_tail_token(token);
+	return (target && (target->type == WORD) && target->prev \
+			&& (target->prev->type == REDIR_HEREDOC));
 }

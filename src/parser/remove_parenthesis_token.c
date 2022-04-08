@@ -6,11 +6,28 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:48:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/01 22:56:44 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/08 20:26:41 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "parser.h"
+
+static int	is_removable(t_token *head)
+{
+	ssize_t	parenthesis_cnt;
+
+	parenthesis_cnt = 1;
+	while (head && parenthesis_cnt)
+	{
+		if (head->type == PARENTHESIS_L)
+			parenthesis_cnt++;
+		else if (head->type == PARENTHESIS_R)
+			parenthesis_cnt--;
+		head = head->next;
+	}
+	return (head == NULL);
+}
 
 static void	perform_remove(t_token **head, t_token **tail)
 {
@@ -21,12 +38,10 @@ static void	perform_remove(t_token **head, t_token **tail)
 void	remove_parenthesis_token(t_token **tail)
 {
 	t_token	*head;
+	size_t	head_cnt;
+	size_t	tail_cnt;
 
 	head = get_head_token(*tail);
-	if (
-		head
-		&& (head->type == PARENTHESIS_L)
-		&& ((*tail)->type == PARENTHESIS_R)
-	)
+	while (head && (head->type == PARENTHESIS_L) && is_removable(head->next))
 		perform_remove(&head, tail);
 }
