@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 18:02:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 22:10:43 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 16:01:18 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,7 @@ void	set_redir_err(t_parse_tree *parse_tree, char *target, char *err)
 		parse_tree->redir->err = ft_strdup(err);
 }
 
-t_redir	*init_redir(void)
+int	is_multiple_redir(t_parse_tree *parse_tree, t_redir_types types)
 {
-	t_redir	*ret;
-
-	ret = ft_malloc(sizeof(t_redir), 1);
-	ret->in = STDIN_FILENO;
-	ret->out = STDOUT_FILENO;
-	ret->err = NULL;
-	ret->err_target = NULL;
-	return (ret);
-}
-
-void	destroy_redir(t_redir **redir)
-{
-	ft_free((void **) &((*redir)->err));
-	ft_free((void **) &((*redir)->err_target));
-	ft_free((void **) redir);
-}
-
-int	is_multiple_redir(t_parse_tree *parse_tree, t_token_type types)
-{
-	return (parse_tree->up && (parse_tree->up->type & types));
+	return (parse_tree->up && (parse_tree->up->type & (t_token_type) types));
 }

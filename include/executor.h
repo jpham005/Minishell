@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:38:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 10:32:49 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 17:08:29 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef enum e_exit_status	t_exit_status;
 typedef enum e_cmd_type		t_cmd_type;
 typedef enum e_cmd_stat		t_cmd_stat;
 typedef struct stat			t_stat;
+typedef struct s_pipes		t_pipes;
 typedef struct s_pid_list	t_pid_list;
-typedef struct s_cmd_tree	t_cmd_tree;
 
 enum e_exit_status
 {
@@ -30,6 +30,9 @@ enum e_exit_status
 	EXIT_ERR = 125,
 	PERM = 1,
 	NOENT = 2,
+	EXIT_SIGNAL = 128,
+	STOP_SIGNAL = 17,
+	CONTINUE_SIGNAL = 19,
 };
 
 enum e_cmd_type
@@ -52,16 +55,17 @@ enum e_cmd_stat
 	SUCCESS
 };
 
+struct s_pipes
+{
+	char	**cmd;
+	t_redir	*redir;
+	t_pipes	*next;
+};
+
 struct s_pid_list
 {
 	pid_t		pid;
 	t_pid_list	*next;
-};
-
-struct s_cmd_tree
-{
-	t_token_type	type;
-	size_t			len;
 };
 
 # define NOT_FOUND_MESSAGE "No such file or directory\n"
@@ -70,42 +74,11 @@ struct s_cmd_tree
 # define CMD_NOT_FOUND_MESSAGE "command not found\n"
 
 // executor
-void			executor(t_parse_tree *parse_tree, t_context *context, \
-														t_pid_list **pid_list);
+void	executor(t_parse_tree *parse_tree, t_context *context);
 
-// executor util
-t_cmd_type		get_cmd_type(const char *data);
-int				get_exit_status(int stat);
-int				check_redir_err(t_redir *redir);
-
-// execute cmd
-void			execute_cmd(t_parse_tree *parse_tree, t_context *context);
-void			execute_pipeline(t_parse_tree *parse_tree, t_context *context);
-
-// execute bulit_in
-int				try_exec_built_in(t_parse_tree *parse_tree, t_context *context);
-
-// execute child
-void			execute_child(t_parse_tree *parse_tree, t_context *context);
-
-// set redir
-int				set_in_out(int in, int out);
-int				restore_in_out(t_context *context);
-
-// pid list
-void			add_pid_list(t_pid_list **head, pid_t pid);
-void			clear_pid_list(t_pid_list **head);
-int				wait_pid_list(t_pid_list *head);
-
-// execute next node
-void			execute_next_node(t_parse_tree *parse_tree, \
-								t_context *context, t_pid_list **pid_list);
-t_parse_tree	*get_next_node(t_parse_tree *parse_tree, t_move_direction dir);
-
-// handle pipe
-void			handle_pipe(t_parse_tree *parse_tree, t_context *context, \
-														t_pid_list **pid_list);
-void			set_pipe_fd(t_parse_tree *parse_tree, int in, int out, \
-														t_move_direction dir);
+// init destory pipes
+t_pipes	*init_pipes(char **cmd, t_redir *redir);
+void	add_pipes(t_pipes **head, t_pipes *new);
+void	clear_pipes(t_pipes **head);
 
 #endif

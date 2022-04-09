@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:55:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 20:37:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 14:56:45 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 #include "libft.h"
 
 static void	go_side_node(
-	t_parse_tree *parse_tree, t_context *context, t_move_direction direction
+	t_parse_tree *parse_tree, t_context *context, t_move_direction dir
 )
 {
-	if (direction == RIGHT)
-		expander(parse_tree->right, context);
-	else if (direction == LEFT)
-		expander(parse_tree->left, context);
+	if (dir == RIGHT)
+		parse_tree = parse_tree->right;
+	else if (dir == LEFT)
+		parse_tree = parse_tree->left;
+	if (parse_tree && !((parse_tree->up->type & (AND | OR)) && (dir == RIGHT)))
+		expander(parse_tree, context);
 }
 
 static void	get_new_token(t_parse_tree *parse_tree, t_context *context)

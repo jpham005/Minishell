@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:42:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/07 15:48:02 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 16:26:05 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,20 @@ int	get_exit_status(int stat)
 	if (ft_wifexited(stat))
 		return (ft_wexitstatus(stat));
 	if (ft_wifsignaled(stat))
-		return (ft_wtermsig(stat) + 128);
+		return (ft_wtermsig(stat) + EXIT_SIGNAL);
 	if (ft_wifstopped(stat))
-		return (17 + 128);
-	return (19 + 128);
+		return (STOP_SIGNAL + EXIT_SIGNAL);
+	return (CONTINUE_SIGNAL + EXIT_SIGNAL);
 }
 
 int	check_redir_err(t_redir *redir)
 {
 	if (!redir->err)
-		return (1);
+		return (EXIT_SUCCESS);
 	ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
 	ft_putstr_fd(redir->err_target, STDERR_FILENO);
 	ft_putstr_fd(":", STDERR_FILENO);
 	ft_putstr_fd(redir->err, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
-	return (0);
+	return (EXIT_REDIR_ERR);
 }

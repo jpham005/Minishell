@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:51:43 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 10:21:18 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 15:18:15 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_search_result	find_meta(t_token *tail, t_token **searched, t_meta_type type);
 // init destroy tree
 void			insert_tree_node(t_parse_tree **parse_tree, t_token *searched, \
 													t_parse_tree *prev_node);
-void			destroy_parse_tree(t_parse_tree **parse_tree);
+void			clear_parse_tree(t_parse_tree **parse_tree);
 
 // get splited token
 void			get_left_node(t_parse_tree *parse_tree, t_token *searched);

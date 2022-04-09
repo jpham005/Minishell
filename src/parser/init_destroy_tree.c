@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:41:08 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 16:35:47 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 15:18:15 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	clear_redir(t_parse_tree *parse_tree)
 	ft_free((void **) &(parse_tree->redir));
 }
 
-void	destroy_parse_tree(t_parse_tree **parse_tree)
+void	clear_parse_tree(t_parse_tree **parse_tree)
 {
 	t_parse_tree	*left;
 	t_parse_tree	*right;
@@ -69,6 +69,6 @@ void	destroy_parse_tree(t_parse_tree **parse_tree)
 	clear_redir(*parse_tree);
 	ft_free((void **) &((*parse_tree)->original_str));
 	ft_free((void **) parse_tree);
-	destroy_parse_tree(&left);
-	destroy_parse_tree(&right);
+	clear_parse_tree(&left);
+	clear_parse_tree(&right);
 }

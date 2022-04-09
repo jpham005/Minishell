@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:14:38 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/07 16:02:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 16:10:55 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	execute_single_cmd(t_parse_tree *parse_tree, t_context *context)
 	if (try_exec_built_in(parse_tree, context) && restore_in_out(context))
 		return ;
 	pid = ft_fork();
-	// printf("single cmd %d\n", pid);
 	if (!pid)
 		execute_child(parse_tree, context);
 	else if (!ft_waitpid(pid, &stat, 0))

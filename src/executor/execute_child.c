@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 09:47:14 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 14:13:49 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ static void	execute_with_envp_path(
 	if (!cmd)
 		exit_with_msg(parse_tree->token->data, CMD_NOT_FOUND_MESSAGE, \
 															EXIT_ERR + NOENT);
-	update_envp_list(&(context->envp), "_", cmd);
 	execve(cmd, convert_token_to_dptr(parse_tree->token), \
 										convert_envp_to_dptr(context->envp));
 	exit_with_msg(parse_tree->token->data, strerror(errno), EXIT_ERR + errno);

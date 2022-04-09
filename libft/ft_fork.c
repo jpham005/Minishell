@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 19:45:12 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 19:45:55 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 17:23:08 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ pid_t	ft_fork(void)
 
 	pid = fork();
 	if (pid == -1)
-	{
 		ft_perror("fork", errno);
-		ft_exit(1);
-	}
 	return (pid);
 }

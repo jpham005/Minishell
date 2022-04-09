@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:52:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 16:36:23 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 15:59:27 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_token	*init_token(const char *data, t_token_type type)
 	t_token	*ret;
 
 	ret = ft_malloc(sizeof(t_token), 1);
-	ret->redir = init_redir();
+	ret->redir = init_redir(STDIN_FILENO, STDOUT_FILENO, NULL, NULL);
 	ret->data = ft_strdup(data);
 	ret->type = type;
 	ret->expanded_list = NULL;
