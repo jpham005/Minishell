@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:05:01 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/05 17:39:07 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 17:32:39 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int	wait_pid_list(t_pid_list *head)
 
 	while (head && head->next)
 	{
-		ft_waitpid(head->pid, NULL, 0);
+		ft_waitpid(head->pid, &stat, 0);
 		head = head->next;
 	}
-	if (head)
+	if (head && head->pid != -1)
 		ft_waitpid(head->pid, &stat, 0);
 	return (stat);
 }

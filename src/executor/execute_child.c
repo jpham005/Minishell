@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 14:13:49 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 21:58:04 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,19 @@ static t_cmd_stat	get_cmd_stat(const char *data)
 	return (SUCCESS);
 }
 
-static void	execute_with_user_path(t_parse_tree *parse_tree, t_context *context)
+static void	execute_with_user_path(t_pipes *pipes, t_context *context)
 {
 	int				stat;
-	t_token * const	token = parse_tree->token;
 
-	stat = get_cmd_stat(token->data);
+	stat = get_cmd_stat(pipes->cmd[0]);
 	if (stat == FILE_NOT_FOUND)
-		exit_with_msg(token->data, NOT_FOUND_MESSAGE, EXIT_ERR + NOENT);
+		exit_with_msg(pipes->cmd[0], NOT_FOUND_MESSAGE, EXIT_ERR + NOENT);
 	if (stat == IS_DIR)
-		exit_with_msg(token->data, IS_DIR_MESSAGE, EXIT_ERR + PERM);
+		exit_with_msg(pipes->cmd[0], IS_DIR_MESSAGE, EXIT_ERR + PERM);
 	if (stat == NO_PERMISSION)
-		exit_with_msg(token->data, NO_PERMISSION_MESSAGE, EXIT_ERR + PERM);
-	execve(token->data, convert_token_to_dptr(token), \
-										convert_envp_to_dptr(context->envp));
-	exit_with_msg(token->data, strerror(errno), EXIT_ERR + errno);
+		exit_with_msg(pipes->cmd[0], NO_PERMISSION_MESSAGE, EXIT_ERR + PERM);
+	execve(pipes->cmd[0], pipes->cmd, convert_envp_to_dptr(context->envp));
+	exit_with_msg(pipes->cmd[0], strerror(errno), EXIT_ERR + errno);
 }
 
 static char	*find_cmd_from_path(
@@ -75,30 +73,29 @@ static char	*find_cmd_from_path(
 }
 
 static void	execute_with_envp_path(
-	t_parse_tree *parse_tree, t_context *context, t_envp_list *path_list
+	t_pipes *pipes, t_context *context, t_envp_list *path_list
 )
 {
 	char	*cmd;
 
-	cmd = find_cmd_from_path(parse_tree->token->data, context, path_list);
+	cmd = find_cmd_from_path(pipes->cmd[0], context, path_list);
 	if (!cmd)
-		exit_with_msg(parse_tree->token->data, CMD_NOT_FOUND_MESSAGE, \
+		exit_with_msg(pipes->cmd[0], CMD_NOT_FOUND_MESSAGE, \
 															EXIT_ERR + NOENT);
-	execve(cmd, convert_token_to_dptr(parse_tree->token), \
-										convert_envp_to_dptr(context->envp));
-	exit_with_msg(parse_tree->token->data, strerror(errno), EXIT_ERR + errno);
+	execve(cmd, pipes->cmd, convert_envp_to_dptr(context->envp));
+	exit_with_msg(pipes->cmd[0], strerror(errno), EXIT_ERR + errno);
 }
 
-void	execute_child(t_parse_tree *parse_tree, t_context *context)
+void	execute_child(t_pipes *pipes, t_context *context)
 {
 	t_envp_list	*path_list;
 
 	set_sig_handler_child();
-	if (!parse_tree->token)
+	if (!pipes->cmd)
 		ft_exit(0);
 	path_list = find_list_by_key(context->envp, "PATH");
-	if (ft_strchr(parse_tree->token->data, '/') || !path_list)
-		execute_with_user_path(parse_tree, context);
+	if (ft_strchr(pipes->cmd[0], '/') || !path_list)
+		execute_with_user_path(pipes, context);
 	else
-		execute_with_envp_path(parse_tree, context, path_list);
+		execute_with_envp_path(pipes, context, path_list);
 }

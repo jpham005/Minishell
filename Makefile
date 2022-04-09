@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/08 16:35:06 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/09 22:52:42 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,10 @@ BUILT_IN_SRCS		:=	export.c unset.c env.c pwd.c exit.c exit_util.c \
 BUILT_IN_SRCS		:=	$(addprefix $(BUILT_IN_DIR)/, $(BUILT_IN_SRCS))
 ENVP_SRCS			:=	init_destroy.c util.c print.c tool.c
 ENVP_SRCS			:=	$(addprefix $(ENVP_DIR)/, $(ENVP_SRCS))
-EXECUTOR_SRCS		:=	executor.c executor_util.c execute_cmd.c execute_built_in.c execute_child.c set_redir.c pid_list.c
+EXECUTOR_SRCS		:=	executor.c executor_util.c init_destroy_pipes.c \
+						execute_next_node.c pid_list.c execute_child.c \
+						execute_pipes.c execute_pipeline.c make_pipes.c \
+						set_in_out.c execute_built_in.c
 EXECUTOR_SRCS		:=	$(addprefix $(EXECUTOR_DIR)/, $(EXECUTOR_SRCS))
 EXPANDER_SRCS		:=	expander.c expander_util.c expand_shell_param.c \
 						expand_with_envp.c expand_with_exit_status.c \
@@ -76,8 +79,8 @@ LIBFT				:=	$(LIBFT_DIR)/libft.a
 CC					:=	cc
 CFLAGS				:=	-g# -fsanitize=address
 NAME				:=	minishell
-SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS)  \
-						$(EXPANDER_SRCS) $(LEXER_SRCS)  $(REDIRECTION_SRCS) \
+SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS) $(EXECUTOR_SRCS) \
+						$(EXPANDER_SRCS) $(LEXER_SRCS) $(REDIRECTION_SRCS) \
 						$(PARSER_SRCS) $(TERMINAL_SRCS) $(TOKENIZER_SRCS) \
 						$(UTILS_SRCS) $(MAIN_SRCS)
 OBJS				:=	$(SRCS:.c=.o)

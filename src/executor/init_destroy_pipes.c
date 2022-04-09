@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 15:25:32 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 15:56:29 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 22:49:51 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	clear_pipes(t_pipes **head)
 	while (cp)
 	{
 		temp = cp->next;
-		del_pipes(cp);
+		del_pipes(&cp);
 		cp = temp;
 	}
 	*head = NULL;

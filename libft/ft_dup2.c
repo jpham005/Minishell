@@ -6,23 +6,19 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 02:47:14 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 19:45:42 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 22:18:12 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <errno.h>
 #include <stdio.h>
-#include <fcntl.h>
+
 int	ft_dup2(int fd1, int fd2)
 {
-	if (((fd1 == STDIN_FILENO) && (fd2 == STDIN_FILENO)) \
-		|| ((fd1 == STDOUT_FILENO) && (fd2 == STDOUT_FILENO)))
-		return (1);
 	if (dup2(fd1, fd2) == -1)
 	{
 		ft_perror("dup2", errno);
-		printf("duping %d %d\n", fd1, fcntl(fd1, F_GETFD));
 		return (0);
 	}
 	return (1);

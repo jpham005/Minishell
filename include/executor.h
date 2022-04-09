@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:38:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 17:08:29 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/09 22:53:41 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ enum e_exit_status
 {
 	EXIT_SUCCESS = 0,
 	EXIT_REDIR_ERR = 1,
+	EXIT_FATAL = 1,
 	EXIT_ERR = 125,
 	PERM = 1,
 	NOENT = 2,
@@ -74,11 +75,42 @@ struct s_pid_list
 # define CMD_NOT_FOUND_MESSAGE "command not found\n"
 
 // executor
-void	executor(t_parse_tree *parse_tree, t_context *context);
+void		executor(t_parse_tree *parse_tree, t_context *context);
 
 // init destory pipes
-t_pipes	*init_pipes(char **cmd, t_redir *redir);
-void	add_pipes(t_pipes **head, t_pipes *new);
-void	clear_pipes(t_pipes **head);
+t_pipes		*init_pipes(char **cmd, t_redir *redir);
+void		add_pipes(t_pipes **head, t_pipes *new);
+void		clear_pipes(t_pipes **head);
+
+// execute next node
+void		execute_next_node(t_parse_tree *parse_tree, t_context *context);
+
+// pid list
+void		add_pid_list(t_pid_list **head, pid_t pid);
+void		clear_pid_list(t_pid_list **head);
+int			wait_pid_list(t_pid_list *head);
+
+// executor util
+t_cmd_type	get_cmd_type(const char *cmd);
+int			get_exit_status(int stat);
+int			check_redir_err(t_redir *redir);
+
+// execute child
+void		execute_child(t_pipes *pipes, t_context *context);
+
+// execute pipes
+void		execute_pipes(t_pipes *pipes, t_context *context);
+void		execute_pipeline(t_pipes *pipes, t_context *context);
+
+// make pipes
+void		make_pipes(t_pipes **pipes, t_parse_tree *parse_tree);
+
+// set redir
+int			set_in_out(int in, int out);
+int			restore_in_out(t_context *context);
+
+// exec built in
+int			exec_built_in(t_cmd_type type, t_parse_tree *parse_tree, \
+															t_context *context);
 
 #endif
