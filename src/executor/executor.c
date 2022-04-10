@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:37:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 17:04:18 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/10 11:48:49 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	executor(
 
 	if (!parse_tree)
 		return ;
-	if (!(parse_tree->type & (WORD | PIPE)))
-		execute_next_node(parse_tree, context);
 	expander(parse_tree, context);
 	redirection(parse_tree, NULL, context);
 	pipes = NULL;

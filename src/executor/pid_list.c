@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 19:05:01 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 17:32:39 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/10 11:20:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	wait_pid_list(t_pid_list *head)
 {
 	int	stat;
 
+	stat = EXIT_FATAL << 8;
 	while (head && head->next)
 	{
 		ft_waitpid(head->pid, &stat, 0);
@@ -57,4 +58,11 @@ int	wait_pid_list(t_pid_list *head)
 	if (head && head->pid != -1)
 		ft_waitpid(head->pid, &stat, 0);
 	return (stat);
+}
+
+t_pid_list	*get_last_pid_list(t_pid_list *head)
+{
+	while (head && head->next)
+		head = head->next;
+	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 22:03:40 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 22:53:44 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/10 10:08:03 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,10 @@ static void	set_built_in_fptr(
 	built_in[6] = unset;
 }
 
-int	exec_built_in(
-	t_cmd_type type, t_parse_tree *parse_tree, t_context *context
-)
+int	execute_built_in(t_cmd_type type, t_pipes *pipes, t_context *context)
 {
-	char	**args;
 	int		(*built_in[7])(t_context *context, const char **argv);
-	int		ret;
 
-	args = convert_token_to_dptr(parse_tree->token);
 	set_built_in_fptr(built_in);
-	ret = built_in[type](context, (const char **) args);
-	free_c_dptr(&args);
-	return (ret);
+	return (built_in[type](context, (const char **) pipes->cmd));
 }

@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/09 22:52:42 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/10 10:00:20 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ ENVP_SRCS			:=	$(addprefix $(ENVP_DIR)/, $(ENVP_SRCS))
 EXECUTOR_SRCS		:=	executor.c executor_util.c init_destroy_pipes.c \
 						execute_next_node.c pid_list.c execute_child.c \
 						execute_pipes.c execute_pipeline.c make_pipes.c \
-						set_in_out.c execute_built_in.c
+						set_redir.c execute_built_in.c execute_pipeline_util.c
 EXECUTOR_SRCS		:=	$(addprefix $(EXECUTOR_DIR)/, $(EXECUTOR_SRCS))
 EXPANDER_SRCS		:=	expander.c expander_util.c expand_shell_param.c \
 						expand_with_envp.c expand_with_exit_status.c \
@@ -54,7 +54,7 @@ LEXER_SRCS			:=	lexer.c check_near_token_err.c \
 						lexer_err_info_manage.c
 LEXER_SRCS			:=	$(addprefix $(LEXER_DIR)/, $(LEXER_SRCS))
 REDIRECTION_SRCS	:=	redirection.c redirection_util.c get_redir_in.c \
-						redirection_test.c get_redir_out.c
+						redirection_test.c get_redir_out.c init_destroy_redir.c
 REDIRECTION_SRCS	:=	$(addprefix $(REDIRECTION_DIR)/, $(REDIRECTION_SRCS))
 PARSER_SRCS			:=	parser.c remove_parenthesis_token.c find_meta.c \
 						get_new_token.c init_destroy_tree.c tree_tester.c

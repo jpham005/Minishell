@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 21:58:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/10 09:58:56 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,14 @@ static void	execute_with_envp_path(
 void	execute_child(t_pipes *pipes, t_context *context)
 {
 	t_envp_list	*path_list;
+	t_cmd_type	type;
 
 	set_sig_handler_child();
 	if (!pipes->cmd)
 		ft_exit(0);
+	type = get_cmd_type(pipes->cmd[0]);
+	if (type != NON_BUILT_IN)
+		exit(execute_built_in(type, pipes, context));
 	path_list = find_list_by_key(context->envp, "PATH");
 	if (ft_strchr(pipes->cmd[0], '/') || !path_list)
 		execute_with_user_path(pipes, context);

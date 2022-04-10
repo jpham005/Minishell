@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 16:05:59 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 22:52:27 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/10 10:08:13 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ static void	execute_single_cmd(t_pipes *pipes, t_context *context)
 		context->exit_status = EXIT_REDIR_ERR;
 		return ;
 	}
-	exec_built_in(pipes, context);
 	if (type == NON_BUILT_IN)
 	{
 		execute_pipeline(pipes, context);
 		return ;
 	}
+	context->exit_status = execute_built_in(type, pipes, context);
 	restore_in_out(context);
 }
 
@@ -45,5 +45,6 @@ void	execute_pipes(t_pipes *pipes, t_context *context)
 {
 	if (!pipes->next)
 		execute_single_cmd(pipes, context);
-	execute_pipeline(pipes, context);
+	else
+		execute_pipeline(pipes, context);
 }

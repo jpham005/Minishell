@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 14:07:06 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 22:51:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/10 09:41:45 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 int	set_in_out(int in, int out)
 {
 	if (!ft_dup2(in, STDIN_FILENO))
-		return (0);
+		return (REDIR_ERR);
 	ft_close(in);
 	if (!ft_dup2(out, STDOUT_FILENO))
-		return (0);
+		return (REDIR_ERR);
 	ft_close(out);
-	return (1);
+	return (REDIR_SUCCESS);
 }
 
 int	restore_in_out(t_context *context)

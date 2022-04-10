@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 19:42:26 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 19:44:54 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/10 09:36:10 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	ft_perror(const char *data, int errno)
 		ft_putstr_fd(": ", STDERR_FILENO);
 	}
 	ft_putstr_fd(strerror(errno), STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }

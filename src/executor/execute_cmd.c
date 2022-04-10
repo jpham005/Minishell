@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:14:38 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 16:10:55 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/10 09:58:56 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	execute_pipeline(t_parse_tree *parse_tree, t_context *context)
 	if (!check_redir_err(parse_tree->redir) \
 		|| !set_in_out(parse_tree->redir->in, parse_tree->redir->out))
 		ft_exit(1);
-	if (try_exec_built_in(parse_tree, context))
+	if (try_execute_built_in(parse_tree, context))
 		ft_exit(context->exit_status);
 	execute_child(parse_tree, context);
 }
@@ -37,7 +37,7 @@ static void	execute_single_cmd(t_parse_tree *parse_tree, t_context *context)
 		context->exit_status = 1;
 		return ;
 	}
-	if (try_exec_built_in(parse_tree, context) && restore_in_out(context))
+	if (try_execute_built_in(parse_tree, context) && restore_in_out(context))
 		return ;
 	pid = ft_fork();
 	if (!pid)

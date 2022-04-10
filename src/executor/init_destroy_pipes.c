@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 15:25:32 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 22:49:51 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/10 11:49:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include "libft.h"
 #include "redirection.h"
 
-t_pipes	*init_pipes(char **cmd, t_redir *redir)
+t_pipes	*init_pipes(char **cmd, t_redir *redir, t_parse_tree *parse_tree)
 {
 	t_pipes	*ret;
 
 	ret = ft_malloc(sizeof(t_pipes), 1);
 	ret->cmd = cmd;
 	ret->redir = redir;
+	ret->parse_tree = parse_tree;
 	ret->next = NULL;
 	return (ret);
 }
