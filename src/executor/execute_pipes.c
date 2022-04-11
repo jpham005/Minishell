@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 16:05:59 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:20:37 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:52:57 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 static t_exit_status	set_execute_state(t_pipes *pipes)
 {
 	set_sig_handler_parent(pipes);
-	if (check_redir_err(pipes->redir) \
-		| set_in_out(pipes->redir->in, pipes->redir->out))
+	if ((check_redir_err(pipes->redir) == REDIR_ERR)\
+		|| set_in_out(pipes->redir->in, pipes->redir->out) == REDIR_ERR)
 		return (EXIT_REDIR_ERR);
 	return (EXIT_SUCCESS);
 }

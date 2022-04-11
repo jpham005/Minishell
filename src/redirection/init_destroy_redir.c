@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 16:01:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 16:04:02 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:50:57 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_redir	*copy_redir(t_redir *redir)
 {
 	t_redir	*ret;
 
+	if (!redir)
+		return (init_redir(STDIN_FILENO, STDOUT_FILENO, NULL, NULL));
 	ret = init_redir(redir->in, redir->out, NULL, NULL);
 	if (redir->err)
 	{
