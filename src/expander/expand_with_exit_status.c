@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand_with_exit_stauts.c                          :+:      :+:    :+:   */
+/*   expand_with_exit_status.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:12:07 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 17:21:17 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:33:34 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	expand_with_exit_status(
 {
 	char	*exit_status;
 	size_t	start;
-	size_t	end;
 
 	start = *i;
 	exit_status = ft_itoa(context->exit_status);

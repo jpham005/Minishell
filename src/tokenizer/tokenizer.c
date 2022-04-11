@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:48:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 17:16:52 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:35:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ t_token	*tokenizer(const char *str, t_context *context)
 {
 	t_token			*head;
 	size_t			start;
-	char			*data;
 
 	head = NULL;
 	start = 0;

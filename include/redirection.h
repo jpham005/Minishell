@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 16:04:39 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:14:28 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 # include "parser.h"
 
 # define TOKEN_ERR_MESSAGE "ambiguous redirect\n"
-
-typedef enum e_redir_types	t_redir_types;
-
-enum e_redir_types
-{
-	REDIR_TYPE = REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND,
-	REDIR_INS = REDIR_IN | REDIR_HEREDOC,
-	REDIR_OUTS = REDIR_OUT | REDIR_APPEND
-};
 
 // redirection
 t_redir_result	redirection(t_parse_tree *parse_tree, t_redir *redir, \

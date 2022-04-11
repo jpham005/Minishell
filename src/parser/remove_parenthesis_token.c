@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:48:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 20:26:41 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:35:11 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ static void	perform_remove(t_token **head, t_token **tail)
 void	remove_parenthesis_token(t_token **tail)
 {
 	t_token	*head;
-	size_t	head_cnt;
-	size_t	tail_cnt;
 
 	head = get_head_token(*tail);
 	while (head && (head->type == PARENTHESIS_L) && is_removable(head->next))

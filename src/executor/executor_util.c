@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:42:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/10 09:53:56 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:25:12 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "libft.h"
 
-static const char * const	*get_built_in_types(void)
+static const char*const	*get_built_in_types(void)
 {
 	static const char * const	built_in_types[] = {
 		"cd",
@@ -29,10 +29,10 @@ static const char * const	*get_built_in_types(void)
 	return (built_in_types);
 }
 
-t_cmd_type	get_cmd_type(const char *cmd)
+t_cmd_type	get_cmd_type(char *cmd)
 {
-	const char * const	*built_in = get_built_in_types();
-	size_t		i;
+	const char*const	*built_in = get_built_in_types();
+	size_t				i;
 
 	i = 0;
 	while (built_in[i] && ft_strncmp(cmd, built_in[i], ft_strlen(cmd) + 1))

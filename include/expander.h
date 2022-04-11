@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 21:59:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 10:32:42 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:22:34 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,6 @@
 # define EXPANDER_H
 
 # include "parser.h"
-
-typedef enum e_nametype		t_nametype;
-typedef struct s_filename	t_filename;
-
-enum e_nametype
-{
-	FIXED_STR = 0,
-	ASTERISK
-};
-
-struct s_filename
-{
-	char		*name;
-	char		*checked;
-	t_filename	*next;
-	t_nametype	type;
-};
 
 // expander
 void		expander(t_parse_tree *parse_tree, t_context *context);
@@ -50,7 +33,6 @@ void		expand_with_envp(t_token *token, t_buffer *buffer, \
 												t_context *context, size_t *i);
 void		expand_with_exit_status(t_token *token, t_buffer *buffer, \
 												t_context *context, size_t *i);
-
 
 // word spliting
 void		word_split(t_parse_tree *parse_tree, t_token **token);

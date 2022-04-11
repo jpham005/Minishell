@@ -6,16 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:06:37 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/02 17:53:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:34:46 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
 
-static int	is_valid_asterisk(
-	char c, t_expanded_list *expanded_list, size_t i, t_quote_mask *mask
-)
+static int	is_valid_asterisk(char c, t_quote_mask *mask)
 {
 	return ((c == '*') && !check_quote_mask(*mask));
 }
@@ -24,7 +22,7 @@ int	is_valid_quote(
 	char c, t_expanded_list *expanded_list, size_t i, t_quote_mask *mask
 )
 {
-	if ((c != '\'') && (c != '\"') \
+	if (((c != '\'') && (c != '\"')) \
 		|| ((c == '\'') && (*mask & DQUOTE)) \
 		|| ((c == '\"') && (*mask & SQUOTE)))
 		return (0);
@@ -46,7 +44,7 @@ static char	*get_fixed_string(
 	buffer->len = 0;
 	mask = 0;
 	while (token->data[*i] \
-		&& !is_valid_asterisk(token->data[*i], token->expanded_list, *i, &mask))
+		&& !is_valid_asterisk(token->data[*i], &mask))
 	{
 		check_quote_expanded(token, &mask, *i);
 		if (check_quote_mask(mask))

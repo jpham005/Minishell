@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:10:31 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/27 14:52:45 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:35:58 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	append_t_buffer(t_buffer *buffer, char c)
 
 void	append_t_buffer_string(t_buffer *buffer, char *str)
 {
-	char	*temp;
 	size_t	len;
 	size_t	i;
 

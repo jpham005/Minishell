@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 09:53:38 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/10 10:10:27 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 10:57:37 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	set_pipe_fd(t_pipes *pipes, int pipefd[2], int in)
 	int	status;
 
 	status = 0;
-	if (pipes->redir->in == STDIN_FILENO)
+	if (pipes->parse_tree || pipes->redir->in == STDIN_FILENO)
 		status |= !ft_dup2(in, STDIN_FILENO);
-	if (pipes->redir->out == STDOUT_FILENO)
+	if (pipes->parse_tree || pipes->redir->out == STDOUT_FILENO)
 		status |= !ft_dup2(pipefd[1], STDOUT_FILENO);
 	ft_close(in);
 	ft_close(pipefd[0]);
@@ -40,4 +40,17 @@ void	set_next_in(int pipefd[2], int *in)
 	ft_close(pipefd[1]);
 	ft_close(*in);
 	*in = pipefd[0];
+}
+
+t_exit_status	init_pipe(int pipefd[2])
+{
+	if (!ft_pipe(pipefd))
+		return (EXIT_FATAL);
+	return (EXIT_SUCCESS);
+}
+
+void	close_redir(t_redir *redir)
+{
+	ft_close(redir->in);
+	ft_close(redir->out);
 }

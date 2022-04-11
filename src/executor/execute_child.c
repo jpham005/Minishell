@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/10 09:58:56 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:33:29 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_cmd_stat	get_cmd_stat(const char *data)
 
 static void	execute_with_user_path(t_pipes *pipes, t_context *context)
 {
-	int				stat;
+	int	stat;
 
 	stat = get_cmd_stat(pipes->cmd[0]);
 	if (stat == FILE_NOT_FOUND)
@@ -44,15 +44,13 @@ static void	execute_with_user_path(t_pipes *pipes, t_context *context)
 	exit_with_msg(pipes->cmd[0], strerror(errno), EXIT_ERR + errno);
 }
 
-static char	*find_cmd_from_path(
-	const char *data, t_context *context, t_envp_list *path_list
-)
+static char	*find_cmd_from_path(const char *data, t_envp_list *path_list)
 {
 	char		**path;
 	char		*ret;
 	char		*temp;
 	t_stat		stat;
-	
+
 	if (!data[0])
 		return (NULL);
 	path = ft_split(path_list->value, ":");
@@ -78,7 +76,7 @@ static void	execute_with_envp_path(
 {
 	char	*cmd;
 
-	cmd = find_cmd_from_path(pipes->cmd[0], context, path_list);
+	cmd = find_cmd_from_path(pipes->cmd[0], path_list);
 	if (!cmd)
 		exit_with_msg(pipes->cmd[0], CMD_NOT_FOUND_MESSAGE, \
 															EXIT_ERR + NOENT);

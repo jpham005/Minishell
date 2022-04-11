@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 17:18:17 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:20:16 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,9 @@
 # define TOKENIZER_H
 
 # include "t_buffer.h"
-# include "t_redir.h"
 # include "terminal.h"
 
 # define HEREDOC_WRITE_ERR_MESSAGE "write err while heredoc\n"
-
-typedef enum e_quote_mask		t_quote_mask;
-typedef enum e_token_type		t_token_type;
-typedef enum e_expand_status	t_expand_status;
-typedef struct s_token			t_token;
-typedef struct s_expanded_list	t_expanded_list;
-
-enum e_quote_mask
-{
-	SQUOTE = 1 << 0,
-	DQUOTE = 1 << 1
-};
-
-enum e_token_type
-{
-	WORD = 1 << 0,
-	REDIR_IN = 1 << 1,
-	REDIR_HEREDOC = 1 << 2,
-	REDIR_OUT = 1 << 3,
-	REDIR_APPEND = 1 << 4,
-	PIPE = 1 << 5,
-	PARENTHESIS_L = 1 << 6,
-	PARENTHESIS_R = 1 << 7,
-	AND = 1 << 8,
-	OR = 1 << 9,
-	WRONG = 1 << 10,
-	UNQUOTED = 1 << 11
-};
-
-struct s_token
-{
-	char			*data;
-	t_token_type	type;
-	t_expanded_list	*expanded_list;
-	t_token			*next;
-	t_token			*prev;
-	t_redir			*redir;
-};
-
-struct s_expanded_list
-{
-	size_t			start;
-	size_t			end;
-	t_expanded_list	*next;
-};
 
 // tokenizer
 t_token			*tokenizer(const char *str, t_context *context);

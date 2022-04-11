@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 15:59:13 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:35:05 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	inherit_fd(t_parse_tree *parse_tree, t_redir *old_redir)
 }
 
 static t_redir_result	perform_redirection(
-	t_parse_tree *parse_tree, t_redir *old_redir, t_context *context
+	t_parse_tree *parse_tree, t_redir *old_redir
 )
 {
 	parse_tree->redir = init_redir(STDIN_FILENO, STDOUT_FILENO, NULL, NULL);
@@ -58,7 +58,7 @@ t_redir_result	redirection(
 {
 	if (!parse_tree)
 		return (REDIR_SUCCESS);
-	if (perform_redirection(parse_tree, redir, context) == REDIR_ERR)
+	if (perform_redirection(parse_tree, redir) == REDIR_ERR)
 		return (REDIR_ERR);
 	if (go_side_node(parse_tree, LEFT, context) == REDIR_ERR)
 		return (REDIR_ERR);

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 15:03:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/23 15:01:53 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:35:39 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <readline/history.h>
 
-static int	is_valid_str(char *str, t_context *context)
+static int	is_valid_str(char *str)
 {
 	size_t	i;
 
@@ -29,7 +29,7 @@ static int	is_valid_str(char *str, t_context *context)
 	return (0);
 }
 
-int	check_valid_str(const char *str, t_context *context)
+int	check_valid_str(const char *str)
 {
 	char	**splited;
 	int		ret;
@@ -42,7 +42,7 @@ int	check_valid_str(const char *str, t_context *context)
 	i = 0;
 	while (splited[i])
 	{
-		if (is_valid_str(splited[i], context))
+		if (is_valid_str(splited[i]))
 		{
 			ret = 1;
 			break ;

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 13:30:26 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:11:10 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,10 @@
 # define ENVP_H
 
 # include <sys/types.h>
+# include "t_types.h"
 
 # define SORT (1 << 0)
 # define UNSORT (1 << 1)
-
-typedef struct s_envp_list
-{
-	char				*key;
-	char				*value;
-	size_t				list_len;
-	struct s_envp_list	*next;
-}	t_envp_list;
 
 int			init_envp_list(t_envp_list **head, const char **envp);
 int			clear_envp_list(t_envp_list **head);

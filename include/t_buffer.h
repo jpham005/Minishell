@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 22:07:36 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 13:30:35 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:14:09 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #  define BUFFER_SIZE 1024
 # endif
 
-# include <ctype.h>
+# include <stddef.h>
 
 typedef struct s_buffer	t_buffer;
 

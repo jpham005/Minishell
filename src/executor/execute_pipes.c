@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 16:05:59 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/10 10:08:13 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 11:20:37 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static t_exit_status	set_execute_state(t_pipes *pipes)
 {
-	set_sig_handler_parent(pipes->cmd[0]);
+	set_sig_handler_parent(pipes);
 	if (check_redir_err(pipes->redir) \
 		| set_in_out(pipes->redir->in, pipes->redir->out))
 		return (EXIT_REDIR_ERR);
@@ -26,6 +26,11 @@ static void	execute_single_cmd(t_pipes *pipes, t_context *context)
 {
 	t_cmd_type	type;
 
+	if (pipes->parse_tree)
+	{
+		// context->exit_status = execute_logical(pipes, context);
+		return ;
+	}
 	type = get_cmd_type(pipes->cmd[0]);
 	if ((type != NON_BUILT_IN) && (set_execute_state(pipes) == EXIT_REDIR_ERR))
 	{
