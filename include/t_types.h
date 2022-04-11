@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 11:08:30 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:22:29 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 12:45:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ enum e_cmd_type
 	BUILT_IN_EXPORT = 4,
 	BUILT_IN_PWD = 5,
 	BUILT_IN_UNSET = 6,
-	NON_BUILT_IN = 7
+	NON_BUILT_IN = 7,
+	LOGICAL = 8
 };
 
 enum e_cmd_stat

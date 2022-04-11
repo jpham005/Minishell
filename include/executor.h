@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:38:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:16:19 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 12:46:04 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ int				wait_pid_list(t_pid_list *head);
 t_pid_list		*get_last_pid_list(t_pid_list *head);
 
 // executor util
-t_cmd_type		get_cmd_type(char *cmd);
+t_cmd_type		get_cmd_type(t_pipes *pipes);
 int				get_exit_status(int stat);
 int				check_redir_err(t_redir *redir);
 
 // execute pipes
 void			execute_pipes(t_pipes *pipes, t_context *context);
+t_exit_status	set_execute_state(t_pipes *pipes, int is_parent);
 
 // execute pipeline
 void			execute_pipeline(t_pipes *pipes, t_context *context);

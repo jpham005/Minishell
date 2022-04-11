@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:42:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:25:12 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 13:10:13 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,17 @@ static const char*const	*get_built_in_types(void)
 	return (built_in_types);
 }
 
-t_cmd_type	get_cmd_type(char *cmd)
+t_cmd_type	get_cmd_type(t_pipes *pipes)
 {
 	const char*const	*built_in = get_built_in_types();
 	size_t				i;
 
+	if (!pipes->cmd[0])
+		return (NON_BUILT_IN);
+	if (pipes->parse_tree)
+		return (LOGICAL);
 	i = 0;
-	while (built_in[i] && ft_strncmp(cmd, built_in[i], ft_strlen(cmd) + 1))
+	while (built_in[i] && !ft_iseq(pipes->cmd[0], built_in[i]))
 		++i;
 	return (i);
 }
@@ -57,7 +61,7 @@ int	check_redir_err(t_redir *redir)
 		return (EXIT_SUCCESS);
 	ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
 	ft_putstr_fd(redir->err_target, STDERR_FILENO);
-	ft_putstr_fd(":", STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putstr_fd(redir->err, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
 	return (EXIT_REDIR_ERR);

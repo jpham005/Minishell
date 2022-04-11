@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 20:31:22 by hyeonpar          #+#    #+#              #
-#    Updated: 2022/04/09 13:46:23 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/11 13:17:14 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS = ft_strlen.c ft_strncmp.c ft_putstr_fd.c ft_free.c ft_malloc.c \
 	ft_max.c ft_wifstopped.c ft_exit.c ft_putnbr_fd.c ft_iseq.c ft_perror.c
 OBJS = $(SRCS:.c=.o)
 CC = cc
-CFLAGS = -Wall -Wextra -Werror# -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 AR = ar
 ARFLAGS = rcs
 RM = rm

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:33:29 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 13:11:09 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,9 @@ void	execute_child(t_pipes *pipes, t_context *context)
 	t_envp_list	*path_list;
 	t_cmd_type	type;
 
-	set_sig_handler_child();
-	if (!pipes->cmd)
+	if (!pipes->cmd[0])
 		ft_exit(0);
-	type = get_cmd_type(pipes->cmd[0]);
+	type = get_cmd_type(pipes);
 	if (type != NON_BUILT_IN)
 		exit(execute_built_in(type, pipes, context));
 	path_list = find_list_by_key(context->envp, "PATH");

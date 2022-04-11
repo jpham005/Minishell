@@ -6,16 +6,19 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 16:05:59 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:52:57 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/11 12:53:06 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "libft.h"
 
-static t_exit_status	set_execute_state(t_pipes *pipes)
+t_exit_status	set_execute_state(t_pipes *pipes, int is_parent)
 {
-	set_sig_handler_parent(pipes);
+	if (is_parent)
+		set_sig_handler_parent(pipes);
+	else
+		set_sig_handler_child();
 	if ((check_redir_err(pipes->redir) == REDIR_ERR)\
 		|| set_in_out(pipes->redir->in, pipes->redir->out) == REDIR_ERR)
 		return (EXIT_REDIR_ERR);
@@ -26,13 +29,9 @@ static void	execute_single_cmd(t_pipes *pipes, t_context *context)
 {
 	t_cmd_type	type;
 
-	if (pipes->parse_tree)
-	{
-		// context->exit_status = execute_logical(pipes, context);
-		return ;
-	}
-	type = get_cmd_type(pipes->cmd[0]);
-	if ((type != NON_BUILT_IN) && (set_execute_state(pipes) == EXIT_REDIR_ERR))
+	type = get_cmd_type(pipes);
+	if ((type != NON_BUILT_IN) \
+		&& (set_execute_state(pipes, 1) == EXIT_REDIR_ERR))
 	{
 		context->exit_status = EXIT_REDIR_ERR;
 		return ;
@@ -42,7 +41,10 @@ static void	execute_single_cmd(t_pipes *pipes, t_context *context)
 		execute_pipeline(pipes, context);
 		return ;
 	}
-	context->exit_status = execute_built_in(type, pipes, context);
+	// if (type == LOGICAL)
+	// 	context->exit_status = execute_logical(pipes, context);
+	// else
+		context->exit_status = execute_built_in(type, pipes, context);
 	restore_in_out(context);
 }
 
