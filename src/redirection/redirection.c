@@ -6,18 +6,33 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:50:25 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 12:22:23 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "redirection.h"
 
+static t_redir	*inherit_redir(t_parse_tree *parse_tree, t_redir *old_redir)
+{
+	t_redir	*ret;
+
+	ret = copy_redir(old_redir);
+	if (parse_tree->up && (parse_tree->up->type & PIPE))
+	{
+		if (parse_tree->up->left == parse_tree)
+			ret->out = 1;
+		else
+			ret->in = 0;
+	}
+	return (ret);
+}
+
 static t_redir_result	perform_redirection(
 	t_parse_tree *parse_tree, t_redir *old_redir
 )
 {
-	parse_tree->redir = copy_redir(old_redir);
+	parse_tree->redir = inherit_redir(parse_tree, old_redir);
 	if (parse_tree->type & REDIR_INS)
 		get_redir_in(parse_tree);
 	if (parse_tree->type & REDIR_OUTS)
@@ -31,9 +46,7 @@ static t_redir_result	go_side_node(
 {
 	t_redir	*old_redir;
 
-	old_redir = NULL;
-	if (parse_tree->redir)
-		old_redir = parse_tree->redir;
+	old_redir = parse_tree->redir;
 	if (dir == LEFT)
 		parse_tree = parse_tree->left;
 	else

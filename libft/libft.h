@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 01:06:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 19:44:57 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 11:45:24 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int		ft_pipe(int pipefd[2]);
 int		ft_dup2(int fd1, int fd2);
 int		ft_strcmp(const char *s1, const char *s2);
 void	ft_close(int fd);
-void	exit_with_msg(char *s1, char *s2, int status);
 int		ft_dup(int fd);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);

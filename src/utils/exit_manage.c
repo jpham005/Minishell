@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:15:53 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 09:52:26 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 17:20:31 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@ void	write_error(const char *str)
 
 static void	print_exit(void)
 {
-	ft_putstr_fd("\033[1A", STDERR_FILENO);
-	ft_putstr_fd("\033[12C", STDERR_FILENO);
+	if (!isatty(STDIN_FILENO) || !isatty(STDOUT_FILENO))
+	{
+		ft_putstr_fd("\001\033[12D\002", STDERR_FILENO);
+		return ;
+	}
+	ft_putstr_fd("\001\033[1A\002", STDERR_FILENO);
+	ft_putstr_fd("\001\033[12C\002", STDERR_FILENO);
 	ft_putstr_fd("exit\n", STDERR_FILENO);
 }
 

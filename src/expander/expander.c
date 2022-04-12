@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:55:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 14:56:45 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 16:51:20 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,14 @@ static void	get_new_token(t_parse_tree *parse_tree, t_context *context)
 
 void	expander(t_parse_tree *parse_tree, t_context *context)
 {
-	if (!parse_tree || !(parse_tree->token) || !(parse_tree->token->data))
+	if (!parse_tree || !(parse_tree->token) || (parse_tree->type & (AND | OR)))
 		return ;
+	if (!(parse_tree->token->type & WORD))
+	{
+		go_side_node(parse_tree, context, LEFT);
+		go_side_node(parse_tree, context, RIGHT);
+		return ;
+	}
 	parse_tree->original_str = ft_strdup(parse_tree->token->data);
 	get_new_token(parse_tree, context);
 	if (!(parse_tree->up && (parse_tree->up->type & REDIR_HEREDOC)))

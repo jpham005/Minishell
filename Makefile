@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/12 10:17:54 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/12 16:11:17 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,11 @@ BUILT_IN_SRCS		:=	export.c unset.c env.c pwd.c exit.c exit_util.c \
 BUILT_IN_SRCS		:=	$(addprefix $(BUILT_IN_DIR)/, $(BUILT_IN_SRCS))
 ENVP_SRCS			:=	init_destroy.c util.c print.c tool.c
 ENVP_SRCS			:=	$(addprefix $(ENVP_DIR)/, $(ENVP_SRCS))
-EXECUTOR_SRCS		:=	executor.c executor_util.c init_destroy_pipes.c \
+EXECUTOR_SRCS		:=	executor.c executor_util.c t_pipes.c \
 						pid_list.c execute_child.c execute_pipes.c \
 						execute_pipeline.c make_pipes.c set_redir.c \
-						execute_built_in.c execute_pipeline_util.c
+						execute_built_in.c execute_pipeline_util.c \
+						execute_logical.c
 EXECUTOR_SRCS		:=	$(addprefix $(EXECUTOR_DIR)/, $(EXECUTOR_SRCS))
 EXPANDER_SRCS		:=	expander.c expander_util.c expand_shell_param.c \
 						expand_with_envp.c expand_with_exit_status.c \

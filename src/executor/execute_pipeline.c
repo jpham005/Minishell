@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 21:58:55 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 10:03:54 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 12:31:00 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "terminal.h"
 #include <stdlib.h>
 
-static void	prepare_execute(int pipefd[2], t_pipes *pipes, t_pid_list **pids)
+static void	prepare_pipeline(int pipefd[2], t_pipes *pipes, t_pid_list **pids)
 {
 	set_sig_handler_parent(pipes);
 	if (pipes->next && (init_pipe(pipefd) == EXIT_FATAL))
@@ -35,7 +35,7 @@ static void	execute_lines(
 	in = STDIN_FILENO;
 	while (pipes)
 	{
-		prepare_execute(pipefd, pipes, pids);
+		prepare_pipeline(pipefd, pipes, pids);
 		if (!((*pids)->pid))
 		{
 			set_pipe_fd(pipes, pipefd, in);

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:39 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 10:10:54 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 11:25:01 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ static int	perform_echo(const char **argv, int n_op)
 
 static int	is_n_op(const char *argv)
 {
-	if (*(argv++) != '-')
+	size_t	i;
+
+	i = 0;
+	if (argv[i++] != '-')
 		return (0);
-	while (*argv && (*argv == 'n'))
-		argv++;
-	return (*argv == '\0');
+	while (argv[i] && (argv[i] == 'n'))
+		++i;
+	return ((i != 1) && !argv[i]);
 }
 
 static int	get_n_op(const char **argv, size_t *i)
