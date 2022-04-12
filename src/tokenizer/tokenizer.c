@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 13:48:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:35:54 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 19:27:09 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ static void	get_token_meta(t_token **head, const char *str, size_t *start)
 
 t_token	*tokenizer(const char *str, t_context *context)
 {
-	t_token			*head;
-	size_t			start;
+	t_token	*head;
+	size_t	start;
 
 	head = NULL;
 	start = 0;

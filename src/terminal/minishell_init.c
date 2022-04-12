@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   minishell_init.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:41:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 10:16:10 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 19:38:13 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	update_shlvl(t_envp_list *envp)
 	ft_free((void **) &new);
 }
 
-void	init_shell(t_context *context, const char **envp)
+void	shell_init(t_context *context, char **envp)
 {
 	t_term		term;
 
@@ -46,6 +46,6 @@ void	init_shell(t_context *context, const char **envp)
 	context->term_state.default_term = term;
 	term.c_lflag &= ~ECHOCTL;
 	context->term_state.rl_term = term;
-	init_envp_list(&(context->envp), (const char **) envp);
+	init_envp_list(&(context->envp), envp);
 	update_shlvl(context->envp);
 }

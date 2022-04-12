@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/12 16:11:17 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/12 22:00:12 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,13 +60,14 @@ REDIRECTION_SRCS	:=	$(addprefix $(REDIRECTION_DIR)/, $(REDIRECTION_SRCS))
 PARSER_SRCS			:=	parser.c remove_parenthesis_token.c find_meta.c \
 						get_new_token.c init_destroy_tree.c
 PARSER_SRCS			:=	$(addprefix $(PARSER_DIR)/, $(PARSER_SRCS))
-TERMINAL_SRCS		:=	check_default_state.c ft_readline.c signal_handler.c \
-						init.c readline_loop.c check_valid_str.c \
+TERMINAL_SRCS		:=	ft_readline.c signal_handler.c \
+						minishell_init.c readline_loop.c check_valid_str.c \
 						signal_handler_exec.c
 TERMINAL_SRCS		:=	$(addprefix $(TERMINAL_DIR)/, $(TERMINAL_SRCS))
-TOKENIZER_SRCS		:=	quote_mask.c token_init_destroy.c token_tool.c \
-						tokenizer.c tokenizer_util.c token_init_destroy_util.c \
-						heredoc.c heredoc_util.c heredoc_end.c
+TOKENIZER_SRCS		:=	quote_mask.c t_token_init_destroy.c t_token_tool.c \
+						t_token_init_destroy_util.c tokenizer.c \
+						tokenizer_util.c heredoc.c heredoc_util.c \
+						heredoc_end.c
 TOKENIZER_SRCS		:=	$(addprefix $(TOKENIZER_DIR)/, $(TOKENIZER_SRCS))
 UTILS_SRCS			:=	exit_manage.c t_buffer.c
 UTILS_SRCS			:=	$(addprefix $(UTILS_DIR)/, $(UTILS_SRCS))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isnumstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 13:01:02 by jaham             #+#    #+#             */
-/*   Updated: 2022/02/13 13:03:25 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 22:14:24 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_isnumstr(const char *str)
 {
+	str += (*str == '-' || *str == '+');
 	while (*str && ft_isnum(*str))
 		str++;
 	return (*str == '\0');

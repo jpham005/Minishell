@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 08:57:36 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 19:38:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define SORT (1 << 0)
 # define UNSORT (1 << 1)
 
-int			init_envp_list(t_envp_list **head, const char **envp);
+int			init_envp_list(t_envp_list **head, char **envp);
 int			clear_envp_list(t_envp_list **head);
 void		del_one_envp_list(t_envp_list **head, const char *key);
 void		update_envp_list(t_envp_list **head, const char *k, const char *v);
