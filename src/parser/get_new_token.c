@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 14:25:34 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 20:35:52 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:15:52 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
+#include "tokenizer.h"
 
 static void	get_left_token_redirection(
 	t_parse_tree *parse_tree, t_token *searched

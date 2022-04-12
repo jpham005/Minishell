@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 21:59:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:22:34 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:58:26 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPANDER_H
 # define EXPANDER_H
 
-# include "parser.h"
+# include "t_types.h"
 
 // expander
 void		expander(t_parse_tree *parse_tree, t_context *context);

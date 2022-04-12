@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 16:00:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/05 16:02:38 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:05:08 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
+#include "tokenizer.h"
 
 static void	perform_shell_expansion(
 	t_token *token, t_buffer *buffer, t_context *context, size_t *i

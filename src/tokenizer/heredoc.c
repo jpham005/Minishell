@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 10:20:06 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 17:23:40 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:16:30 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "expander.h"
+#include "terminal.h"
 #include "tokenizer.h"
 
 static void	perform_heredoc_expansion(

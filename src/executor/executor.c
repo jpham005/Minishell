@@ -6,13 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:37:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/10 11:48:49 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:03:19 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "expander.h"
 #include "redirection.h"
+#include "terminal.h"
 #include <stddef.h>
 
 void	executor(

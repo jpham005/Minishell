@@ -6,14 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:11:10 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:57:36 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENVP_H
 # define ENVP_H
 
-# include <sys/types.h>
 # include "t_types.h"
 
 # define SORT (1 << 0)

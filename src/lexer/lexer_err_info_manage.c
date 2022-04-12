@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:37:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/24 21:07:02 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:15:14 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
 #include "libft.h"
+#include "terminal.h"
 
 void	init_lexer_err_info(t_lexer_err *err_info)
 {

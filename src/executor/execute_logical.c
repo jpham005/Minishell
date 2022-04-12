@@ -6,7 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 11:29:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:29:10 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:57:11 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "executor.h"
+
+void	execute_logical(t_pipes *pipes, t_context *context)
+{
+	
+}

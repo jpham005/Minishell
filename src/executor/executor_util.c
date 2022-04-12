@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:42:10 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 13:10:13 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:58:10 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "libft.h"
+#include "terminal.h"
 
 static const char*const	*get_built_in_types(void)
 {

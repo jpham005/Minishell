@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 20:28:49 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/04 15:36:39 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:03:10 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 #include "libft.h"
+#include "terminal.h"
 
 void	free_both_cd(char **curr_dir, char **path)
 {

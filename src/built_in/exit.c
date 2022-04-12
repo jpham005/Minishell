@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 16:25:58 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 09:47:02 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:02:05 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
 #include "libft.h"
+#include "terminal.h"
 #include <stdio.h>
 #include <stdlib.h>
 

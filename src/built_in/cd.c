@@ -6,13 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:41:42 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/22 14:20:33 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:02:59 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "built_in.h"
+#include "envp.h"
 #include "libft.h"
-#include "terminal.h"
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>

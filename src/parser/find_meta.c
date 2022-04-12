@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:03:26 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 19:14:23 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:15:45 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-#include <sys/types.h>
+#include "tokenizer.h"
+#include <unistd.h>
 #include <stdlib.h>
 
 static void	check_parenthesis(t_token_type type, ssize_t *parenthesis_cnt)

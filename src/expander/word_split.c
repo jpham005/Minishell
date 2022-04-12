@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 22:05:47 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/29 11:27:46 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:05:25 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
+#include "tokenizer.h"
 
 static void	get_expanded_list(
 	t_token **new_token, t_token *token, size_t start, size_t end

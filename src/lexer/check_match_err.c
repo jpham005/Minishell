@@ -6,11 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:26:17 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/25 11:31:05 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:15:05 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include "tokenizer.h"
+#include <unistd.h>
 
 void	check_quote_match_err(t_token *token, t_lexer_err *err_info)
 {

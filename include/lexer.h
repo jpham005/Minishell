@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:15:16 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:58:37 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include "tokenizer.h"
+# include "t_types.h"
 
 # define NON_EXPECTED_TOKEN_MESSAGE "syntax error near unexpected token `"
 # define MINISHELL_NEAR_TOKEN_ERR_MESSAGE SHELL_NAME NON_EXPECTED_TOKEN_MESSAGE

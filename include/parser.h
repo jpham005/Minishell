@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:51:43 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:14:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:58:48 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "tokenizer.h"
+# include "t_types.h"
 
 // get parser tree
 t_parse_tree	*parser(t_token *token);

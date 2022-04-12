@@ -6,11 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:14:54 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 18:25:28 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:17:03 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "terminal.h"
 #include "utils.h"
 
 int	main(int argc, char **argv, char **envp)

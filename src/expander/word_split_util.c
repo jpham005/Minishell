@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 10:22:25 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 17:12:32 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:05:34 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
+#include "tokenizer.h"
 
 static int	is_in_expanded_list(t_expanded_list *expanded_list, size_t index)
 {

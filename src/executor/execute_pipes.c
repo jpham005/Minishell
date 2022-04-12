@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 16:05:59 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 12:53:06 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:03:45 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "libft.h"
+#include "terminal.h"
 
 t_exit_status	set_execute_state(t_pipes *pipes, int is_parent)
 {

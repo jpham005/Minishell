@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 09:36:14 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 12:40:44 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:04:23 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "redirection.h"
+#include "tokenizer.h"
 #include <stddef.h>
 
 void	make_pipes(t_pipes **pipes, t_parse_tree *p_tree)

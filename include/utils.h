@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:16:33 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 09:49:46 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:59:50 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "terminal.h"
+# include "t_types.h"
 
 # define PRT_INTRO_ERR_MESSAGE "Print Intro Error\n"
 # define SET_TERM_ERR_MESSAGE "Setting Terminal Error\n"

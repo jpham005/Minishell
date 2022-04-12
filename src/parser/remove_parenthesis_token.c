@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 09:48:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:35:11 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:15:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
+#include "tokenizer.h"
 
 static int	is_removable(t_token *head)
 {

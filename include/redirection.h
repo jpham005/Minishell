@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:14:28 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:58:56 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REDIRECTION_H
 # define REDIRECTION_H
 
-# include "parser.h"
+# include "t_types.h"
 
 # define TOKEN_ERR_MESSAGE "ambiguous redirect\n"
 

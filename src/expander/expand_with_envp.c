@@ -6,10 +6,11 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 16:53:57 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/05 16:02:14 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:05:15 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "envp.h"
 #include "expander.h"
 #include "libft.h"
 

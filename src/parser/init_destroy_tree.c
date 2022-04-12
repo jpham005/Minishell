@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:41:08 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/09 15:18:15 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:16:00 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parser.h"
+#include "tokenizer.h"
 
 t_parse_tree	*init_parse_tree(void)
 {

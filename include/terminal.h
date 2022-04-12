@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:21:23 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:35:44 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:59:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TERMINAL_H
 
 # include "color.h"
-# include "envp.h"
+# include "t_types.h"
 # include <termios.h>
 
 # define SHELL_NAME "minishell: "

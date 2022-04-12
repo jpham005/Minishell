@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:38:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 12:46:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:57:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTOR_H
 # define EXECUTOR_H
 
-# include "parser.h"
+# include "t_types.h"
 # include <sys/stat.h>
 
 # define NOT_FOUND_MESSAGE "No such file or directory\n"

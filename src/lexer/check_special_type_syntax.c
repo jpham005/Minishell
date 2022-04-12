@@ -6,11 +6,12 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:48:35 by jaham             #+#    #+#             */
-/*   Updated: 2022/03/26 03:56:17 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:14:48 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
+#include <unistd.h>
 
 static void	check_word_parenthesis_comb(t_token *token, t_lexer_err *err_info)
 {

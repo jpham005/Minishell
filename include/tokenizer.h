@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:20:16 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:59:43 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TOKENIZER_H
 
 # include "t_buffer.h"
-# include "terminal.h"
+# include "t_types.h"
 
 # define HEREDOC_WRITE_ERR_MESSAGE "write err while heredoc\n"
 

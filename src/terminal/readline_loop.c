@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:35:50 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:16:20 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "lexer.h"
 #include "libft.h"
 #include "parser.h"
+#include "terminal.h"
 #include "tokenizer.h"
 #include "utils.h"
 

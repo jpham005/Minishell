@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:06:37 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:34:46 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:05:52 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
+#include "tokenizer.h"
 
 static int	is_valid_asterisk(char c, t_quote_mask *mask)
 {

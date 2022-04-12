@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 21:58:55 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 12:52:58 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 10:03:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "libft.h"
+#include "terminal.h"
 #include <stdlib.h>
 
 static void	prepare_execute(int pipefd[2], t_pipes *pipes, t_pid_list **pids)

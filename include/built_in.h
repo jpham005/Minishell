@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:24:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/03 22:16:16 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/12 08:57:22 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILT_IN_H
 # define BUILT_IN_H
 
-# include "terminal.h"
+# include "t_types.h"
 
 # define EXPORT_CMD "export: "
 # define UNSET_CMD "unset: "
