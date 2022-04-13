@@ -6,7 +6,7 @@
 #    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/13 13:59:37 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/13 18:19:33 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ INCLUDE_FILES		:=	$(addprefix $(INCLUDE)/, $(INCLUDE_FILES))
 READLINE_DIR		:=	readline
 READLINE_INCLUDE	:=	$(READLINE_DIR)
 READLINE_LIB		:=	$(READLINE_DIR)
+READLINE			:=	$(READLINE_DIR)/libreadline.a
 
 BUILT_IN_SRCS		:=	export.c unset.c env.c pwd.c exit.c exit_util.c \
 						cd.c cd_util.c echo.c
@@ -81,7 +82,7 @@ LIBFT_DIR			:=	libft
 LIBFT				:=	$(LIBFT_DIR)/libft.a
 
 CC					:=	cc
-CFLAGS				:=	-Wall -Wextra -Werror -D READLINE_LIBRARY -g# -fsanitize=address
+CFLAGS				:=	-Wall -Wextra -Werror -D READLINE_LIBRARY
 NAME				:=	minishell
 SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS) $(EXECUTOR_SRCS) \
 						$(EXPANDER_SRCS) $(HEREDOC_SRCS) $(LEXER_SRCS) \
@@ -94,12 +95,16 @@ RMFLAGS				:=	-f
 .PHONY				:	all
 all					:	$(NAME)
 
-$(NAME)				:	$(OBJS) $(LIBFT) $(INCLUDE_FILES)
+$(NAME)				:	$(OBJS) $(LIBFT) $(INCLUDE_FILES) $(READLINE)
 	$(CC) $(CFLAGS) -o $@ $(LIBFT) $(OBJS) $(LIBFT) \
 	-L$(READLINE_LIB) -lreadline -lhistory -lncurses
 
+$(READLINE)			:
+	cd $(READLINE_DIR); ./configure
+	make -C $(READLINE_DIR) all
+
 $(LIBFT)			:
-	cd $(LIBFT_DIR); make all
+	make -C $(LIBFT_DIR) all
 
 .PHONY				:	.c.o
 .c.o				:
@@ -114,6 +119,10 @@ clean				:
 .PHONY				:	fclean
 fclean				:	clean
 	$(RM) $(RMFLAGS) $(NAME) $(LIBFT)
+	make -C $(READLINE_DIR) clean
 
 .PHONY				:	re
 re					:	fclean all
+
+.PHONY				:	bonus
+bonus				:	all
