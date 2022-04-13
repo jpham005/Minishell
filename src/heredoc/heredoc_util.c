@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 10:36:14 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 13:55:34 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 10:59:16 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
+#include "heredoc.h"
 #include "tokenizer.h"
 
 int	is_heredoc_end(char *input, char *limit)
@@ -54,11 +55,8 @@ void	write_heredoc_string(char *input, int fd)
 
 int	is_heredoc(t_token *token)
 {
-	t_token	*target;
-
 	if (!token)
 		return (0);
-	target = get_tail_token(token);
-	return (target && (target->type == WORD) && target->prev \
-			&& (target->prev->type == REDIR_HEREDOC));
+	return (token && (token->type & WORD) && token->prev \
+			&& (token->prev->type & REDIR_HEREDOC));
 }

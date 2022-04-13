@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 08:59:43 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 10:23:54 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # include "t_buffer.h"
 # include "t_types.h"
 
-# define HEREDOC_WRITE_ERR_MESSAGE "write err while heredoc\n"
-
 // tokenizer
-t_token			*tokenizer(const char *str, t_context *context);
+t_token			*tokenizer(const char *str);
 
 // token init destroy
 t_token			*init_token(const char *data, t_token_type type);
@@ -48,19 +46,5 @@ int				is_double_meta_char(const char *str, size_t start);
 int				is_split_condition(char c, t_quote_mask mask);
 void			skip_space(const char *str, size_t *start);
 void			clear_fd(t_token *token);
-
-// heredoc
-t_redir_result	handle_heredoc(t_token *token, t_context *context);
-
-// heredoc util
-void			set_heredoc_info(char *str, t_heredoc *heredoc, \
-															t_buffer *buffer);
-int				is_heredoc_end(char *input, char *limit);
-void			set_cursur_heredoc(void);
-void			write_heredoc_string(char *input, int fd);
-int				is_heredoc(t_token *token);
-
-// heredoc end
-int				end_heredoc(char **input, int here_pipe[2]);
 
 #endif

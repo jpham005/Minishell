@@ -7,9 +7,6 @@
 # Object files
 *.o
 
-# Archive files
-*.a
-
 # Precompiled Headers
 *.gch
 

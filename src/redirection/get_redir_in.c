@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:07:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/08 21:55:17 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 09:14:33 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 static void	handle_redir_in(t_parse_tree *p_tree)
 {
-	if (check_valid_redir_target(p_tree))
+	if (!check_valid_redir_target(p_tree))
 	{
 		set_redir_err(p_tree, p_tree->right->original_str, TOKEN_ERR_MESSAGE);
 		return ;

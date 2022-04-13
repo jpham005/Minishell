@@ -6,14 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 15:03:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 11:35:39 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 13:12:21 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "terminal.h"
 #include "libft.h"
 #include <stdio.h>
-#include <readline/history.h>
+#include "history.h"
 
 static int	is_valid_str(char *str)
 {

@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   handle_heredoc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 10:20:06 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 10:16:30 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 10:59:07 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "expander.h"
+#include "heredoc.h"
 #include "terminal.h"
 #include "tokenizer.h"
+#include <stdlib.h>
 
 static void	perform_heredoc_expansion(
 	char **input, t_buffer *buffer, t_context *context
@@ -42,7 +44,7 @@ static void	heredoc_child(
 	{
 		input = ft_readline(context, "> ");
 		if (is_heredoc_end(input, heredoc->limit))
-			ft_exit(end_heredoc(&input, here_pipe));
+			exit(end_heredoc(&input, here_pipe));
 		if (heredoc->quoted == NOT_QUOTED)
 			perform_heredoc_expansion(&input, buffer, context);
 		write_heredoc_string(input, here_pipe[1]);
@@ -107,6 +109,5 @@ t_redir_result	handle_heredoc(t_token *token, t_context *context)
 	}
 	ft_free((void **) &(buffer.str));
 	ft_free((void **) &(heredoc.limit));
-	ft_putstr_fd(BLUE_BT, STDERR_FILENO);
 	return (ret);
 }

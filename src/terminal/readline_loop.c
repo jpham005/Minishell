@@ -6,30 +6,17 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 14:54:45 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 12:41:04 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 11:01:19 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
 #include "lexer.h"
+#include "heredoc.h"
 #include "libft.h"
 #include "parser.h"
 #include "terminal.h"
 #include "tokenizer.h"
-#include "utils.h"
-
-static int	get_line(t_context *context, char **line)
-{
-	*line = ft_readline(context, NULL);
-	if (!*line)
-		exit_with_condition(END_TERM, context);
-	if (!check_valid_str(*line))
-	{
-		ft_free((void **) line);
-		return (0);
-	}
-	return (1);
-}
 
 void	readline_loop(t_context *context)
 {
@@ -41,14 +28,13 @@ void	readline_loop(t_context *context)
 	{
 		if (!get_line(context, &line))
 			continue ;
-		tokenized = tokenizer(line, context);
+		tokenized = analize_line(line, context);
+		ft_free((void **) &line);
 		if (!tokenized)
 			continue ;
-		ft_free((void **) &line);
-		if (lexer(tokenized) == LEXER_ERR)
+		if (!heredoc(tokenized, context))
 		{
-			context->exit_status = SYNTAX_ERR_EXIT_STATUS;
-			clear_token(&tokenized);
+			handle_heredoc_err(&tokenized);
 			continue ;
 		}
 		parse_tree = parser(tokenized);

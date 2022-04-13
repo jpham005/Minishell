@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 08:58:56 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 09:16:14 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "t_types.h"
 
-# define TOKEN_ERR_MESSAGE "ambiguous redirect\n"
+# define TOKEN_ERR_MESSAGE "ambiguous redirect"
 
 // redirection
 t_redir_result	redirection(t_parse_tree *parse_tree, t_redir *redir, \

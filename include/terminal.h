@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:21:23 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 19:38:57 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 10:52:45 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ void		readline_loop(t_context *context);
 int			check_valid_str(const char *str);
 void		handle_syntax_err(t_context *context);
 t_context	*make_context_static(t_context *context);
+void		handle_heredoc_err(t_token **token);
+t_token		*analize_line(char *line, t_context *context);
+int			get_line(t_context *context, char **line);
 
 #endif

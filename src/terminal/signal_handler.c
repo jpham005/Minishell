@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 21:08:08 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/06 10:33:57 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 13:57:07 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <readline/readline.h>
+#include "readline.h"
 
 void	sig_int_handler_default(int sig)
 {

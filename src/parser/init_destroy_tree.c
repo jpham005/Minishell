@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 10:41:08 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 10:16:00 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/13 11:05:02 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	clear_parse_tree(t_parse_tree **parse_tree)
 		return ;
 	left = (*parse_tree)->left;
 	right = (*parse_tree)->right;
+	clear_fd((*parse_tree)->token);
 	clear_token(&((*parse_tree)->token));
 	clear_redir(*parse_tree);
 	ft_free((void **) &((*parse_tree)->original_str));
