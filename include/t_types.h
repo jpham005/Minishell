@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 11:08:30 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/11 12:45:42 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/17 20:43:13 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct stat				t_stat;
 typedef struct s_pipes			t_pipes;
 typedef struct s_pid_list		t_pid_list;
 
+// 토큰 종류, 트리에서도 사용
 enum e_token_type
 {
 	WORD = 1 << 0,
@@ -64,19 +65,21 @@ enum e_token_type
 	UNQUOTED = 1 << 11
 };
 
+// exit status 용 변수들. 상황별로 정해져 있음
 enum e_exit_status
 {
 	EXIT_SUCCESS = 0,
 	EXIT_REDIR_ERR = 1,
 	EXIT_FATAL = 1,
 	EXIT_ERR = 125,
-	PERM = 1,
-	NOENT = 2,
-	EXIT_SIGNAL = 128,
-	STOP_SIGNAL = 17,
+	PERM = 1, // 파일 존재하나 권한이 없을 때
+	NOENT = 2, // 파일 미존재 (엔트리 없을 때)
+	EXIT_SIGNAL = 128, // 시그널 종료 시 128 + 시그널 넘버
+	STOP_SIGNAL = 17, // stop , cont는 특별 케이스
 	CONTINUE_SIGNAL = 19,
 };
 
+// 빌트인 7개 + 빌트인 아닐 때 + 논리 연산자 일 때 (해당 경우 executor 재귀 호출)
 enum e_cmd_type
 {
 	BUILT_IN_CD = 0,
@@ -90,28 +93,32 @@ enum e_cmd_type
 	LOGICAL = 8
 };
 
+// (쉘에서 에러 메세지가 다르게 나오는 경우 예외처리)
 enum e_cmd_stat
 {
-	FILE_NOT_FOUND = 0,
-	IS_DIR,
-	NO_PERMISSION,
+	FILE_NOT_FOUND = 0, // bash : asdf/asdf
+	IS_DIR, // bash : dir
+	NO_PERMISSION, // chmod 000, bash : no_perm_file
 	SUCCESS
 };
 
+// 실행용 파이프로 묶인 명령어 목록
 struct s_pipes
 {
-	char			**cmd;
-	t_redir			*redir;
-	t_parse_tree	*parse_tree;
+	char			**cmd; // 실행할 명령어 + 인자
+	t_redir			*redir; // 해당 명령어에 대한 리다이렉션 (<, <<, >, >>)
+	t_parse_tree	*parse_tree; // AND, OR일 경우 따로 만들지 않고 parse_tree 그대로 저장
 	t_pipes			*next;
 };
 
+// fork된 프로세스 대기용
 struct s_pid_list
 {
 	pid_t		pid;
 	t_pid_list	*next;
 };
 
+// * 확장 시 고정된 스트링인지, 확장을 실행하는 *나 *****들인지 나타냄
 enum e_nametype
 {
 	FIXED_STR = 0,
@@ -120,17 +127,20 @@ enum e_nametype
 
 struct s_filename
 {
-	char		*name;
-	char		*checked;
+	char		*name; // 내용 (asdf 거나 ****)
+	char		*checked; // 마지막으로 fixed를 찾은 위치 (해당 위치 이후부터 나머지 fixed string을 매칭 시도해야 함)
 	t_filename	*next;
-	t_nametype	type;
+	t_nametype	type; // fixed인지 아닌지
 };
+
+// 렉서 결과
 enum e_lexer_result
 {
 	LEXER_SUCCESS = 0,
 	LEXER_ERR
 };
 
+// 옆에 올 수 없는 타입들을 모아 둔 마스크
 enum e_lexer_mask
 {
 	FIRST_TOKEN_MASK = PIPE | AND | OR | PARENTHESIS_R,
@@ -144,6 +154,7 @@ enum e_lexer_mask
 	MASK_DFL = 0x7FF
 };
 
+// 렉서 에러 출력문에 필요한 에러 타입
 enum e_lexer_err_type
 {
 	NO_ERR = 0,
@@ -151,6 +162,7 @@ enum e_lexer_err_type
 	NO_MATCH
 };
 
+// 렉서에서 발생한 에러 저장
 struct s_lexer_err
 {
 	char				*data;
@@ -159,13 +171,14 @@ struct s_lexer_err
 
 struct s_parse_tree
 {
-	t_parse_tree	*up;
+	t_parse_tree	*up; // 부모
 	t_parse_tree	*left;
 	t_parse_tree	*right;
-	t_token			*token;
-	t_token_type	type;
-	t_redir			*redir;
-	char			*original_str;
+	t_token			*token; // 토큰 리스트, echo->a->b->c->d 처럼 들어감. 메타 캐릭터의 경우 하나만 있음 (&&, ||, |, >, <, <<, >>)
+	t_token_type	type; // 트리의 타입, 토큰 타입을 그대로 가져와서 쓸 수 있음
+	t_redir			*redir; // 트리의 리다이렉션, (ls && ls) > outfile 
+							// 위의 경우 ls 두개가 모두 outfile로 가야하기 때문에, 기본적으로 트리는 하위 노드에 리다이렉션 정보를 상속해야 함.
+	char			*original_str; // 에러 메세지 맞추기용 확장 전 스트링
 };
 
 enum e_search_result
@@ -182,40 +195,45 @@ enum e_meta_type
 	NOT_META = 0
 };
 
+// 노드 순회 방향
 enum e_move_direction
 {
 	RIGHT = 0,
 	LEFT
 };
 
+// readline용 ECHOCTL 끈 터미널과 그렇지 않은 터미널 저장
 struct s_term_state
 {
 	t_term	default_term;
 	t_term	rl_term;
 };
 
+// 환경변수
 struct s_envp_list
 {
-	char				*key;
-	char				*value;
-	size_t				list_len;
+	char				*key; // PATH
+	char				*value; // /usr/bin:/usr/local/bin
+	size_t				list_len; // 환경변수 길이
 	struct s_envp_list	*next;
 };
 
+// 필요한 모든 정보 들고 다니기
 struct s_context
 {
-	int				std_fd[3];
-	int				exit_status;
-	t_envp_list		*envp;
-	t_term_state	term_state;
+	int				std_fd[3]; // 실행 시 복구용 터미널 fd (built in 명령어가 부모 프로세스에서 실행 될 경우 사용)
+	int				exit_status; // 직전 명령어의 종료 상태 (and, or가 참조함)
+	t_envp_list		*envp; // 환경변수
+	t_term_state	term_state; // readline관련 터미널 정보
 };
 
+// 리다이렉션 정보
 struct s_redir
 {
-	int		in;
-	int		out;
-	char	*err;
-	char	*err_target;
+	int		in; // <, <<의 경우 파일의 fd 저장
+	int		out; // >, >>, "
+	char	*err; // 에러 메세지, 만약 리다이렉션 중 에러가 있었을 경우 저장, 아니면 NULL
+	char	*err_target; // 에러 타겟, "
 };
 
 enum e_redir_result
@@ -232,8 +250,8 @@ enum e_is_quoted
 
 struct s_heredoc
 {
-	char			*limit;
-	t_is_quoted		quoted;
+	char			*limit; // cat << eof에서 eof
+	t_is_quoted		quoted; // 만약 cat << 'eof'(혹은 "eof") 라면, eof가 limit이지만, heredoc으로 받는 데이터들의 확장이 일어나지 않는다
 };
 
 enum e_quote_mask
@@ -242,28 +260,29 @@ enum e_quote_mask
 	DQUOTE = 1 << 1
 };
 
+// 문장의 가장 작은 단위
 struct s_token
 {
-	char			*data;
-	t_token_type	type;
-	t_expanded_list	*expanded_list;
+	char			*data; // 데이터 (echo, |, etc)
+	t_token_type	type; // 타입 (WORD, PIPE, etc)
+	t_expanded_list	*expanded_list; // 확장 단계에서 사용, 토큰 나눌 땐 안씀. 확장의 결과물로 나온 따옴표들은 유지되어야 하기 때문에 필요
 	t_token			*next;
-	t_token			*prev;
-	t_redir			*redir;
+	t_token			*prev; // 수정 용이하게 양방향으로 만듦
+	t_redir			*redir; // 리다이렉션 단계에서 사용, heredoc 때문에 미리 들고 있어야 함
 };
 
 struct s_expanded_list
 {
-	size_t			start;
-	size_t			end;
-	t_expanded_list	*next;
+	size_t			start; // 확장 후 string에서 확장이 시작된 위치. s$USER->sjaham 이라면 j가 확장이 시작된 위치이다.
+	size_t			end; // " 끝난 위치
+	t_expanded_list	*next; // 한 string에도 여러번 확장이 있었을 가능성이 있다
 };
 
 enum e_redir_types
 {
-	REDIR_TYPE = REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND,
-	REDIR_INS = REDIR_IN | REDIR_HEREDOC,
-	REDIR_OUTS = REDIR_OUT | REDIR_APPEND
+	REDIR_TYPE = REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND, // 리다이렉션
+	REDIR_INS = REDIR_IN | REDIR_HEREDOC, // 받는 방향
+	REDIR_OUTS = REDIR_OUT | REDIR_APPEND // 나가는 방향
 };
 
 #endif
