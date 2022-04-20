@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 19:38:42 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/20 22:29:59 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 # include "t_types.h"
 
-# define SORT (1 << 0)
-# define UNSORT (1 << 1)
+enum e_print_op
+{
+	SORT = 1 << 0,
+	UNSORT = 1 << 1
+};
 
 int			init_envp_list(t_envp_list **head, char **envp);
 int			clear_envp_list(t_envp_list **head);

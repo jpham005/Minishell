@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:24:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 08:57:22 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/20 22:29:25 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,22 @@
 
 # include "t_types.h"
 
+enum e_built_in_exit_status
+{
+	EXIT_NUMERIC = 1 << 0,
+	EXIT_NON_NUMERIC = 1 << 1,
+	EXIT_TOO_MANY_ARG = 1 << 2,
+	EXIT_NO_ARG = 1 << 3
+};
+
 # define EXPORT_CMD "export: "
 # define UNSET_CMD "unset: "
 # define EXPORT_ARG_ERR_MESSAGE "not a valid identifier\n"
 # define UNSET_ARG_ERR_MESSAGE "not a valid identifier\n"
 
 # define EXIT_CMD "exit: "
-# define EXIT_NUMERIC (1 << 0)
-# define EXIT_NON_NUMERIC (1 << 1)
 # define EXIT_NON_NUMERIC_ERR_MESSAGE "numeric argument required\n"
-# define EXIT_TOO_MANY_ARG (1 << 2)
 # define EXIT_TOO_MANY_ARG_ERR_MESSAGE "too many arguments\n"
-# define EXIT_NO_ARG (1 << 3)
 
 # define CD_CMD "cd: "
 # define HOME_NOT_SET_ERR_MESSAGE "HOME not set\n"

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 08:58:37 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/20 22:31:43 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include "t_types.h"
 
 # define NON_EXPECTED_TOKEN_MESSAGE "syntax error near unexpected token `"
-# define MINISHELL_NEAR_TOKEN_ERR_MESSAGE SHELL_NAME NON_EXPECTED_TOKEN_MESSAGE
+# define MINISHELL_NEAR_TOKEN_ERR_MESSAGE "minishell: syntax error near \
+															unexpected token `" 
 
 # define NO_MATCH_TOKEN_MESSAGE "syntax error while looking for matching `"
-# define MINISHELL_NO_MATCH_ERR_MESSAGE SHELL_NAME NO_MATCH_TOKEN_MESSAGE
+# define MINISHELL_NO_MATCH_ERR_MESSAGE "minishell: syntax error while looking \
+																for matching `"
 
 // lexer
 t_lexer_result	lexer(t_token *token);

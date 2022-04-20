@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:21:23 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/13 10:52:45 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/20 22:34:46 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 # define SHELL_NAME "minishell: "
 # define TOO_MANY_ARG_ERR_MESSAGE "Interactive only: "
 # define SIG_QUIT_MESSAGE "Quit: 3\n"
-# define MINISHELL_WITH_COLOR PURPLE_BD"minishell "PINK_BD"#"DEF_COL" "BLUE_BT
-# define MINISHELL_WITH_COLOR_ERR PURPLE_BD"minishell "RED"#"DEF_COL" "BLUE_BT
+# define MINISHELL_WITH_COLOR "\001\033[1;38;5;147m\002minishell \
+				\001\033[1;38;5;219m\002#\001\033[m\002 \001\033[38;5;153m\002"
+# define MINISHELL_WITH_COLOR_ERR "\001\033[1;38;5;147m\002minishell \
+				\001\033[1;38;5;203m\002#\001\033[m\002 \001\033[38;5;153m\002"
 # define SYNTAX_ERR_EXIT_STATUS 258
 
 void		reset_terminal(t_context *context);
