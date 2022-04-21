@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:20:16 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/13 13:55:07 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:28:34 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ char	*ft_readline(t_context *context, char *str)
 	if (!str)
 	{
 		if (context->exit_status == 0)
-			ret = readline(MINISHELL_WITH_COLOR);
+			ret = readline(PURPLE_BD"minishell "PINK_BD"#"DEF_COL" "BLUE_BT);
 		else
-			ret = readline(MINISHELL_WITH_COLOR_ERR);
+			ret = readline(PURPLE_BD"minishell "RED"#"DEF_COL" "BLUE_BT);
 	}
 	else
 	{
