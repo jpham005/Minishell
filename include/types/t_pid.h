@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.h                                             :+:      :+:    :+:   */
+/*   t_pid.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 17:39:33 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 17:40:23 by jaham            ###   ########.fr       */
+/*   Created: 2022/04/21 18:16:06 by seunpark          #+#    #+#             */
+/*   Updated: 2022/04/21 20:35:39 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ECHO_H
-# define ECHO_H
+#ifndef T_PID_H
+# define T_PID_H
 
-# include "t_types.h"
+# include <stdio.h> 
 
-int		echo(t_context *context, const char **argv);
+typedef struct s_pid_list		t_pid_list;
+
+// fork된 프로세스 대기용
+struct s_pid_list
+{
+	pid_t		pid;
+	t_pid_list	*next;
+};
 
 #endif

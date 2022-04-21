@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/13 09:16:14 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:28:36 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REDIRECTION_H
 # define REDIRECTION_H
 
-# include "t_types.h"
+# include "t_redir.h"
+# include "t_parse_tree.h"
+# include "t_context.h"
 
 # define TOKEN_ERR_MESSAGE "ambiguous redirect"
 

@@ -3,17 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 21:59:05 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 08:58:26 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:19:20 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXPANDER_H
 # define EXPANDER_H
 
-# include "t_types.h"
+# include "t_quote.h"
+# include "t_name.h"
+# include "t_token.h"
+# include "t_parse_tree.h"
+# include "t_buffer.h"
+# include "t_context.h"
 
 // expander
 void		expander(t_parse_tree *parse_tree, t_context *context);

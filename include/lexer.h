@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 16:10:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:31:55 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:26:23 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
 
-# include "t_types.h"
+# include "t_lexer.h"
+# include "t_token.h"
 
 # define NON_EXPECTED_TOKEN_MESSAGE "syntax error near unexpected token `"
 # define NO_MATCH_TOKEN_MESSAGE "syntax error while looking for matching `"

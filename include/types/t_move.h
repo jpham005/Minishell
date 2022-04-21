@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_context.h                                        :+:      :+:    :+:   */
+/*   t_move.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 17:42:58 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:41:54 by seunpark         ###   ########.fr       */
+/*   Created: 2022/04/21 18:08:17 by seunpark          #+#    #+#             */
+/*   Updated: 2022/04/21 18:08:53 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_CONTEXT_H
-# define T_CONTEXT_H
+#ifndef T_MOVE
+# define T_MOVE
 
-# include "t_envp.h"
-# include "t_term.h"
+typedef enum e_move_direction	t_move_direction;
 
-typedef struct s_context		t_context;
-
-struct s_context
+// 노드 순회 방향
+enum e_move_direction
 {
-	int				std_fd[3];
-	int				exit_status;
-	t_envp_list		*envp;
-	t_term_state	term_state;
+	RIGHT = 0,
+	LEFT
 };
 
 #endif

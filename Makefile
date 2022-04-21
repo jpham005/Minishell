@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/13 18:19:33 by jaham            ###   ########.fr        #
+#    Updated: 2022/04/21 20:43:29 by seunpark         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,27 @@ UTILS_DIR			:=	$(SRCS_DIR)/utils
 INCLUDE				:=	include
 INCLUDE_FILES		:=	built_in.h color.h envp.h executor.h expander.h \
 						heredoc.h lexer.h parser.h terminal.h redirection.h \
-						t_buffer.h t_types.h tokenizer.h utils.h
+						tokenizer.h utils.h \
+						types/t_buffer.h \
+						types/t_cmd.h \
+						types/t_context.h \
+						types/t_envp.h \
+						types/t_exit.h \
+						types/t_expand.h \
+						types/t_heredoc.h \
+						types/t_lexer.h \
+						types/t_meta.h \
+						types/t_move.h \
+						types/t_name.h \
+						types/t_parse_tree.h \
+						types/t_pid.h \
+						types/t_pipes.h \
+						types/t_quote.h \
+						types/t_redir.h \
+						types/t_search.h \
+						types/t_stat.h \
+						types/t_term.h \
+						types/t_token.h
 INCLUDE_FILES		:=	$(addprefix $(INCLUDE)/, $(INCLUDE_FILES))
 
 READLINE_DIR		:=	readline

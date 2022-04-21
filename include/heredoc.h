@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 10:21:34 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/13 10:51:50 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:20:05 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEREDOC_H
 # define HEREDOC_H
 
-# include "t_types.h"
+# include "t_token.h"
+# include "t_context.h"
+# include "t_heredoc.h"
+# include "t_buffer.h"
 
 # define HEREDOC_WRITE_ERR_MESSAGE "write err while heredoc\n"
 
