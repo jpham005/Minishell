@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_context.h                                        :+:      :+:    :+:   */
+/*   t_heredoc.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 17:42:58 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:41:54 by seunpark         ###   ########.fr       */
+/*   Created: 2022/04/21 17:53:32 by seunpark          #+#    #+#             */
+/*   Updated: 2022/04/21 17:56:54 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_CONTEXT_H
-# define T_CONTEXT_H
+#ifndef T_HEREDOC_H
+# define T_HEREDOC_H
 
-# include "t_envp.h"
-# include "t_term.h"
+# include "t_quote.h"
 
-typedef struct s_context		t_context;
+typedef struct s_heredoc		t_heredoc;
 
-struct s_context
+struct s_heredoc
 {
-	int				std_fd[3];
-	int				exit_status;
-	t_envp_list		*envp;
-	t_term_state	term_state;
+	char			*limit; // cat << eof에서 eof
+	t_is_quoted		quoted; // 만약 cat << 'eof'(혹은 "eof") 라면, eof가 limit이지만, heredoc으로 받는 데이터들의 확장이 일어나지 않는다
 };
 
 #endif

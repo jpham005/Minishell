@@ -54,6 +54,11 @@
 		"string.h": "c",
 		"errno.h": "c",
 		"fcntl.h": "c",
-		"rlstdc.h": "c"
+		"rlstdc.h": "c",
+		"t_parse_tree.h": "c",
+		"t_redir.h": "c",
+		"t_expand.h": "c",
+		"t_token.h": "c",
+		"t_exit.h": "c"
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/13 10:23:54 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:31:40 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define TOKENIZER_H
 
 # include "t_buffer.h"
-# include "t_types.h"
+# include "t_quote.h"
+# include "t_token.h"
+# include "t_expand.h"
+# include <stddef.h>
 
 // tokenizer
 t_token			*tokenizer(const char *str);

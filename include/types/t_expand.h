@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   t_expand.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 22:16:33 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:32:24 by seunpark         ###   ########.fr       */
+/*   Created: 2022/04/21 17:57:15 by seunpark          #+#    #+#             */
+/*   Updated: 2022/04/21 20:34:45 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef T_EXPAND_H
+# define T_EXPAND_H
 
-# include "t_exit.h"
-# include "t_context.h"
+# include <stddef.h>
 
-# define PRT_INTRO_ERR_MESSAGE "Print Intro Error\n"
-# define SET_TERM_ERR_MESSAGE "Setting Terminal Error\n"
-# define ARG_ERR_MESSAGE "Arg Error\n"
-# define DEFAULT_FD_ERR_MESSAGE "Default fd Error\n"
+typedef struct s_expanded_list	t_expanded_list;
 
-
-void	write_error(const char *str);
-void	exit_with_condition(t_exit_condition condition, t_context *context);
-int		print_intro(void);
+struct s_expanded_list
+{
+	size_t			start;
+	size_t			end;
+	t_expanded_list	*next;
+};
 
 #endif

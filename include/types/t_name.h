@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_context.h                                        :+:      :+:    :+:   */
+/*   t_name.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/12 17:42:58 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:41:54 by seunpark         ###   ########.fr       */
+/*   Created: 2022/04/21 18:10:20 by seunpark          #+#    #+#             */
+/*   Updated: 2022/04/21 18:12:31 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_CONTEXT_H
-# define T_CONTEXT_H
+#ifndef T_NAME_H
+# define T_NAME_H
 
-# include "t_envp.h"
-# include "t_term.h"
 
-typedef struct s_context		t_context;
+typedef enum e_nametype			t_nametype;
+typedef struct s_filename		t_filename;
 
-struct s_context
+enum e_nametype
 {
-	int				std_fd[3];
-	int				exit_status;
-	t_envp_list		*envp;
-	t_term_state	term_state;
+	FIXED_STR = 0,
+	ASTERISK
+};
+
+struct s_filename
+{
+	char		*name; // 내용 (asdf 거나 ****)
+	char		*checked; // 마지막으로 fixed를 찾은 위치 (해당 위치 이후부터 나머지 fixed string을 매칭 시도해야 함)
+	t_filename	*next;
+	t_nametype	type; // fixed인지 아닌지
 };
 
 #endif

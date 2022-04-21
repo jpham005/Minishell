@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:51:43 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 08:58:48 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:27:08 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "t_types.h"
+# include "t_parse_tree.h"
+# include "t_search.h"
+# include "t_meta.h"
 
 // get parser tree
 t_parse_tree	*parser(t_token *token);

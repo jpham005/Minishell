@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_token.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:48:03 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 17:41:03 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 18:04:42 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define T_TOKEN_H
 
 # include "t_redir.h"
+# include "t_expand.h"
 # include <stddef.h>
 
-typedef struct s_token			t_token;
 typedef enum e_token_type		t_token_type;
-typedef struct s_expanded_list	t_expanded_list;
+typedef struct s_token			t_token;
 
 enum e_token_type
 {
@@ -36,12 +36,6 @@ enum e_token_type
 	UNQUOTED = 1 << 11
 };
 
-struct s_expanded_list
-{
-	size_t			start;
-	size_t			end;
-	t_expanded_list	*next;
-};
 
 struct s_token
 {

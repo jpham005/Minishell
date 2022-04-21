@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminal.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:21:23 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/20 22:34:46 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:31:43 by seunpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define TERMINAL_H
 
 # include "color.h"
-# include "t_types.h"
-# include <termios.h>
+# include "t_term.h"
+# include "t_context.h"
+# include "t_pipes.h"
+# include "t_context.h"
 
 # define SHELL_NAME "minishell: "
 # define TOO_MANY_ARG_ERR_MESSAGE "Interactive only: "
