@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"t_token.h": "c",
+		"redirection.h": "c"
+	}
+}

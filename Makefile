@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+         #
+#    By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/21 22:13:42 by jaham             #+#    #+#              #
-#    Updated: 2022/04/21 20:43:29 by seunpark         ###   ########.fr        #
+#    Updated: 2022/04/21 22:38:56 by jaham            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,31 +23,18 @@ TERMINAL_DIR		:=	$(SRCS_DIR)/terminal
 TOKENIZER_DIR		:=	$(SRCS_DIR)/tokenizer
 UTILS_DIR			:=	$(SRCS_DIR)/utils
 
-INCLUDE				:=	include
+INCLUDE_DIR			:=	include
 INCLUDE_FILES		:=	built_in.h color.h envp.h executor.h expander.h \
 						heredoc.h lexer.h parser.h terminal.h redirection.h \
-						tokenizer.h utils.h \
-						types/t_buffer.h \
-						types/t_cmd.h \
-						types/t_context.h \
-						types/t_envp.h \
-						types/t_exit.h \
-						types/t_expand.h \
-						types/t_heredoc.h \
-						types/t_lexer.h \
-						types/t_meta.h \
-						types/t_move.h \
-						types/t_name.h \
-						types/t_parse_tree.h \
-						types/t_pid.h \
-						types/t_pipes.h \
-						types/t_quote.h \
-						types/t_redir.h \
-						types/t_search.h \
-						types/t_stat.h \
-						types/t_term.h \
-						types/t_token.h
-INCLUDE_FILES		:=	$(addprefix $(INCLUDE)/, $(INCLUDE_FILES))
+						tokenizer.h utils.h
+INCLUDE_FILES		:=	$(addprefix $(INCLUDE_DIR)/, $(INCLUDE_FILES))
+
+INCLUDE_TYPES_DIR	:=	$(INCLUDE_DIR)/types
+INCLUDE_TYPES		:=	t_buffer.h t_cmd.h t_context.h t_envp.h t_exit.h \
+						t_expand.h t_heredoc.h t_lexer.h t_meta.h t_move.h \
+						t_name.h t_parse_tree.h t_pid.h t_pipes.h t_quote.h \
+						t_redir.h t_search.h t_stat.h t_term.h t_token.h
+INCLUDE_TYPES		:=	$(addprefix $(INCLUDE_TYPES_DIR)/, $(INCLUDE_TYPES))
 
 READLINE_DIR		:=	readline
 READLINE_INCLUDE	:=	$(READLINE_DIR)
@@ -115,7 +102,8 @@ RMFLAGS				:=	-f
 .PHONY				:	all
 all					:	$(NAME)
 
-$(NAME)				:	$(OBJS) $(LIBFT) $(INCLUDE_FILES) $(READLINE)
+$(NAME)				:	$(OBJS) $(LIBFT) $(INCLUDE_FILES) $(INCLUDE_TYPES) \
+						$(READLINE)
 	$(CC) $(CFLAGS) -o $@ $(LIBFT) $(OBJS) $(LIBFT) \
 	-L$(READLINE_LIB) -lreadline -lhistory -lncurses
 
@@ -128,8 +116,8 @@ $(LIBFT)			:
 
 .PHONY				:	.c.o
 .c.o				:
-	$(CC) $(CFLAGS) -I$(READLINE_INCLUDE) -I$(INCLUDE) -I$(LIBFT_DIR) \
-	-c $< -o $@
+	$(CC) $(CFLAGS) -I$(READLINE_INCLUDE) -I$(INCLUDE_DIR) \
+	-I$(INCLUDE_TYPES_DIR) -I$(LIBFT_DIR) -c $< -o $@
 
 .PHONY				:	clean
 clean				:

@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 16:08:16 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 21:02:17 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "redirection.h"
+#include "t_move.h"
 
 static t_redir	*inherit_redir(t_parse_tree *parse_tree, t_redir *old_redir)
 {

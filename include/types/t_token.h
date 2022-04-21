@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   t_token.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:48:03 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 18:04:42 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:05:11 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_TOKEN_H
 # define T_TOKEN_H
 
-# include "t_redir.h"
 # include "t_expand.h"
+# include "t_redir.h"
 # include <stddef.h>
 
-typedef enum e_token_type		t_token_type;
-typedef struct s_token			t_token;
+typedef enum e_token_type			t_token_type;
+typedef enum e_token_redir_types	t_token_redir_types;
+typedef struct s_token				t_token;
 
 enum e_token_type
 {
@@ -36,6 +37,12 @@ enum e_token_type
 	UNQUOTED = 1 << 11
 };
 
+enum e_token_redir_types
+{
+	REDIR_TYPE = REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND, // 리다이렉션
+	REDIR_INS = REDIR_IN | REDIR_HEREDOC, // 받는 방향
+	REDIR_OUTS = REDIR_OUT | REDIR_APPEND // 나가는 방향
+};
 
 struct s_token
 {

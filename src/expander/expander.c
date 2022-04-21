@@ -6,12 +6,13 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 10:55:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 16:51:20 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 21:01:37 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expander.h"
 #include "libft.h"
+#include "t_move.h"
 
 static void	go_side_node(
 	t_parse_tree *parse_tree, t_context *context, t_move_direction dir

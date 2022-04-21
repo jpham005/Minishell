@@ -6,13 +6,14 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:06:19 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 10:03:31 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 21:00:45 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "envp.h"
 #include "executor.h"
 #include "libft.h"
+#include "t_stat.h"
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>

@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:38:04 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:16:10 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:54:04 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTOR_H
 # define EXECUTOR_H
 
-# include "t_parse_tree.h"
-# include "t_pid.h"
-# include "t_context.h"
-# include "t_exit.h"
-# include "t_pipes.h"
-# include "t_cmd.h"
+# include "types/t_parse_tree.h"
+# include "types/t_pid.h"
+# include "types/t_context.h"
+# include "types/t_exit.h"
+# include "types/t_pipes.h"
+# include "types/t_cmd.h"
 
 # define NOT_FOUND_MESSAGE "No such file or directory\n"
 # define IS_DIR_MESSAGE "is a directory\n"

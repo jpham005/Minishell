@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   built_in.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:24:09 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 19:52:14 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:53:49 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILT_IN_H
 # define BUILT_IN_H
 
-# include "t_context.h"
+# include "types/t_context.h"
 
 enum e_built_in_exit_status
 {

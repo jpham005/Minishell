@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   t_pid.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 18:16:06 by seunpark          #+#    #+#             */
-/*   Updated: 2022/04/21 20:35:39 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:00:11 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_PID_H
 # define T_PID_H
 
-# include <stdio.h> 
+# include <unistd.h> 
 
 typedef struct s_pid_list		t_pid_list;
 

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:28:36 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:05:41 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef REDIRECTION_H
 # define REDIRECTION_H
 
-# include "t_redir.h"
-# include "t_parse_tree.h"
-# include "t_context.h"
+# include "types/t_redir.h"
+# include "types/t_parse_tree.h"
+# include "types/t_context.h"
 
 # define TOKEN_ERR_MESSAGE "ambiguous redirect"
 
@@ -27,7 +27,8 @@ t_redir_result	redirection(t_parse_tree *parse_tree, t_redir *redir, \
 int				check_valid_redir_target(t_parse_tree *parse_tree);
 void			set_redir_err(t_parse_tree *parse_tree, char *err_target, \
 																	char *err);
-int				is_multiple_redir(t_parse_tree *parse_tree, t_redir_types type);
+int				is_multiple_redir(t_parse_tree *parse_tree, \
+													t_token_redir_types type);
 
 // init destroy redir
 t_redir			*init_redir(int in, int out, char *err, char *err_target);

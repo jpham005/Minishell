@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:55:41 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:31:40 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:54:44 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 
-# include "t_buffer.h"
-# include "t_quote.h"
-# include "t_token.h"
-# include "t_expand.h"
+# include "types/t_buffer.h"
+# include "types/t_quote.h"
+# include "types/t_token.h"
+# include "types/t_expand.h"
 # include <stddef.h>
 
 // tokenizer

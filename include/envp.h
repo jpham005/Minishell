@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   envp.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 22:20:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:14:34 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:53:58 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENVP_H
 # define ENVP_H
 
-# include "t_envp.h"
+# include "types/t_envp.h"
 
 enum e_print_op
 {
