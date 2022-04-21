@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/20 14:14:48 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/10 10:55:09 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 19:50:51 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-int	ft_waitpid(pid_t pid, int *status, int op)
+pid_t	ft_waitpid(pid_t pid, int *status, int op)
 {
-	if (waitpid(pid, status, op) == -1)
+	pid_t	ret;
+
+	ret = waitpid(pid, status, op);
+	if (ret == -1)
 	{
 		ft_perror("waitpid", errno);
 		return (0);
 	}
-	return (1);
+	return (ret);
 }

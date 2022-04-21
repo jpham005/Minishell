@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:37:18 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 10:15:14 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 20:31:27 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	clear_lexer_err_info(t_lexer_err *err_info)
 void	print_lexer_err(t_lexer_err *err_info)
 {
 	if (err_info->type == NEAR_TOKEN)
-		ft_putstr_fd(MINISHELL_NEAR_TOKEN_ERR_MESSAGE, STDERR_FILENO);
+		ft_putstr_fd(SHELL_NAME NON_EXPECTED_TOKEN_MESSAGE, STDERR_FILENO);
 	if (err_info->type == NO_MATCH)
-		ft_putstr_fd(MINISHELL_NO_MATCH_ERR_MESSAGE, STDERR_FILENO);
+		ft_putstr_fd(SHELL_NAME NO_MATCH_TOKEN_MESSAGE, STDERR_FILENO);
 	ft_putstr_fd(err_info->data, STDERR_FILENO);
 	ft_putstr_fd("\'\n", STDERR_FILENO);
 }

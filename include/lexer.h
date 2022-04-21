@@ -17,12 +17,7 @@
 # include "t_token.h"
 
 # define NON_EXPECTED_TOKEN_MESSAGE "syntax error near unexpected token `"
-# define MINISHELL_NEAR_TOKEN_ERR_MESSAGE "minishell: syntax error near \
-															unexpected token `" 
-
 # define NO_MATCH_TOKEN_MESSAGE "syntax error while looking for matching `"
-# define MINISHELL_NO_MATCH_ERR_MESSAGE "minishell: syntax error while looking \
-																for matching `"
 
 // lexer
 t_lexer_result	lexer(t_token *token);

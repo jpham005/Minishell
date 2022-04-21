@@ -22,10 +22,6 @@
 # define SHELL_NAME "minishell: "
 # define TOO_MANY_ARG_ERR_MESSAGE "Interactive only: "
 # define SIG_QUIT_MESSAGE "Quit: 3\n"
-# define MINISHELL_WITH_COLOR "\001\033[1;38;5;147m\002minishell \
-				\001\033[1;38;5;219m\002#\001\033[m\002 \001\033[38;5;153m\002"
-# define MINISHELL_WITH_COLOR_ERR "\001\033[1;38;5;147m\002minishell \
-				\001\033[1;38;5;203m\002#\001\033[m\002 \001\033[38;5;153m\002"
 # define SYNTAX_ERR_EXIT_STATUS 258
 
 void		reset_terminal(t_context *context);
