@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:19:51 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/12 12:22:23 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 16:08:16 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static t_redir	*inherit_redir(t_parse_tree *parse_tree, t_redir *old_redir)
 	if (parse_tree->up && (parse_tree->up->type & PIPE))
 	{
 		if (parse_tree->up->left == parse_tree)
-			ret->out = 1;
+			ret->out = STDOUT_FILENO;
 		else
-			ret->in = 0;
+			ret->in = STDIN_FILENO;
 	}
 	return (ret);
 }

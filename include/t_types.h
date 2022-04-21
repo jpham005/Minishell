@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 11:08:30 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/17 20:43:13 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/21 17:40:55 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@
 # include <termios.h>
 # include <stddef.h>
 
-typedef enum e_token_type		t_token_type;
-typedef struct termios			t_term;
-typedef struct s_term_state		t_term_state;
-typedef struct s_envp_list		t_envp_list;
-typedef struct s_context		t_context;
+// typedef enum e_token_type		t_token_type;
+// typedef struct termios			t_term;
+// typedef struct s_term_state		t_term_state;
+// typedef struct s_envp_list		t_envp_list;
+// typedef struct s_context		t_context;
 typedef enum e_redir_result		t_redir_result;
 typedef struct s_heredoc		t_heredoc;
 typedef enum e_is_quoted		t_is_quoted;
-typedef struct s_redir			t_redir;
+// typedef struct s_redir			t_redir;
 typedef enum e_quote_mask		t_quote_mask;
 typedef enum e_expand_status	t_expand_status;
-typedef struct s_token			t_token;
-typedef struct s_expanded_list	t_expanded_list;
+// typedef struct s_token			t_token;
+// typedef struct s_expanded_list	t_expanded_list;
 typedef enum e_redir_types		t_redir_types;
-typedef struct s_parse_tree		t_parse_tree;
+// typedef struct s_parse_tree		t_parse_tree;
 typedef enum e_search_result	t_search_result;
 typedef enum e_meta_type		t_meta_type;
 typedef enum e_move_direction	t_move_direction;
@@ -45,7 +45,7 @@ typedef enum e_exit_status		t_exit_status;
 typedef enum e_cmd_type			t_cmd_type;
 typedef enum e_cmd_stat			t_cmd_stat;
 typedef struct stat				t_stat;
-typedef struct s_pipes			t_pipes;
+// typedef struct s_pipes			t_pipes;
 typedef struct s_pid_list		t_pid_list;
 
 // 토큰 종류, 트리에서도 사용
