@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   t_meta.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 18:07:16 by seunpark          #+#    #+#             */
-/*   Updated: 2022/04/21 18:12:37 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:12:58 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef T_META_H
 # define T_META_H
 
-#include "t_token.h"
+# include "t_token.h"
 
-typedef enum e_meta_type		t_meta_type;
+typedef enum e_meta_type	t_meta_type;
 
 enum e_meta_type
 {

@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 17:48:03 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 21:05:11 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/22 18:10:30 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ enum e_token_type
 
 enum e_token_redir_types
 {
-	REDIR_TYPE = REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND, // 리다이렉션
-	REDIR_INS = REDIR_IN | REDIR_HEREDOC, // 받는 방향
-	REDIR_OUTS = REDIR_OUT | REDIR_APPEND // 나가는 방향
+	REDIR_TYPE = REDIR_IN | REDIR_HEREDOC | REDIR_OUT | REDIR_APPEND,
+	REDIR_INS = REDIR_IN | REDIR_HEREDOC,
+	REDIR_OUTS = REDIR_OUT | REDIR_APPEND
 };
 
 struct s_token

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_cmd.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 18:12:53 by seunpark          #+#    #+#             */
-/*   Updated: 2022/04/21 18:18:18 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:09:30 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 typedef enum e_cmd_type			t_cmd_type;
 typedef enum e_cmd_stat			t_cmd_stat;
 
-// 빌트인 7개 + 빌트인 아닐 때 + 논리 연산자 일 때 (해당 경우 executor 재귀 호출)
 enum e_cmd_type
 {
 	BUILT_IN_CD = 0,
@@ -30,12 +29,11 @@ enum e_cmd_type
 	LOGICAL = 8
 };
 
-// (쉘에서 에러 메세지가 다르게 나오는 경우 예외처리)
 enum e_cmd_stat
 {
-	FILE_NOT_FOUND = 0, // bash : asdf/asdf
-	IS_DIR, // bash : dir
-	NO_PERMISSION, // chmod 000, bash : no_perm_file
+	FILE_NOT_FOUND = 0,
+	IS_DIR,
+	NO_PERMISSION,
 	SUCCESS
 };
 

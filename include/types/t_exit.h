@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_exit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 18:11:35 by seunpark          #+#    #+#             */
-/*   Updated: 2022/04/21 20:32:30 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:09:42 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,16 @@ enum e_exit_condition
 	PRINT_INTRO_ERR = 1 << 3
 };
 
-// exit status 용 변수들. 상황별로 정해져 있음
 enum e_exit_status
 {
 	EXIT_SUCCESS = 0,
 	EXIT_REDIR_ERR = 1,
 	EXIT_FATAL = 1,
 	EXIT_ERR = 125,
-	PERM = 1, // 파일 존재하나 권한이 없을 때
-	NOENT = 2, // 파일 미존재 (엔트리 없을 때)
-	EXIT_SIGNAL = 128, // 시그널 종료 시 128 + 시그널 넘버
-	STOP_SIGNAL = 17, // stop , cont는 특별 케이스
+	PERM = 1,
+	NOENT = 2,
+	EXIT_SIGNAL = 128,
+	STOP_SIGNAL = 17,
 	CONTINUE_SIGNAL = 19,
 };
 

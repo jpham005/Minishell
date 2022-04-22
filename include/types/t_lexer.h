@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_lexer.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunpark <seunpark@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 18:09:05 by seunpark          #+#    #+#             */
-/*   Updated: 2022/04/21 18:12:34 by seunpark         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:13:05 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ typedef enum e_lexer_mask		t_lexer_mask;
 typedef struct s_lexer_err		t_lexer_err;
 typedef enum e_lexer_err_type	t_lexer_err_type;
 
-// 렉서 결과
 enum e_lexer_result
 {
 	LEXER_SUCCESS = 0,
 	LEXER_ERR
 };
 
-// 옆에 올 수 없는 타입들을 모아 둔 마스크
 enum e_lexer_mask
 {
 	FIRST_TOKEN_MASK = PIPE | AND | OR | PARENTHESIS_R,
@@ -41,7 +39,6 @@ enum e_lexer_mask
 	MASK_DFL = 0x7FF
 };
 
-// 렉서 에러 출력문에 필요한 에러 타입
 enum e_lexer_err_type
 {
 	NO_ERR = 0,
@@ -49,12 +46,10 @@ enum e_lexer_err_type
 	NO_MATCH
 };
 
-// 렉서에서 발생한 에러 저장
 struct s_lexer_err
 {
 	char				*data;
 	t_lexer_err_type	type;
 };
-
 
 #endif
