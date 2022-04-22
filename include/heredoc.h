@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 10:21:34 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/21 20:54:12 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/22 18:45:39 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void			set_heredoc_info(char *str, t_heredoc *heredoc, \
 int				is_heredoc_end(char *input, char *limit);
 void			set_cursur_heredoc(void);
 void			write_heredoc_string(char *input, int fd);
-int				is_heredoc(t_token *token);
 
 // heredoc end
 int				end_heredoc(char **input, int here_pipe[2]);

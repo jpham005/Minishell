@@ -6,7 +6,7 @@
 /*   By: jaham <jaham@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 10:36:14 by jaham             #+#    #+#             */
-/*   Updated: 2022/04/13 10:59:16 by jaham            ###   ########.fr       */
+/*   Updated: 2022/04/22 18:44:25 by jaham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,4 @@ void	write_heredoc_string(char *input, int fd)
 {
 	if ((ft_putstr_fd(input, fd) == -1) || (ft_putstr_fd("\n", fd) == -1))
 		ft_exit(1);
-}
-
-int	is_heredoc(t_token *token)
-{
-	if (!token)
-		return (0);
-	return (token && (token->type & WORD) && token->prev \
-			&& (token->prev->type & REDIR_HEREDOC));
 }
