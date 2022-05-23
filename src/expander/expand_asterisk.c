@@ -85,11 +85,9 @@ static t_token	*try_asterisk_expansion(
 
 void	expand_asterisk(t_parse_tree *parse_tree, t_token *token)
 {
-	t_quote_mask	mask;
 	t_token			*next;
 	t_token			*new_token;
 
-	mask = 0;
 	while (token)
 	{
 		next = token->next;

@@ -21,7 +21,7 @@
 t_parse_tree	*parser(t_token *token);
 
 // remove parenthesis token
-void			remove_parenthesis_token(t_token **tail);
+void			remove_parenthesis_token(t_token **tail, t_parse_tree **parse_tree);
 
 // find meta type
 t_search_result	find_meta(t_token *tail, t_token **searched, t_meta_type type);

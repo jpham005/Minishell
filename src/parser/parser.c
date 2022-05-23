@@ -44,7 +44,7 @@ static void	parse_token_to_tree(
 {
 	t_token	*searched;
 
-	remove_parenthesis_token(tail);
+	remove_parenthesis_token(tail, parse_tree);
 	if (find_meta(*tail, &searched, LOGICAL_META) == FOUND)
 		insert_tree_node(parse_tree, searched, prev_node);
 	else if (find_meta(*tail, &searched, PIPE_META) == FOUND)

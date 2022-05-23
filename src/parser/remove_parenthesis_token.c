@@ -36,11 +36,15 @@ static void	perform_remove(t_token **head, t_token **tail)
 	del_token(tail);
 }
 
-void	remove_parenthesis_token(t_token **tail)
+void	remove_parenthesis_token(t_token **tail, t_parse_tree **parse_tree)
 {
 	t_token	*head;
 
 	head = get_head_token(*tail);
 	while (head && (head->type == PARENTHESIS_L) && is_removable(head->next))
+	{
 		perform_remove(&head, tail);
+		if (*parse_tree)
+			(*parse_tree)->token = head;
+	}
 }

@@ -91,9 +91,11 @@ void	execute_child(t_pipes *pipes, t_context *context)
 	t_envp_list	*path_list;
 	t_cmd_type	type;
 
+	type = get_cmd_type(pipes);
+  if (type == LOGICAL)
+      exit(execute_logical(pipes, context));
 	if (!pipes->cmd[0])
 		ft_exit(0);
-	type = get_cmd_type(pipes);
 	if (type != NON_BUILT_IN)
 		exit(execute_built_in(type, pipes, context));
 	path_list = find_list_by_key(context->envp, "PATH");
