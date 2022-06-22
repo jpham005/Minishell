@@ -60,7 +60,7 @@ static char	*find_cmd_from_path(const char *data, t_envp_list *path_list)
 	{
 		temp = ft_strjoin(*path, "/");
 		ret = ft_strjoin(temp, data);
-		if (lstat(ret, &stat) != -1)
+		if (lstat(ret, &stat) != -1 && !(stat.st_mode & S_IFDIR))
 		{
 			ft_free((void **) &temp);
 			break ;
