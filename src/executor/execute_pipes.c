@@ -16,9 +16,7 @@
 
 t_exit_status	set_execute_state(t_pipes *pipes, int is_parent)
 {
-	if (is_parent)
-		set_sig_handler_parent(pipes);
-	else
+	if (!is_parent)
 		set_sig_handler_child();
 	if ((check_redir_err(pipes->redir) == REDIR_ERR) \
 		|| set_in_out(pipes->redir->in, pipes->redir->out) == REDIR_ERR)

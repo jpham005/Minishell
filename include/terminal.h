@@ -28,7 +28,6 @@ void		reset_terminal(t_context *context);
 void		sig_int_handler_readline(int sig);
 void		sig_int_handler_default(int sig);
 void		set_sig_handler_child(void);
-void		set_sig_handler_parent(t_pipes *pipes);
 void		set_sig_handler_default(void);
 void		heredoc_handler(int sig);
 void		sig_quit_handler(int sig);

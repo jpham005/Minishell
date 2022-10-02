@@ -22,6 +22,7 @@ PARSER_DIR			:=	$(SRCS_DIR)/parser
 TERMINAL_DIR		:=	$(SRCS_DIR)/terminal
 TOKENIZER_DIR		:=	$(SRCS_DIR)/tokenizer
 UTILS_DIR			:=	$(SRCS_DIR)/utils
+ALIAS_DIR			:=	$(SRCS_DIR)/alias
 
 INCLUDE_DIR			:=	include
 INCLUDE_FILES		:=	built_in.h color.h envp.h executor.h expander.h \
@@ -82,6 +83,9 @@ TOKENIZER_SRCS		:=	$(addprefix $(TOKENIZER_DIR)/, $(TOKENIZER_SRCS))
 UTILS_SRCS			:=	exit_manage.c t_buffer.c
 UTILS_SRCS			:=	$(addprefix $(UTILS_DIR)/, $(UTILS_SRCS))
 
+ALIAS_SRCS			:=	parse_minirc.c
+ALIAS_SRCS			:=	$(addprefix $(ALIAS_DIR)/, $(ALIAS_SRCS))
+
 MAIN_SRCS			:=	main.c
 MAIN_SRCS			:=	$(addprefix $(SRCS_DIR)/, $(MAIN_SRCS))
 
@@ -94,7 +98,7 @@ NAME				:=	minishell
 SRCS				:=	$(BUILT_IN_SRCS) $(ENVP_SRCS) $(EXECUTOR_SRCS) \
 						$(EXPANDER_SRCS) $(HEREDOC_SRCS) $(LEXER_SRCS) \
 						$(REDIRECTION_SRCS) $(PARSER_SRCS) $(TERMINAL_SRCS) \
-						$(TOKENIZER_SRCS) $(UTILS_SRCS) $(MAIN_SRCS)
+						$(TOKENIZER_SRCS) $(UTILS_SRCS) $(ALIAS_SRCS) $(MAIN_SRCS)
 OBJS				:=	$(SRCS:.c=.o)
 RM					:=	rm
 RMFLAGS				:=	-f

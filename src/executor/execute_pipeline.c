@@ -17,7 +17,6 @@
 
 static void	prepare_pipeline(int pipefd[2], t_pipes *pipes, t_pid_list **pids)
 {
-	set_sig_handler_parent(pipes);
 	if (pipes->next && (init_pipe(pipefd) == EXIT_FATAL))
 		wait_exit_fatal(*pids);
 	add_pid_list(pids, ft_fork());

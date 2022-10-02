@@ -50,8 +50,12 @@ int	get_exit_status(int stat)
 {
 	if (ft_wifexited(stat))
 		return (ft_wexitstatus(stat));
-	if (ft_wifsignaled(stat))
+	if (ft_wifsignaled(stat)) {
+    if (ft_wtermsig(stat) == SIGQUIT)
+      ft_putstr_fd("Quit: 3", STDERR_FILENO);
+    ft_putstr_fd("\n", STDERR_FILENO);
 		return (ft_wtermsig(stat) + EXIT_SIGNAL);
+  }
 	if (ft_wifstopped(stat))
 		return (STOP_SIGNAL + EXIT_SIGNAL);
 	return (CONTINUE_SIGNAL + EXIT_SIGNAL);

@@ -14,21 +14,6 @@
 #include "terminal.h"
 #include <signal.h>
 
-void	set_sig_handler_parent(t_pipes *pipes)
-{
-	if (pipes->parse_tree || !pipes->cmd[0] || (ft_strlen(pipes->cmd[0]) < 10) \
-	|| !ft_iseq(pipes->cmd[0] + ft_strlen(pipes->cmd[0]) - 10, "/minishell"))
-	{
-		signal(SIGINT, sig_int_handler_default);
-		signal(SIGQUIT, sig_quit_handler);
-	}
-	else
-	{
-		signal(SIGINT, SIG_IGN);
-		signal(SIGQUIT, SIG_IGN);
-	}
-}
-
 void	set_sig_handler_child(void)
 {
 	signal(SIGINT, SIG_DFL);

@@ -17,18 +17,6 @@
 #include <stdlib.h>
 #include "readline.h"
 
-void	sig_int_handler_default(int sig)
-{
-	if (sig == SIGINT)
-		ft_putstr_fd("\n", STDERR_FILENO);
-}
-
-void	sig_quit_handler(int sig)
-{
-	if (sig == SIGQUIT)
-		ft_putstr_fd(SIG_QUIT_MESSAGE, STDERR_FILENO);
-}
-
 void	heredoc_handler(int sig)
 {
 	if (sig == SIGINT)
